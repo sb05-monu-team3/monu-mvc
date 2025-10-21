@@ -5,7 +5,7 @@
 - **API 명세서:** [Swagger UI ↗](http://sprint-project-1196140422.ap-northeast-2.elb.amazonaws.com/sb/monew/api/swagger-ui/index.html)  
 - **협업 문서:** [Notion ↗](https://polydactyl-pufferfish-876.notion.site/MoNew-28e08cfefb45803ebd28ffcd05a97b2e?source=copy_link)
 - **이슈 관리:** [GitHub Issue Tracker ↗](*#)
-- **커뮤니케이션: Discord  
+- **커뮤니케이션:** Discord  
 
 ---
 
