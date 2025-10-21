@@ -55,9 +55,9 @@ PostgreSQL과 MongoDB 기반으로 데이터를 안전하게 저장하고, Sprin
 
 | Repo | 설명 |
 |------|------|
-| monu-mvc | 메인 API 서버 (Spring Boot MVC) |
-| monu-batch | 뉴스 수집 및 백업 Batch 서비스 |
-| monu-actuator | 모니터링 및 상태 관리 서비스 |
+| monew-mvc | 메인 API 서버 (Spring Boot MVC) |
+| monew-batch | 뉴스 수집 및 백업 Batch 서비스 |
+| monew-actuator | 모니터링 및 상태 관리 서비스 |
 
 ---
 
@@ -81,7 +81,7 @@ PostgreSQL과 MongoDB 기반으로 데이터를 안전하게 저장하고, Sprin
 
 ## 📂 프로젝트 구조 (예시)
 
-monu-mvc/  
+monew-mvc/  
 ├─ src/  
 │   ├─ main/  
 │   │   ├─ java/  
