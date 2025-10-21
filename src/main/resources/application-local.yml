@@ -1,0 +1,49 @@
+spring:
+  config:
+    import: optional:dotenv:.
+    activate:
+      on-profile: local
+
+  boot:
+    admin:
+      client:
+        enabled: true
+        url: http://localhost:9090
+        instance:
+          name: monew_server
+          service-url: http://localhost:8080
+          management-base-url: http://localhost:8081
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:${DB_LOCAL_PORT:5432}/${DB_LOCAL_DB_NAME:monew}
+    username: ${DB_LOCAL_USER:postgres}
+    password: ${DB_LOCAL_PASSWORD:1234}
+
+  data:
+    mongodb:
+      uri: mongodb+srv://${DB_MONGO_USERNAME}:${DB_MONGO_PASSWORD}@monewcluster.1hw0geh.mongodb.net/${DB_MONGO_DB}?retryWrites=true&w=majority&appName=monewCluster
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        highlight_sql: true
+        use_sql_comments: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        physical_naming_strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+        jdbc.time_zone: UTC
+    open-in-view: false
+
+logging:
+  level:
+    root: info
+    org.hibernate.SQL: info
+    org.hibernate.orm.jdbc.bind: info
+    org.hibernate.type.descriptor.sql: info
+
+    org.springframework.web: info
+    org.springframework.filter.CommonsRequestLoggingFilter: trace
+    com.monew.monew_server: info
