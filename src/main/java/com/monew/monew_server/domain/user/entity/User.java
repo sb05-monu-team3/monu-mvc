@@ -1,7 +1,7 @@
-package com.monew.monew_server.entity;
+package com.monew.monew_server.domain.user.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.monew.monew_server.entity.common.BaseDeletableEntity;
+import com.monew.monew_server.domain.common.BaseDeletableEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -1,7 +1,8 @@
-package com.monew.monew_server.entity;
+package com.monew.monew_server.domain.article.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.monew.monew_server.entity.common.BaseEntity;
+import com.monew.monew_server.domain.common.BaseEntity;
+import com.monew.monew_server.domain.user.entity.User;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -17,7 +18,7 @@ import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 @Entity
-@Table(name = "comment_likes")
+@Table(name = "article_views")
 @Getter
 @Setter
 @SuperBuilder
@@ -25,11 +26,11 @@ import lombok.experimental.SuperBuilder;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class CommentLike extends BaseEntity {
+public class ArticleView extends BaseEntity {
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "comment_id", nullable = false)
-	private Comment comment;
+	@JoinColumn(name = "article_id", nullable = false)
+	private Article article;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id", nullable = false)

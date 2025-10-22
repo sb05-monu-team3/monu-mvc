@@ -1,15 +1,13 @@
-package com.monew.monew_server.entity;
-
-import java.util.UUID;
+package com.monew.monew_server.domain.comment.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.monew.monew_server.domain.article.entity.Article;
+import com.monew.monew_server.domain.common.BaseDeletableEntity;
+import com.monew.monew_server.domain.user.entity.User;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -22,7 +20,7 @@ import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 @Entity
-@Table(name = "interest_keywords")
+@Table(name = "comments")
 @Getter
 @Setter
 @SuperBuilder
@@ -30,17 +28,16 @@ import lombok.experimental.SuperBuilder;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class InterestKeyword {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.UUID)
-	@Column(updatable = false, nullable = false)
-	private UUID id;
-
-	@Column(nullable = false)
-	private String name;
+public class Comment extends BaseDeletableEntity {
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "interest_id", nullable = false)
-	private Interest interest;
+	@JoinColumn(name = "article_id", nullable = false)
+	private Article article;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id", nullable = false)
+	private User user;
+
+	@Column(columnDefinition = "text", nullable = false)
+	private String content;
 }

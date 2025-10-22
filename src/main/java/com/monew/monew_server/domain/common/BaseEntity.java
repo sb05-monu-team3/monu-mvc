@@ -1,4 +1,4 @@
-package com.monew.monew_server.entity.common;
+package com.monew.monew_server.domain.common;
 
 import java.time.Instant;
 import java.util.UUID;

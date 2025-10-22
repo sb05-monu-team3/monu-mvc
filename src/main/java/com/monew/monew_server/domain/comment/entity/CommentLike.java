@@ -1,9 +1,9 @@
-package com.monew.monew_server.entity;
+package com.monew.monew_server.domain.comment.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.monew.monew_server.entity.common.BaseDeletableEntity;
+import com.monew.monew_server.domain.common.BaseEntity;
+import com.monew.monew_server.domain.user.entity.User;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
@@ -18,7 +18,7 @@ import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 @Entity
-@Table(name = "comments")
+@Table(name = "comment_likes")
 @Getter
 @Setter
 @SuperBuilder
@@ -26,16 +26,13 @@ import lombok.experimental.SuperBuilder;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Comment extends BaseDeletableEntity {
+public class CommentLike extends BaseEntity {
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "article_id", nullable = false)
-	private Article article;
+	@JoinColumn(name = "comment_id", nullable = false)
+	private Comment comment;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
-
-	@Column(columnDefinition = "text", nullable = false)
-	private String content;
 }
