@@ -64,7 +64,8 @@ CREATE TABLE article_views
     id         UUID PRIMARY KEY,
     article_id UUID        NOT NULL,
     user_id    UUID        NOT NULL, -- viewed_by
-    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    CONSTRAINT uk_article_views_article_id_user_id UNIQUE (article_id, user_id)
 );
 ALTER TABLE article_views
     ADD CONSTRAINT fk_article_views_articles_id FOREIGN KEY (article_id) REFERENCES articles (id) ON DELETE CASCADE;

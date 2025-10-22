@@ -12,6 +12,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,7 +22,11 @@ import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 @Entity
-@Table(name = "articles")
+@Table(name = "articles",
+	uniqueConstraints = @UniqueConstraint(
+		name = "uk_articles_source_source_url",
+		columnNames = {"source", "sourceUrl"}
+	))
 @Getter
 @Setter
 @SuperBuilder
