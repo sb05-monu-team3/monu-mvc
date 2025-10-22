@@ -8,10 +8,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @EnableJpaAuditing
 public class MonewServerApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(MonewServerApplication.class, args);
-        System.out.println("home : http://localhost:8080/");
-        System.out.println("actuator : http://localhost:8080/actuator");
-    }
-
+	public static void main(String[] args) {
+		SpringApplication.run(MonewServerApplication.class, args);
+		System.out.println("home : http://localhost:8080/");
+		System.out.println("actuator : http://localhost:8080/actuator");
+	}
 }
