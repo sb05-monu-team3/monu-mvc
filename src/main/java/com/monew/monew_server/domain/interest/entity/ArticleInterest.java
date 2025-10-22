@@ -19,7 +19,7 @@ import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 @Entity
-@Table(name = "interests",
+@Table(name = "article_interests",
 	uniqueConstraints = @UniqueConstraint(
 		name = "uk_article_interests_article_id_interest_id",
 		columnNames = {"article_id", "interest_id"}
