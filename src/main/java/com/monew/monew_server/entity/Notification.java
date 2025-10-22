@@ -1,0 +1,53 @@
+package com.monew.monew_server.entity;
+
+import java.util.UUID;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.monew.monew_server.entity.common.BaseUpdatableEntity;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
+
+@Entity
+@Table(name = "notifications")
+@Getter
+@Setter
+@SuperBuilder
+@ToString(callSuper = true)
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class Notification extends BaseUpdatableEntity {
+
+	@Builder.Default
+	@Column(nullable = false)
+	private Boolean confirmed = false;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id", nullable = false)
+	private User user;
+
+	@Column(columnDefinition = "text", nullable = false)
+	private String content;
+
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false, length = 50)
+	private NotificationResourceType resourceType;
+
+	@Column(nullable = false)
+	private UUID resourceId;
+}
