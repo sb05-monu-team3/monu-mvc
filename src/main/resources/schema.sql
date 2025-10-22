@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS articles CASCADE;
 DROP TABLE IF EXISTS article_views CASCADE;
 DROP TABLE IF EXISTS interests CASCADE;
 DROP TABLE IF EXISTS interest_keywords CASCADE;
+DROP TABLE IF EXISTS article_interests CASCADE;
 DROP TABLE IF EXISTS subscriptions CASCADE;
 DROP TABLE IF EXISTS comments CASCADE;
 DROP TABLE IF EXISTS comment_likes CASCADE;
@@ -89,6 +90,7 @@ COMMENT ON COLUMN interests.name IS '관심사 이름';
 COMMENT ON COLUMN interests.created_at IS '등록 일자';
 COMMENT ON COLUMN interests.updated_at IS '수정 일자';
 
+/* 관심사 키워드 */
 CREATE TABLE interest_keywords
 (
     id          UUID PRIMARY KEY,
@@ -101,6 +103,20 @@ COMMENT ON TABLE interest_keywords IS '관련 키워드';
 COMMENT ON COLUMN interest_keywords.id IS '키워드 ID';
 COMMENT ON COLUMN interest_keywords.name IS '키워드 이름';
 COMMENT ON COLUMN interest_keywords.interest_id IS '관심사 ID';
+
+/* 기사 - 관심사 */
+CREATE TABLE article_interests
+(
+    id          UUID PRIMARY KEY,
+    article_id  UUID        NOT NULL,
+    interest_id UUID        NOT NULL,
+    created_at  TIMESTAMPTZ NOT NULL DEFAULT now(),
+    CONSTRAINT uk_article_interests_article_id_interest_id UNIQUE (article_id, interest_id)
+);
+ALTER TABLE article_interests
+    ADD CONSTRAINT fk_article_interests_article_id FOREIGN KEY (article_id) REFERENCES articles (id) ON DELETE CASCADE;
+ALTER TABLE article_interests
+    ADD CONSTRAINT fk_article_interests_interests_id FOREIGN KEY (interest_id) REFERENCES interests (id) ON DELETE CASCADE;
 
 /* 구독 */
 CREATE TABLE subscriptions
