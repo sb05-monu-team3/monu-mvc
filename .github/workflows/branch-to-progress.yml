@@ -2,7 +2,7 @@ name: 'Move Issue to In Progress'
 
 on:
   push:
-    branches-ignore: # main, master 브랜치는 무시
+    branches-ignore:
       - 'main'
       - 'master'
       - 'develop'
@@ -28,17 +28,19 @@ jobs:
           github-token: ${{ secrets.ORG_PROJECT_PAT }}
 
           script: |
-            // 1. 환경 변수(Secrets) 가져오기
             const { PROJECT_ID, STATUS_FIELD_ID, IN_PROGRESS_OPTION_ID, TODO_OPTION_ID } = process.env;
-            
+
             if (!TODO_OPTION_ID) {
               core.setFailed('Error: ORG_STATUS_TODO_ID secret is not set.');
               return;
             }
-            
-            // 2. 브랜치 이름에서 이슈 번호 추출
+            if (!STATUS_FIELD_ID) {
+              core.setFailed('Error: ORG_STATUS_FIELD_ID secret is not set.');
+              return;
+            }
+
             const branchName = "${{ github.ref_name }}";
-            const issueNumberMatch = branchName.match(/(\d+)$/); // 브랜치명 마지막 숫자
+            const issueNumberMatch = branchName.match(/(\d+)$/);
             
             if (!issueNumberMatch) {
               console.log(`Branch name '${branchName}' does not end in a number. Skipping.`);
@@ -46,8 +48,7 @@ jobs:
             }
             const issueNumber = parseInt(issueNumberMatch[1], 10);
             console.log(`Found issue number: ${issueNumber}`);
-            
-            // 3. 이슈 번호로 이슈의 Node ID 가져오기
+
             let issueNodeId;
             try {
               const issue = await github.rest.issues.get({
@@ -61,10 +62,9 @@ jobs:
               console.log(`Could not find issue #${issueNumber}. Skipping.`);
               return;
             }
-            
-            // 4. 이슈 Node ID를 이용해 프로젝트 아이템 ID(Item ID) 및 "현재 상태" 찾기
+
             const query = `
-              query($issueNodeId: ID!, $statusFieldId: ID!) {
+              query($issueNodeId: ID!) {
                 node(id: $issueNodeId) {
                   ... on Issue {
                     projectItems(first: 20) {
@@ -72,7 +72,7 @@ jobs:
                         id
                         project { id }
             
-                        fieldValue(fieldId: $statusFieldId) {
+                        fieldValueByName(name: "Status") {
                            ... on ProjectV2ItemFieldSingleSelectValue {
                             optionId
                           }
@@ -84,32 +84,29 @@ jobs:
               }`;
             
             const variables = { 
-              issueNodeId,
-              statusFieldId: STATUS_FIELD_ID
+              issueNodeId
             };
             const result = await github.graphql(query, variables);
             
             const projectItem = result.node.projectItems.nodes.find(item => item.project.id === PROJECT_ID);
-            
+
             if (!projectItem) {
               console.log(`Issue #${issueNumber} is not in project ${PROJECT_ID}. Skipping.`);
               return;
             }
-            
-            // 5. "현재 상태"가 'To Do'인지 확인
-            const currentStatusOptionId = projectItem.fieldValue?.optionId;
+
+            const currentStatusOptionId = projectItem.fieldValueByName?.optionId;
             console.log(`Current status ID: ${currentStatusOptionId}`);
-            
+
             if (currentStatusOptionId !== TODO_OPTION_ID) {
-              console.log(`Issue is not in 'To Do' status (current: ${currentStatusOptionId}). Skipping mutation.`);
-              return; // 'To Do' 상태가 아니면 여기서 중단
+              console.log(`Issue is not in 'To Do' status (current: ${currentStatusOptionId}, expected: ${TODO_OPTION_ID}). Skipping mutation.`);
+              return;
             }
-            
+
             console.log("Issue is in 'To Do' status. Proceeding to update...");
             const projectItemId = projectItem.id;
             console.log(`Found Project Item ID: ${projectItemId}`);
-            
-            // 6. 프로젝트 아이템의 상태(Status)를 'In Progress'로 변경
+
             const mutation = `
               mutation($project_id: ID!, $item_id: ID!, $field_id: ID!, $option_id: String!) {
                 updateProjectV2ItemFieldValue(
