@@ -2,7 +2,7 @@ name: 공통 이슈 템플릿
 description: 브랜치 생성 및 작업 관리를 위한 공통 이슈 템플릿
 title: "제목"
 labels: [feat]
-assignees: ["@me"]
+assignees: []
 
 body:
   - type: markdown
