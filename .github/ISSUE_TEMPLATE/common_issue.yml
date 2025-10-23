@@ -3,18 +3,11 @@ description: 브랜치 생성 및 작업 관리를 위한 이슈 템플릿
 labels: [feat]
 
 body:
-  - type: markdown
-    attributes:
-      value: |
-        <-- 브랜치명은 마지막에 이슈 번호를 포함해야 합니다.-->
-        <-- 예: `feature/login#3`-->
-
   - type: input
     id: summary
     attributes:
       label: 이슈 요약
       description: 이슈의 목적 또는 핵심 내용을 한 줄로 요약하세요.
-      placeholder: 로그인 기능 추가
     validations:
       required: true
 
