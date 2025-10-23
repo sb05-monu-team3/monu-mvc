@@ -3,6 +3,7 @@ description: 브랜치 생성 및 작업 관리를 위한 공통 이슈 템플�
 title: "제목"
 labels: [feat]
 assignees: []
+projects: ["Monew"]
 
 body:
   - type: markdown
