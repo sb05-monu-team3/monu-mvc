@@ -1,13 +1,15 @@
 name: 'Move Closed Issue to Done'
 
 on:
-  issues:
+  pull_request:
     types: [closed]
 
 jobs:
   move_issue_to_done:
     name: Move Issue to Done
     runs-on: ubuntu-latest
+
+    if: github.event.pull_request.merged == true
 
     steps:
       - name: 'Find issue and update project'
