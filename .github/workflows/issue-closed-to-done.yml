@@ -21,7 +21,7 @@ jobs:
           STATUS_FIELD_ID: ${{ secrets.ORG_STATUS_FIELD_ID }}
           DONE_OPTION_ID: ${{ secrets.ORG_STATUS_DONE_ID }}
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.ORG_PROJECT_PAT }}
           script: |
             // 1. 환경 변수 및 닫힌 이슈의 Node ID 가져오기
             const { PROJECT_ID, STATUS_FIELD_ID, DONE_OPTION_ID } = process.env;
