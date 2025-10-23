@@ -13,9 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.before == '0000000000000000000000000000000000000000'
 
-    permissions:
-      issues: read
-
     steps:
       - name: 'Extract issue number and update project'
         uses: actions/github-script@v7

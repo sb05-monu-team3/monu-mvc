@@ -2,16 +2,12 @@ name: 'Move Closed Issue to Done'
 
 on:
   issues:
-    types: [closed] # 이슈가 닫힐 때 실행
+    types: [closed]
 
 jobs:
   move_issue_to_done:
     name: Move Issue to Done
     runs-on: ubuntu-latest
-
-    permissions:
-      issues: read
-      repository-projects: write
 
     steps:
       - name: 'Find issue and update project'
@@ -23,13 +19,10 @@ jobs:
         with:
           github-token: ${{ secrets.ORG_PROJECT_PAT }}
           script: |
-            // 1. 환경 변수 및 닫힌 이슈의 Node ID 가져오기
             const { PROJECT_ID, STATUS_FIELD_ID, DONE_OPTION_ID } = process.env;
             const issueNodeId = "${{ github.event.issue.node_id }}";
             console.log(`Processing closed issue Node ID: ${issueNodeId}`);
 
-            // 2. 이슈 Node ID를 이용해 프로젝트 아이템 ID(Item ID) 찾기
-            // (워크플로 1의 4번 단계와 동일한 쿼리)
             const query = `
               query($issueNodeId: ID!) {
                 node(id: $issueNodeId) {
@@ -55,8 +48,6 @@ jobs:
             const projectItemId = projectItem.id;
             console.log(`Found Project Item ID: ${projectItemId}`);
 
-            // 3. 프로젝트 아이템의 상태(Status)를 'Done'으로 변경
-            // (워크플로 1의 5번 단계와 동일한 뮤테이션)
             const mutation = `
               mutation($project_id: ID!, $item_id: ID!, $field_id: ID!, $option_id: String!) {
                 updateProjectV2ItemFieldValue(
@@ -74,7 +65,7 @@ jobs:
               project_id: PROJECT_ID,
               item_id: projectItemId,
               field_id: STATUS_FIELD_ID,
-              option_id: DONE_OPTION_ID // 'Done' ID 사용
+              option_id: DONE_OPTION_ID
             };
             
             await github.graphql(mutation, mutationVars);
