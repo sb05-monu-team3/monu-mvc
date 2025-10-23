@@ -15,7 +15,7 @@ jobs:
     # ❗️ 워크플로가 프로젝트/이슈에 접근할 권한 부여
     permissions:
       issues: read
-      projects: write
+      repository-projects: write
 
     steps:
       - name: 'Extract issue number and update project'
