@@ -168,7 +168,9 @@ CREATE TABLE comment_likes
     id         UUID PRIMARY KEY,
     comment_id UUID        NOT NULL,
     user_id    UUID        NOT NULL, -- liked_by
-    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    CONSTRAINT uk_comment_likes_comment_id_user_id UNIQUE (comment_id, user_id)
+
 );
 ALTER TABLE comment_likes
     ADD CONSTRAINT fk_comment_likes_comments_id FOREIGN KEY (comment_id) REFERENCES comments (id) ON DELETE CASCADE;

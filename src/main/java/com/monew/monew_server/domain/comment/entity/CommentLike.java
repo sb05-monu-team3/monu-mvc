@@ -21,7 +21,7 @@ import lombok.experimental.SuperBuilder;
 @Entity
 @Table(name = "comment_likes",
 	uniqueConstraints = @UniqueConstraint(
-		name = "uk_article_interests_article_id_interest_id",
+		name = "uk_comment_likes_comment_id_user_id",
 		columnNames = {"comment_id", "user_id"}
 	))
 @Getter
