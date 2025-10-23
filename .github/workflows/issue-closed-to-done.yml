@@ -1,4 +1,4 @@
-name: 'Move Closed Issue to Done'
+name: 'Move Issue to Done on PR Merge'
 
 on:
   pull_request:
@@ -12,7 +12,7 @@ jobs:
     if: github.event.pull_request.merged == true
 
     steps:
-      - name: 'Find issue and update project'
+      - name: 'Find issue from branch and update project'
         uses: actions/github-script@v7
         env:
           PROJECT_ID: ${{ secrets.ORG_PROJECT_ID }}
@@ -20,10 +20,33 @@ jobs:
           DONE_OPTION_ID: ${{ secrets.ORG_STATUS_DONE_ID }}
         with:
           github-token: ${{ secrets.ORG_PROJECT_PAT }}
+
           script: |
             const { PROJECT_ID, STATUS_FIELD_ID, DONE_OPTION_ID } = process.env;
-            const issueNodeId = "${{ github.event.issue.node_id }}";
-            console.log(`Processing closed issue Node ID: ${issueNodeId}`);
+
+            const branchName = "${{ github.event.pull_request.head.ref }}";
+            const issueNumberMatch = branchName.match(/(\d+)$/);
+            
+            if (!issueNumberMatch) {
+              console.log(`Branch name '${branchName}' does not end in a number. Skipping.`);
+              return;
+            }
+            const issueNumber = parseInt(issueNumberMatch[1], 10);
+            console.log(`Found issue number: ${issueNumber} from branch ${branchName}`);
+
+            let issueNodeId;
+            try {
+              const issue = await github.rest.issues.get({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+              });
+              issueNodeId = issue.data.node_id;
+              console.log(`Found issue Node ID: ${issueNodeId}`);
+            } catch (e) {
+              console.log(`Could not find issue #${issueNumber}. Skipping.`);
+              return;
+            }
 
             const query = `
               query($issueNodeId: ID!) {
@@ -38,13 +61,14 @@ jobs:
                   }
                 }
               }`;
+            
             const variables = { issueNodeId };
             const result = await github.graphql(query, variables);
             
             const projectItem = result.node.projectItems.nodes.find(item => item.project.id === PROJECT_ID);
 
             if (!projectItem) {
-              console.log(`Issue is not in project ${PROJECT_ID}. Skipping.`);
+              console.log(`Issue #${issueNumber} is not in project ${PROJECT_ID}. Skipping.`);
               return;
             }
             const projectItemId = projectItem.id;
@@ -71,4 +95,4 @@ jobs:
             };
             
             await github.graphql(mutation, mutationVars);
-            console.log(`Successfully updated closed issue status to 'Done'.`);
+            console.log(`Successfully updated issue #${issueNumber} status to 'Done'.`);
