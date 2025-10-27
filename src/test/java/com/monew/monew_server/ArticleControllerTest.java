@@ -127,4 +127,66 @@ class ArticleControllerTest {
 			.andExpect(status().isOk())
 			.andExpect(jsonPath("$.content[0].title").value("최신 기사"));
 	}
+
+	@Test
+	@DisplayName("정렬 조건(viewcount) 테스트")
+	void shouldSortArticlesByViewCount() throws Exception {
+		UUID id1 = UUID.fromString("00000000-0000-0000-0000-000000000020");
+		UUID id2 = UUID.fromString("00000000-0000-0000-0000-000000000021");
+
+		ArticleResponse articleWithHighViews = new ArticleResponse(
+			id1, "조회수 1위 기사", "내용", "NAVER", Instant.now(), 5L, 100L, false
+		);
+		ArticleResponse articleWithLowViews = new ArticleResponse(
+			id2, "조회수 낮은 기사", "내용", "CHOSUN", Instant.now(), 1L, 10L, false
+		);
+
+		List<ArticleResponse> sortedArticles = List.of(articleWithHighViews, articleWithLowViews);
+
+		CursorPageResponseArticleDto mockResponse = CursorPageResponseArticleDto.builder()
+			.content(sortedArticles)
+			.hasNext(false)
+			.size(10)
+			.totalElements(2)
+			.build();
+
+		when(articleService.fetchArticles(any(ArticleRequest.class), any(UUID.class)))
+			.thenReturn(mockResponse);
+
+		mockMvc.perform(get("/api/articles?sortBy=VIEW_COUNT"))
+			.andExpect(status().isOk())
+			.andExpect(jsonPath("$.content[0].title").value("조회수 1위 기사"))
+			.andExpect(jsonPath("$.content[0].viewCount").value(100));
+	}
+
+	@Test
+	@DisplayName("정렬 조건(commentcount) 테스트")
+	void shouldSortArticlesByCommentCount() throws Exception {
+		UUID id1 = UUID.fromString("00000000-0000-0000-0000-000000000030");
+		UUID id2 = UUID.fromString("00000000-0000-0000-0000-000000000031");
+
+		ArticleResponse articleWithManyComments = new ArticleResponse(
+			id1, "댓글 많은 기사", "내용", "NAVER", Instant.now(), 50L, 50L, false
+		);
+		ArticleResponse articleWithFewComments = new ArticleResponse(
+			id2, "댓글 적은 기사", "내용", "CHOSUN", Instant.now(), 5L, 20L, false
+		);
+
+		List<ArticleResponse> sortedArticles = List.of(articleWithManyComments, articleWithFewComments);
+
+		CursorPageResponseArticleDto mockResponse = CursorPageResponseArticleDto.builder()
+			.content(sortedArticles)
+			.hasNext(false)
+			.size(10)
+			.totalElements(2)
+			.build();
+
+		when(articleService.fetchArticles(any(ArticleRequest.class), any(UUID.class)))
+			.thenReturn(mockResponse);
+
+		mockMvc.perform(get("/api/articles?sortBy=COMMENT_COUNT"))
+			.andExpect(status().isOk())
+			.andExpect(jsonPath("$.content[0].title").value("댓글 많은 기사"))
+			.andExpect(jsonPath("$.content[0].commentCount").value(50));
+	}
 }
