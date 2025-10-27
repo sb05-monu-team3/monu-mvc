@@ -1,0 +1,46 @@
+# 코멘트용 테스트 주석: ========================================
+# 코멘트용 테스트 주석: 테스트 전용 설정 파일
+# 코멘트용 테스트 주석: 실제 PostgreSQL 대신 H2 인메모리 DB 사용
+# 코멘트용 테스트 주석: ========================================
+
+spring:
+  # 코멘트용 테스트 주석: 테스트 프로필 사용 (local 프로필 무시)
+  profiles:
+    active: test
+
+  # 코멘트용 테스트 주석: H2 인메모리 데이터베이스 설정
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb  # 코멘트용 테스트 주석: 메모리에만 존재, 테스트 종료 시 삭제
+    username: sa
+    password:
+
+  # 코멘트용 테스트 주석: schema.sql 실행 비활성화 (PostgreSQL 문법이라 H2에서 에러남)
+  sql:
+    init:
+      mode: never
+
+  # 코멘트용 테스트 주석: JPA 설정
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect  # 코멘트용 테스트 주석: H2 DB에 맞는 SQL 생성
+    hibernate:
+      ddl-auto: create-drop  # 코멘트용 테스트 주석: 테스트 시작 시 테이블 생성, 종료 시 삭제
+    show-sql: true  # 코멘트용 테스트 주석: 실행되는 SQL 쿼리를 콘솔에 출력
+    properties:
+      hibernate:
+        format_sql: true  # 코멘트용 테스트 주석: SQL을 보기 좋게 포맷팅
+        highlight_sql: true
+        use_sql_comments: false
+
+  # 코멘트용 테스트 주석: H2 콘솔 비활성화 (테스트에서는 불필요)
+  h2:
+    console:
+      enabled: false
+
+# 코멘트용 테스트 주석: 로깅 설정 (테스트 로그 최소화)
+logging:
+  level:
+    root: warn
+    org.springframework: warn
+    org.hibernate: warn
+    com.monew.monew_server: info
