@@ -1,6 +1,8 @@
 package com.monew.monew_server.exception;
 
-import lombok.extern.slf4j.Slf4j;
+import java.time.Instant;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,9 +11,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.time.Instant;
-import java.util.HashMap;
-import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestControllerAdvice
@@ -39,6 +39,7 @@ public class GlobalExceptionHandler {
 		return switch (errorCode) {
 			case INVALID_REQUEST -> HttpStatus.BAD_REQUEST;
 			case INTERNAL_SERVER_ERROR -> HttpStatus.INTERNAL_SERVER_ERROR;
+			case ARTICLE_NOT_FOUND -> HttpStatus.NOT_FOUND;
 		};
 	}
 
