@@ -9,6 +9,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,7 +19,11 @@ import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 @Entity
-@Table(name = "article_views")
+@Table(name = "article_views",
+	uniqueConstraints = @UniqueConstraint(
+		name = "uk_article_views_article_id_user_id",
+		columnNames = {"article_id", "user_id"}
+	))
 @Getter
 @Setter
 @SuperBuilder

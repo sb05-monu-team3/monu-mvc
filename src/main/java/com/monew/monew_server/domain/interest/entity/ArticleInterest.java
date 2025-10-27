@@ -1,8 +1,8 @@
-package com.monew.monew_server.domain.comment.entity;
+package com.monew.monew_server.domain.interest.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.monew.monew_server.domain.article.entity.Article;
 import com.monew.monew_server.domain.common.BaseEntity;
-import com.monew.monew_server.domain.user.entity.User;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -19,10 +19,10 @@ import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 @Entity
-@Table(name = "comment_likes",
+@Table(name = "article_interests",
 	uniqueConstraints = @UniqueConstraint(
-		name = "uk_comment_likes_comment_id_user_id",
-		columnNames = {"comment_id", "user_id"}
+		name = "uk_article_interests_article_id_interest_id",
+		columnNames = {"article_id", "interest_id"}
 	))
 @Getter
 @Setter
@@ -31,13 +31,13 @@ import lombok.experimental.SuperBuilder;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class CommentLike extends BaseEntity {
+public class ArticleInterest extends BaseEntity {
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "comment_id", nullable = false)
-	private Comment comment;
+	@JoinColumn(name = "article_id", nullable = false)
+	private Article article;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id", nullable = false)
-	private User user;
+	@JoinColumn(name = "interest_id", nullable = false)
+	private Interest interest;
 }
