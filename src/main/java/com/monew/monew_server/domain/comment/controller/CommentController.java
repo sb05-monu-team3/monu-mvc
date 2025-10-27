@@ -38,7 +38,7 @@ public class CommentController {
                 commentService.createComment(request);
 
         return ResponseEntity
-                .status(HttpStatus.CREATED)  // 201
+                .status(HttpStatus.CREATED)  // 20133
                 .body(createdComment);
     }
 
