@@ -1,4 +1,4 @@
-package com.monew.monew_server.domain.common.dto;
+package com.monew.monew_server.domain.comment.dto;
 
 import java.time.Instant;
 import java.util.List;
