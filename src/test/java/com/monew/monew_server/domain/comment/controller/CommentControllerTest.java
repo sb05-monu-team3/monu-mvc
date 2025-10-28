@@ -32,12 +32,11 @@ class CommentControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
-
     @MockBean
     private CommentService commentService;
 
-    // 댓글 생성 테스트
 
+    // 댓글 생성 테스트 (댓글 생성 성공)
     @Test // Junit 에게 이건 테스트라고 알려주는것
     @DisplayName("POST /api/comments - 댓글 생성 성공") // 테스트 결과를 한글로 표시
     void createComment_Success() throws Exception { // MockMvc가 던질수 있는 예외 처리
@@ -82,7 +81,7 @@ class CommentControllerTest {
     }
 
     @Test
-    @DisplayName("PATCH /api/comments/{commentId} - 댓굴 수정 성공")
+    @DisplayName("PATCH /api/comments/{commentId} - 댓글 수정 성공")
     void updateComment_Success() throws Exception {
         // Given : 테스트 데이터 준비
         UUID commentId = UUID.randomUUID();
@@ -113,9 +112,11 @@ class CommentControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .header("Monew-Request-User-ID",
                                 userId.toString())
-                        .content("""{"content": "%s"
-                              }
-                              """.formatted(updatedContent)))
+                        .content("""
+                                {
+                                    "content": "%s"
+                                }
+                                """.formatted(updatedContent)))
                 .andDo(print())
                 .andExpect(status().isOk())
 
