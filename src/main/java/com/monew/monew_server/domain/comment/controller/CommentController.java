@@ -1,6 +1,7 @@
 package com.monew.monew_server.domain.comment.controller;
 import com.monew.monew_server.domain.comment.dto.CommentDto;
 import com.monew.monew_server.domain.comment.dto.CommentRegisterRequest;
+import com.monew.monew_server.domain.comment.dto.CommentUpdateRequest;
 import com.monew.monew_server.domain.comment.service.CommentService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -60,6 +61,20 @@ public class CommentController {
         );
 
         return ResponseEntity.ok(comments);
+    }
+
+
+    @PatchMapping("/{commentId}")
+    public ResponseEntity<CommentDto> updateComment(
+            @PathVariable UUID commentId,
+            @RequestHeader("Monew-Request-User-ID") UUID userId,
+            @Valid @RequestBody CommentUpdateRequest request
+    ) {
+        log.info("PATCH /api/comments/{} - userId={}", commentId, userId);
+
+        CommentDto updatedComment = commentService.updateComment(commentId, userId, request);
+
+        return ResponseEntity.ok(updatedComment);
     }
 
 }
