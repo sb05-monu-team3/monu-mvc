@@ -12,8 +12,6 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.UUID;
 
-import org.springframework.stereotype.Repository;
-
 import com.monew.monew_server.domain.article.entity.Article;
 import com.monew.monew_server.domain.article.entity.ArticleSortType;
 import com.monew.monew_server.domain.article.entity.ArticleSource;
@@ -30,7 +28,6 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import lombok.RequiredArgsConstructor;
 
-@Repository
 @RequiredArgsConstructor
 public class ArticleRepositoryImpl implements ArticleRepositoryCustom {
 
@@ -43,23 +40,19 @@ public class ArticleRepositoryImpl implements ArticleRepositoryCustom {
 		BooleanExpression cursorCondition = whereCursor(request, sortBy);
 		BooleanBuilder commonCondition = whereCondition(request);
 
-		// Query 시작
 		JPQLQuery<Article> query = queryFactory.selectFrom(article)
 			.leftJoin(articleView).on(articleView.article.eq(article))
 			.where(cursorCondition, commonCondition)
 			.groupBy(article.id);
 
-		// 정렬
 		OrderSpecifier<?> orderSpecifier;
 		if (sortBy == ArticleSortType.VIEW_COUNT) {
-			// 조회수 많은 순 + 최신 글 tie-breaker
 			orderSpecifier = articleView.id.count().desc();
 			query = query.orderBy(orderSpecifier, article.publishDate.desc(), article.id.desc());
 		} else if (sortBy == ArticleSortType.COMMENT_COUNT) {
 			orderSpecifier = getCountExpression(ArticleSortType.COMMENT_COUNT).desc();
 			query = query.orderBy(orderSpecifier, article.publishDate.desc(), article.id.desc());
 		} else {
-			// 기본 날짜 정렬
 			query = query.orderBy(article.publishDate.desc(), article.id.desc());
 		}
 
@@ -157,23 +150,6 @@ public class ArticleRepositoryImpl implements ArticleRepositoryCustom {
 		}
 
 		return null;
-	}
-
-	private OrderSpecifier<?> getOrderSpecifier(ArticleSortType sortBy) {
-
-		if (sortBy == null) {
-			sortBy = ArticleSortType.DATE;
-		}
-
-		switch (sortBy) {
-			case COMMENT_COUNT:
-			case VIEW_COUNT:
-				return getCountExpression(sortBy).desc();
-
-			case DATE:
-			default:
-				return article.publishDate.desc();
-		}
 	}
 
 	private NumberExpression<Long> getCountExpression(ArticleSortType sortBy) {
