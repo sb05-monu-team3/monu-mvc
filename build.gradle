@@ -39,6 +39,9 @@ dependencies {
     runtimeOnly 'org.postgresql:postgresql'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
+    // 코멘트용 테스트 주석: H2 인메모리 DB (테스트 전용)
+    testImplementation 'com.h2database:h2'
+
     // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.9")
 
