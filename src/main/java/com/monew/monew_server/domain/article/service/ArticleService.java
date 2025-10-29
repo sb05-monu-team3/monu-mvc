@@ -31,9 +31,9 @@ public class ArticleService {
 
 	public CursorPageResponseArticleDto fetchArticles(ArticleRequest request, UUID currentUserId) {
 
-		if (request.keyword() != null && request.keyword().isBlank()) {
-			throw new IllegalArgumentException("검색 키워드는 비어 있을 수 없습니다.");
-		}
+		// if (request.keyword() != null && request.keyword().isBlank()) {
+		// 	throw new IllegalArgumentException("검색 키워드는 비어 있을 수 없습니다.");
+		// }
 
 		int requestedSize = request.size() != null ? request.size() : DEFAULT_PAGE_SIZE; // N
 		int fetchSize = requestedSize + 1;
