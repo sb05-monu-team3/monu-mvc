@@ -36,7 +36,7 @@ public class Notification extends BaseUpdatableEntity {
 
 	@Builder.Default
 	@Column(nullable = false)
-	private Boolean confirmed = false;
+	private boolean confirmed = false;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id", nullable = false)
@@ -51,4 +51,8 @@ public class Notification extends BaseUpdatableEntity {
 
 	@Column(nullable = false)
 	private UUID resourceId;
+
+	public void confirm() {
+		this.confirmed = true;
+	}
 }
