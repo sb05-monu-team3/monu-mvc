@@ -11,12 +11,15 @@ import com.monew.monew_server.domain.article.dto.ArticleResponse;
 import com.monew.monew_server.domain.article.dto.CursorPageResponseArticleDto;
 import com.monew.monew_server.domain.article.entity.Article;
 import com.monew.monew_server.domain.article.entity.ArticleSortType;
+import com.monew.monew_server.domain.article.entity.ArticleView;
 import com.monew.monew_server.domain.article.mapper.ArticleMapper;
 import com.monew.monew_server.domain.article.repository.ArticleRepositoryCustom;
 import com.monew.monew_server.domain.article.repository.ArticleViewRepository;
 import com.monew.monew_server.domain.comment.repository.CommentRepository;
 import com.monew.monew_server.exception.ArticleNotFoundException;
+import com.monew.monew_server.exception.ErrorCode;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -112,5 +115,21 @@ public class ArticleService {
 			hasNext,
 			totalElements
 		);
+	}
+
+	@Transactional
+	public ArticleResponse getArticleById(UUID articleId, UUID userId) {
+		Article article = articleRepository.findById(articleId)
+			.orElseThrow(() -> new BusinessException(ErrorCode.ARTICLE_NOT_FOUND));
+
+		if (!articleViewRepository.existsByArticle_IdAndUser_Id(articleId, userId)) {
+			articleViewRepository.save(new ArticleView(article, new User(userId)));
+		}
+
+		long viewCount = articleViewRepository.countByArticleId(articleId);
+		long commentCount = commentRepository.countByArticleId(articleId);
+		boolean viewedByMe = articleViewRepository.existsByArticle_IdAndUser_Id(articleId, userId);
+
+		return articleMapper.toResponse(article, viewCount, commentCount, viewedByMe);
 	}
 }
