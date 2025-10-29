@@ -1,4 +1,4 @@
-package com.monew.monew_server.repository.projection;
+package com.monew.monew_server.domain.article.repository.projection;
 
 import java.util.UUID;
 

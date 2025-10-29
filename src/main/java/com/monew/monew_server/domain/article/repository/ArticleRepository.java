@@ -1,4 +1,4 @@
-package com.monew.monew_server.repository;
+package com.monew.monew_server.domain.article.repository;
 
 import java.util.List;
 import java.util.UUID;

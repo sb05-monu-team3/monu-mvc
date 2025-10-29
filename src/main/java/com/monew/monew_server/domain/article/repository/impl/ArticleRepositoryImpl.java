@@ -1,4 +1,4 @@
-package com.monew.monew_server.repository.impl;
+package com.monew.monew_server.domain.article.repository.impl;
 
 import static com.monew.monew_server.domain.article.entity.QArticle.*;
 import static com.monew.monew_server.domain.article.entity.QArticleView.*;
@@ -12,11 +12,11 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.UUID;
 
+import com.monew.monew_server.domain.article.dto.ArticleRequest;
 import com.monew.monew_server.domain.article.entity.Article;
 import com.monew.monew_server.domain.article.entity.ArticleSortType;
 import com.monew.monew_server.domain.article.entity.ArticleSource;
-import com.monew.monew_server.dto.ArticleRequest;
-import com.monew.monew_server.repository.ArticleRepositoryCustom;
+import com.monew.monew_server.domain.article.repository.ArticleRepositoryCustom;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;

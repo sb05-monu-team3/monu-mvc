@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.monew.monew_server.domain.article.service.ArticleService;
 import com.monew.monew_server.dto.ArticleRequest;
 import com.monew.monew_server.dto.CursorPageResponseArticleDto;
-import com.monew.monew_server.service.ArticleService;
 
 import jakarta.validation.Valid;
 

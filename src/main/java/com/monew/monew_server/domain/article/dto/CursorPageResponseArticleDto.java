@@ -1,4 +1,4 @@
-package com.monew.monew_server.dto;
+package com.monew.monew_server.domain.article.dto;
 
 import java.util.List;
 

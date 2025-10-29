@@ -17,12 +17,10 @@ import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.monew.monew_server.config.QuerydslConfig;
+import com.monew.monew_server.domain.article.dto.ArticleRequest;
 import com.monew.monew_server.domain.article.entity.Article;
 import com.monew.monew_server.domain.article.entity.ArticleSortType;
 import com.monew.monew_server.domain.article.entity.ArticleSource;
-import com.monew.monew_server.dto.ArticleRequest;
-import com.monew.monew_server.repository.ArticleRepository;
-import com.monew.monew_server.repository.ArticleRepositoryCustom;
 
 @DataJpaTest
 @Import(QuerydslConfig.class)

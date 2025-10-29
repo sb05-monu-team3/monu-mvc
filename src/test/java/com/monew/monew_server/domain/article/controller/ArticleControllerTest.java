@@ -21,10 +21,10 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.monew.monew_server.controller.ArticleController;
-import com.monew.monew_server.dto.ArticleRequest;
-import com.monew.monew_server.dto.ArticleResponse;
-import com.monew.monew_server.dto.CursorPageResponseArticleDto;
-import com.monew.monew_server.service.ArticleService;
+import com.monew.monew_server.domain.article.dto.ArticleRequest;
+import com.monew.monew_server.domain.article.dto.ArticleResponse;
+import com.monew.monew_server.domain.article.dto.CursorPageResponseArticleDto;
+import com.monew.monew_server.domain.article.service.ArticleService;
 
 @WebMvcTest(
 	controllers = ArticleController.class,

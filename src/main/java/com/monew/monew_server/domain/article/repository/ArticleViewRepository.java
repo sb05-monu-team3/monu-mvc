@@ -1,4 +1,4 @@
-package com.monew.monew_server.repository;
+package com.monew.monew_server.domain.article.repository;
 
 import java.util.List;
 import java.util.Set;
@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.monew.monew_server.domain.article.entity.ArticleView;
-import com.monew.monew_server.repository.projection.ViewCountProjection;
+import com.monew.monew_server.domain.article.repository.projection.ViewCountProjection;
 
 public interface ArticleViewRepository extends JpaRepository<ArticleView, UUID> {
 
