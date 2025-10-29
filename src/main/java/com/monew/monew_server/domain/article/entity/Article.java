@@ -1,16 +1,17 @@
 package com.monew.monew_server.domain.article.entity;
 
 import java.time.Instant;
-
-import org.springframework.data.annotation.CreatedDate;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.monew.monew_server.domain.common.BaseDeletableEntity;
+import com.monew.monew_server.domain.interest.entity.ArticleInterest;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import lombok.AccessLevel;
@@ -46,10 +47,12 @@ public class Article extends BaseDeletableEntity {
 	@Column(columnDefinition = "text", nullable = false)
 	private String title;
 
-	@CreatedDate
-	@Column(columnDefinition = "timestamp with time zone", nullable = false)
+	@Column(columnDefinition = "text", nullable = false)
+	private String summary;
+
+	@Column(nullable = false)
 	private Instant publishDate;
 
-	@Column(columnDefinition = "text")
-	private String summary;
+	@OneToMany(mappedBy = "article")
+	private List<ArticleInterest> articleInterests;
 }
