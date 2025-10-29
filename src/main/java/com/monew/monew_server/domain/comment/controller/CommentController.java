@@ -77,4 +77,30 @@ public class CommentController {
         return ResponseEntity.ok(updatedComment);
     }
 
+    @DeleteMapping("/{commentId}")
+    public ResponseEntity<Void> deleteComment(
+            @PathVariable UUID commentId,
+            @RequestHeader("Monew-Request-User-ID") UUID userId
+    ) {
+        log.info("DELETE /api/comments/{} - 논리 삭제 요청, userId={}", commentId, userId);
+
+        commentService.deleteComment(commentId, userId);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/{commentId}/hard")
+    public ResponseEntity<Void> deleteHardComment(
+            @PathVariable UUID commentId,
+            @RequestHeader("Monew-Request-User-ID") UUID userId
+    ) {
+        log.info("DELETE /api/comments/{}/hard - 물리 삭제 요청, userId={}", commentId, userId);
+
+        commentService.hardDeleteComment(commentId, userId);
+
+        return ResponseEntity.noContent().build();
+    }
+
+
+
 }

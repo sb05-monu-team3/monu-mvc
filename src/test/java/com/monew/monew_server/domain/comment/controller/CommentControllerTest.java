@@ -20,9 +20,11 @@ import java.util.UUID;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.willReturn;
+import static org.mockito.BDDMockito.willDoNothing;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -164,7 +166,43 @@ class CommentControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].content").value("첫번째 댓글입니다"))
-                                .andExpect(jsonPath("$[0].likeCount").value(5));
+                .andExpect(jsonPath("$[0].likeCount").value(5));
+    }
+
+
+
+    // 댓글 삭제 테스트코드
+    @Test
+    @DisplayName("DELETE /api/comments/{commentId} - 댓글 논리 삭제 성공")
+    void deleteComment_Success() throws Exception {
+        // Given: 테스트 데이터 준비
+        UUID commentId = UUID.randomUUID();
+        UUID userId = UUID.randomUUID();
+
+        // Service Mock 설정: void 메서드는 아무것도 반환하지 않음
+        willDoNothing().given(commentService).deleteComment(eq(commentId), eq(userId));
+
+        // When & Then: HTTP DELETE 요청 + 검증
+        mockMvc.perform(delete("/api/comments/{commentId}", commentId)
+                        .header("Monew-Request-User-ID", userId.toString()))
+                .andDo(print())
+                .andExpect(status().isNoContent());  // 204 검증
+    }
+    @Test
+    @DisplayName("DELETE /api/comments/{commentId}/hard - 댓글 물리 삭제 성공")
+    void hardDeleteComment_Success() throws Exception {
+        // Given: 테스트 데이터 준비
+        UUID commentId = UUID.randomUUID();
+        UUID userId = UUID.randomUUID();
+
+        // Service Mock 설정
+        willDoNothing().given(commentService).hardDeleteComment(eq(commentId), eq(userId));
+
+        // When & Then: HTTP DELETE 요청 + 검증
+        mockMvc.perform(delete("/api/comments/{commentId}/hard", commentId)
+                        .header("Monew-Request-User-ID", userId.toString()))
+                .andDo(print())
+                .andExpect(status().isNoContent());
     }
 
 }
