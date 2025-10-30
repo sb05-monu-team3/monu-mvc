@@ -1,11 +1,10 @@
 package com.monew.monew_server.exception;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
@@ -27,5 +26,4 @@ public class ErrorResponse {
 		this(Instant.now(), exception.getClass().getSimpleName(), exception.getMessage(), new HashMap<>(),
 			exception.getClass().getSimpleName(), status);
 	}
-
 }

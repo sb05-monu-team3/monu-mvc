@@ -1,15 +1,13 @@
 package com.monew.monew_server.domain.common;
 
-import java.time.Instant;
-
-import org.springframework.data.annotation.LastModifiedDate;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
+import java.time.Instant;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import org.springframework.data.annotation.LastModifiedDate;
 
 @Getter
 @SuperBuilder
