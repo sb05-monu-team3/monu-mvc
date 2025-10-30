@@ -95,5 +95,17 @@ public class UserService {
 			.build();
 	}
 
+	@Transactional
+	public void deleteUser(UUID id) {
+		User user  = userRepository.findById(id)
+			.orElseThrow(() -> new IllegalArgumentException("존재하지 않는 사용자 입니다."));
+
+		if (user.getDeletedAt() != null) {
+			throw new IllegalArgumentException("이미 삭제된 사용자입니다.");
+		}
+
+		user.softDelete();
+	}
+
 
 }
