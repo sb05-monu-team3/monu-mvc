@@ -24,7 +24,7 @@ public interface ArticleViewRepository extends JpaRepository<ArticleView, UUID> 
 		""")
 	List<ViewCountProjection> findViewCountsByArticleIds(@Param("articleIds") List<UUID> articleIds);
 
-	boolean existsByArticle_IdAndUser_Id(UUID articleId, UUID userId);
+	boolean existsByArticleIdAndUserId(UUID articleId, UUID userId);
 
 	@Query("""
 		    SELECT av.article.id

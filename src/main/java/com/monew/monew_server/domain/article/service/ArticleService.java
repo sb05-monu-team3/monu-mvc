@@ -1,5 +1,6 @@
 package com.monew.monew_server.domain.article.service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -8,9 +9,11 @@ import org.springframework.stereotype.Service;
 
 import com.monew.monew_server.domain.article.dto.ArticleRequest;
 import com.monew.monew_server.domain.article.dto.ArticleResponse;
+import com.monew.monew_server.domain.article.dto.ArticleSourceDto;
 import com.monew.monew_server.domain.article.dto.CursorPageResponseArticleDto;
 import com.monew.monew_server.domain.article.entity.Article;
 import com.monew.monew_server.domain.article.entity.ArticleSortType;
+import com.monew.monew_server.domain.article.entity.ArticleSource;
 import com.monew.monew_server.domain.article.entity.ArticleView;
 import com.monew.monew_server.domain.article.mapper.ArticleMapper;
 import com.monew.monew_server.domain.article.repository.ArticleRepositoryCustom;
@@ -128,15 +131,22 @@ public class ArticleService {
 		Article article = articleRepository.findArticleById(articleId)
 			.orElseThrow(() -> new BusinessException(ErrorCode.ARTICLE_NOT_FOUND));
 
-		if (userId != null && !articleViewRepository.existsByArticle_IdAndUser_Id(articleId, userId)) {
+		if (userId != null && !articleViewRepository.existsByArticleIdAndUserId(articleId, userId)) {
 			User userRef = entityManager.getReference(User.class, userId);
 			articleViewRepository.save(ArticleView.of(article, userRef));
 		}
 
 		long viewCount = articleViewRepository.countByArticleId(articleId);
 		long commentCount = commentRepository.countByArticleId(articleId);
-		boolean viewedByMe = userId != null && articleViewRepository.existsByArticle_IdAndUser_Id(articleId, userId);
+		boolean viewedByMe = userId != null && articleViewRepository.existsByArticleIdAndUserId(articleId, userId);
 
 		return articleMapper.toResponse(article, viewCount, commentCount, viewedByMe);
 	}
+
+	public List<ArticleSourceDto> getAllSources() {
+		return Arrays.stream(ArticleSource.values())
+			.map(source -> new ArticleSourceDto(source.name()))
+			.toList();
+	}
+
 }

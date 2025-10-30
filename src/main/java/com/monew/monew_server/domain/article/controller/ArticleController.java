@@ -1,5 +1,6 @@
 package com.monew.monew_server.domain.article.controller;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.monew.monew_server.auth.AuthUser;
 import com.monew.monew_server.domain.article.dto.ArticleRequest;
 import com.monew.monew_server.domain.article.dto.ArticleResponse;
+import com.monew.monew_server.domain.article.dto.ArticleSourceDto;
 import com.monew.monew_server.domain.article.dto.CursorPageResponseArticleDto;
 import com.monew.monew_server.domain.article.service.ArticleService;
 
@@ -46,4 +48,10 @@ public class ArticleController {
 		ArticleResponse response = articleService.getArticleById(articleId, userId);
 		return ResponseEntity.ok(response);
 	}
+
+	@GetMapping("/sources")
+	public ResponseEntity<List<ArticleSourceDto>> getSources() {
+		return ResponseEntity.ok(articleService.getAllSources());
+	}
+
 }
