@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.5.6'
     id 'io.spring.dependency-management' version '1.1.7'
+    id 'jacoco'
 }
 
 group = 'com.monew'
@@ -40,7 +41,7 @@ dependencies {
     testImplementation 'com.h2database:h2'
 
     // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.9")
+    implementation('org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.9')
 
     // mapstruct
     implementation 'org.mapstruct:mapstruct:1.6.3'
@@ -55,18 +56,36 @@ dependencies {
     annotationProcessor 'jakarta.persistence:jakarta.persistence-api'
 
     // s3
-    implementation platform("software.amazon.awssdk:bom:2.26.21")
-    implementation "software.amazon.awssdk:s3"
-    implementation "software.amazon.awssdk:sts"
+    implementation platform('software.amazon.awssdk:bom:2.26.21')
+    implementation 'software.amazon.awssdk:s3'
+    implementation 'software.amazon.awssdk:sts'
 
-    // .env load용
-    implementation "me.paulschwarz:spring-dotenv:4.0.0"
+    // .env load
+    implementation 'me.paulschwarz:spring-dotenv:4.0.0'
 
-    // 액츄에이터요ㅇ
+    // actuator
     implementation 'de.codecentric:spring-boot-admin-starter-client:3.4.5'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+    // Test
+    testImplementation 'org.testcontainers:junit-jupiter:1.19.8'
+    testImplementation 'org.testcontainers:postgresql:1.19.8'
+}
+
+jacoco {
+    toolVersion = '0.8.12'
 }
 
 tasks.named('test') {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        html.required = true
+        xml.required = true
+        csv.required = false
+    }
 }
