@@ -4,7 +4,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.monew.monew_server.domain.user.entity.User;
@@ -18,6 +17,6 @@ public interface UserRepository extends JpaRepository<User, UUID> {
 	// 로그인
 	Optional<User> findByEmail(String email);
 
-
-
+	// 정보 수정
+	Optional<User> findByNickname(String nickname);
 }
