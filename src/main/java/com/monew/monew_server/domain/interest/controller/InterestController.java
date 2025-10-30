@@ -19,12 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/interests")
 public class InterestController {
 
-  private final InterestService interestService;
+    private final InterestService interestService;
 
-  @PostMapping
-  @ResponseStatus(HttpStatus.OK)
-  public InterestDto create(@RequestBody @Valid InterestRegisterRequest request) {
-    log.info("POST /api/comments - 관심사 생성 요청");
-    return interestService.create(request);
-  }
+    @PostMapping
+    @ResponseStatus(HttpStatus.OK)
+    public InterestDto create(@RequestBody @Valid InterestRegisterRequest request) {
+        log.info("POST /api/comments - 관심사 생성 요청");
+        return interestService.create(request);
+    }
 }

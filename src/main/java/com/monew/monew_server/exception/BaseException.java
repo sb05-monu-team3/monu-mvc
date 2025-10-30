@@ -1,10 +1,9 @@
 package com.monew.monew_server.exception;
 
-import lombok.Getter;
-
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
+import lombok.Getter;
 
 @Getter
 public class BaseException extends RuntimeException {
@@ -29,5 +28,4 @@ public class BaseException extends RuntimeException {
 	public void addDetail(String key, Object value) {
 		this.details.put(key, value);
 	}
-
 }
