@@ -20,9 +20,9 @@ spring:
     username: ${DB_LOCAL_USER:postgres}
     password: ${DB_LOCAL_PASSWORD:1234}
 
-    #data:
-    #mongodb:
-    #  uri: mongodb+srv://${DB_MONGO_USERNAME}:${DB_MONGO_PASSWORD}@monewcluster.1hw0geh.mongodb.net/${DB_MONGO_DB}?retryWrites=true&w=majority&appName=monewCluster
+  data:
+    mongodb:
+      uri: mongodb+srv://${DB_MONGO_USERNAME}:${DB_MONGO_PASSWORD}@monewcluster.1hw0geh.mongodb.net/${DB_MONGO_DB}?retryWrites=true&w=majority&appName=monewCluster
   jpa:
     hibernate:
       ddl-auto: update
