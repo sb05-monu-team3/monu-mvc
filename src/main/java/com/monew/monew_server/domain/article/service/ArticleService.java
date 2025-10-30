@@ -153,11 +153,6 @@ public class ArticleService {
 	public void addArticleView(UUID articleId, UUID userId) {
 		System.out.println("Received User ID in Service: " + userId);
 
-		// 임의 테스트 용 (추후 삭제 예정)
-		if (userId == null) {
-			userId = UUID.fromString("10000000-0000-0000-0000-000000000002");
-		}
-		//
 		Article article = articleRepository.findArticleById(articleId)
 			.orElseThrow(() -> new BusinessException(ErrorCode.ARTICLE_NOT_FOUND));
 
