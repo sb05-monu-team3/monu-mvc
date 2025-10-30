@@ -28,8 +28,8 @@ public interface ArticleMapper {
 			article.getSummary(),
 			article.getSourceUrl(),
 			article.getPublishDate(),
-			viewCount,
 			commentCount,
+			viewCount,
 			viewedByMe
 		);
 	}

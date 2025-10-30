@@ -149,4 +149,16 @@ public class ArticleService {
 			.toList();
 	}
 
+	@Transactional
+	public void addArticleView(UUID articleId, UUID userId) {
+		System.out.println("Received User ID in Service: " + userId);
+
+		Article article = articleRepository.findArticleById(articleId)
+			.orElseThrow(() -> new BusinessException(ErrorCode.ARTICLE_NOT_FOUND));
+
+		if (userId != null && !articleViewRepository.existsByArticleIdAndUserId(articleId, userId)) {
+			User userRef = entityManager.getReference(User.class, userId);
+			articleViewRepository.save(ArticleView.of(article, userRef));
+		}
+	}
 }
