@@ -20,4 +20,17 @@ public interface ArticleMapper {
 	ArticleResponse toResponse(Article article);
 
 	List<ArticleResponse> toResponseList(List<Article> articles);
+
+	default ArticleResponse toResponse(Article article, long viewCount, long commentCount, boolean viewedByMe) {
+		return new ArticleResponse(
+			article.getId(),
+			article.getTitle(),
+			article.getSummary(),
+			article.getSourceUrl(),
+			article.getPublishDate(),
+			viewCount,
+			commentCount,
+			viewedByMe
+		);
+	}
 }

@@ -11,12 +11,19 @@ import com.monew.monew_server.domain.article.dto.ArticleResponse;
 import com.monew.monew_server.domain.article.dto.CursorPageResponseArticleDto;
 import com.monew.monew_server.domain.article.entity.Article;
 import com.monew.monew_server.domain.article.entity.ArticleSortType;
+import com.monew.monew_server.domain.article.entity.ArticleView;
 import com.monew.monew_server.domain.article.mapper.ArticleMapper;
 import com.monew.monew_server.domain.article.repository.ArticleRepositoryCustom;
 import com.monew.monew_server.domain.article.repository.ArticleViewRepository;
 import com.monew.monew_server.domain.comment.repository.CommentRepository;
+import com.monew.monew_server.domain.user.entity.User;
 import com.monew.monew_server.exception.ArticleNotFoundException;
+import com.monew.monew_server.exception.BusinessException;
+import com.monew.monew_server.exception.ErrorCode;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -28,6 +35,8 @@ public class ArticleService {
 	private final ArticleViewRepository articleViewRepository;
 	private final CommentRepository commentRepository;
 	private static final int DEFAULT_PAGE_SIZE = 10;
+	@PersistenceContext
+	private EntityManager entityManager;
 
 	public CursorPageResponseArticleDto fetchArticles(ArticleRequest request, UUID currentUserId) {
 
@@ -112,5 +121,22 @@ public class ArticleService {
 			hasNext,
 			totalElements
 		);
+	}
+
+	@Transactional
+	public ArticleResponse getArticleById(UUID articleId, UUID userId) {
+		Article article = articleRepository.findArticleById(articleId)
+			.orElseThrow(() -> new BusinessException(ErrorCode.ARTICLE_NOT_FOUND));
+
+		if (userId != null && !articleViewRepository.existsByArticle_IdAndUser_Id(articleId, userId)) {
+			User userRef = entityManager.getReference(User.class, userId);
+			articleViewRepository.save(ArticleView.of(article, userRef));
+		}
+
+		long viewCount = articleViewRepository.countByArticleId(articleId);
+		long commentCount = commentRepository.countByArticleId(articleId);
+		boolean viewedByMe = userId != null && articleViewRepository.existsByArticle_IdAndUser_Id(articleId, userId);
+
+		return articleMapper.toResponse(article, viewCount, commentCount, viewedByMe);
 	}
 }

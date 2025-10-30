@@ -40,4 +40,11 @@ public class ArticleView extends BaseEntity {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
+
+	public static ArticleView of(Article article, User user) {
+		ArticleView view = new ArticleView();
+		view.setArticle(article);
+		view.setUser(user);
+		return view;
+	}
 }
