@@ -94,4 +94,6 @@ public class UserService {
 			.createdAt(user.getCreatedAt().atOffset(java.time.ZoneOffset.UTC))
 			.build();
 	}
+
+
 }
