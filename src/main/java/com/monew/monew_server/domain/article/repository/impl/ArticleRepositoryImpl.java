@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeParseException;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import com.monew.monew_server.domain.article.dto.ArticleRequest;
@@ -169,4 +170,15 @@ public class ArticleRepositoryImpl implements ArticleRepositoryCustom {
 
 		return Expressions.numberTemplate(Long.class, "({0})", countQuery);
 	}
+
+	@Override
+	public Optional<Article> findArticleById(UUID articleId) {
+		return Optional.ofNullable(
+			queryFactory.selectFrom(article)
+				.where(article.id.eq(articleId)
+					.and(article.deletedAt.isNull()))
+				.fetchOne()
+		);
+	}
+
 }

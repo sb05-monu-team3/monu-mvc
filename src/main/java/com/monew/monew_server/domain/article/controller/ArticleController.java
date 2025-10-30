@@ -40,9 +40,10 @@ public class ArticleController {
 	@GetMapping("/{articleId}")
 	public ResponseEntity<ArticleResponse> getArticleById(
 		@PathVariable UUID articleId,
-		@AuthenticationPrincipal AuthUser authUser // 로그인 유저 정보
+		@AuthenticationPrincipal AuthUser authUser
 	) {
-		ArticleResponse response = articleService.getArticleById(articleId, authUser.id());
+		UUID userId = authUser != null ? authUser.id() : null;
+		ArticleResponse response = articleService.getArticleById(articleId, userId);
 		return ResponseEntity.ok(response);
 	}
 }
