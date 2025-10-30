@@ -8,6 +8,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -54,4 +55,12 @@ public class ArticleController {
 		return ResponseEntity.ok(articleService.getAllSources());
 	}
 
+	@PostMapping("/{articleId}/article-views")
+	public ResponseEntity<Void> addArticleView(@PathVariable UUID articleId,
+		@AuthenticationPrincipal AuthUser authUser) {
+		UUID userId = authUser != null ? authUser.id() : null;
+		System.out.println("Current User ID: " + userId);
+		articleService.addArticleView(articleId, userId);
+		return ResponseEntity.ok().build();
+	}
 }

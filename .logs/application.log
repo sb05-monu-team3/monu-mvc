@@ -5259,3 +5259,648 @@ org.springframework.web.servlet.resource.NoResourceFoundException: No static res
 25-10-30 13:02:36.999 [SpringApplicationShutdownHook] [32mINFO [0;39m o.s.o.j.LocalContainerEntityManagerFactoryBean [ |  | ] - Closing JPA EntityManagerFactory for persistence unit 'default'
 25-10-30 13:02:37.002 [SpringApplicationShutdownHook] [32mINFO [0;39m com.zaxxer.hikari.HikariDataSource   [ |  | ] - HikariPool-1 - Shutdown initiated...
 25-10-30 13:02:37.004 [SpringApplicationShutdownHook] [32mINFO [0;39m com.zaxxer.hikari.HikariDataSource   [ |  | ] - HikariPool-1 - Shutdown completed.
+25-10-30 15:43:25.195 [background-preinit] [32mINFO [0;39m o.h.validator.internal.util.Version  [ |  | ] - HV000001: Hibernate Validator 8.0.3.Final
+25-10-30 15:43:25.267 [restartedMain] [32mINFO [0;39m c.m.m.MonewServerApplication         [ |  | ] - Starting MonewServerApplication v1.0.0 using Java 17.0.16 with PID 38448 (C:\dev_source\project\monew-mvc\monew-mvc\build\classes\java\main started by min in C:\dev_source\project\monew-mvc\monew-mvc)
+25-10-30 15:43:25.268 [restartedMain] [32mINFO [0;39m c.m.m.MonewServerApplication         [ |  | ] - The following 1 profile is active: "local"
+25-10-30 15:43:25.326 [restartedMain] [32mINFO [0;39m o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor [ |  | ] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+25-10-30 15:43:25.326 [restartedMain] [32mINFO [0;39m o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor [ |  | ] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+25-10-30 15:43:26.735 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Multiple Spring Data modules found, entering strict repository configuration mode
+25-10-30 15:43:26.739 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+25-10-30 15:43:26.815 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Finished Spring Data repository scanning in 69 ms. Found 4 JPA repository interfaces.
+25-10-30 15:43:26.822 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Multiple Spring Data modules found, entering strict repository configuration mode
+25-10-30 15:43:26.822 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+25-10-30 15:43:26.833 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationExtensionSupport [ |  | ] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.monew.monew_server.domain.article.repository.ArticleRepository; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+25-10-30 15:43:26.834 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationExtensionSupport [ |  | ] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.monew.monew_server.domain.article.repository.ArticleViewRepository; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+25-10-30 15:43:26.834 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationExtensionSupport [ |  | ] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.monew.monew_server.domain.comment.repository.CommentRepository; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+25-10-30 15:43:26.834 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationExtensionSupport [ |  | ] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.monew.monew_server.domain.notification.repository.NotificationRepository; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+25-10-30 15:43:26.834 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Finished Spring Data repository scanning in 11 ms. Found 0 MongoDB repository interfaces.
+25-10-30 15:43:27.578 [restartedMain] [32mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer     [ |  | ] - Tomcat initialized with port 8080 (http)
+25-10-30 15:43:27.591 [restartedMain] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Initializing ProtocolHandler ["http-nio-8080"]
+25-10-30 15:43:27.593 [restartedMain] [32mINFO [0;39m o.a.catalina.core.StandardService    [ |  | ] - Starting service [Tomcat]
+25-10-30 15:43:27.593 [restartedMain] [32mINFO [0;39m o.a.catalina.core.StandardEngine     [ |  | ] - Starting Servlet engine: [Apache Tomcat/10.1.46]
+25-10-30 15:43:27.642 [restartedMain] [32mINFO [0;39m o.a.c.c.C.[Tomcat].[localhost].[/]   [ |  | ] - Initializing Spring embedded WebApplicationContext
+25-10-30 15:43:27.643 [restartedMain] [32mINFO [0;39m o.s.b.w.s.c.ServletWebServerApplicationContext [ |  | ] - Root WebApplicationContext: initialization completed in 2316 ms
+25-10-30 15:43:27.820 [restartedMain] [32mINFO [0;39m com.zaxxer.hikari.HikariDataSource   [ |  | ] - HikariPool-1 - Starting...
+25-10-30 15:43:27.982 [restartedMain] [32mINFO [0;39m com.zaxxer.hikari.pool.HikariPool    [ |  | ] - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@68ff5832
+25-10-30 15:43:27.983 [restartedMain] [32mINFO [0;39m com.zaxxer.hikari.HikariDataSource   [ |  | ] - HikariPool-1 - Start completed.
+25-10-30 15:43:28.079 [restartedMain] [32mINFO [0;39m o.h.jpa.internal.util.LogHelper      [ |  | ] - HHH000204: Processing PersistenceUnitInfo [name: default]
+25-10-30 15:43:28.137 [restartedMain] [32mINFO [0;39m org.hibernate.Version                [ |  | ] - HHH000412: Hibernate ORM core version 6.6.29.Final
+25-10-30 15:43:28.171 [restartedMain] [32mINFO [0;39m o.h.c.i.RegionFactoryInitiator       [ |  | ] - HHH000026: Second-level cache disabled
+25-10-30 15:43:28.483 [restartedMain] [32mINFO [0;39m o.s.o.j.p.SpringPersistenceUnitInfo  [ |  | ] - No LoadTimeWeaver setup: ignoring JPA class transformer
+25-10-30 15:43:28.569 [restartedMain] [33mWARN [0;39m org.hibernate.orm.deprecation        [ |  | ] - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+25-10-30 15:43:28.585 [restartedMain] [32mINFO [0;39m o.hibernate.orm.connections.pooling  [ |  | ] - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.6
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+25-10-30 15:43:29.535 [restartedMain] [32mINFO [0;39m o.h.e.t.j.p.i.JtaPlatformInitiator   [ |  | ] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+25-10-30 15:43:30.012 [restartedMain] [32mINFO [0;39m o.s.o.j.LocalContainerEntityManagerFactoryBean [ |  | ] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+25-10-30 15:43:30.370 [restartedMain] [32mINFO [0;39m o.s.d.j.r.query.QueryEnhancerFactory [ |  | ] - Hibernate is in classpath; If applicable, HQL parser will be used.
+25-10-30 15:43:31.368 [restartedMain] [32mINFO [0;39m org.mongodb.driver.client            [ |  | ] - MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "5.5.1"}, "os": {"type": "Windows", "name": "Windows 11", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Amazon.com Inc./17.0.16+8-LTS"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=null, commandListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsCommandListener@218b12c1], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@10f817f4, com.mongodb.Jep395RecordCodecProvider@7045ced6, com.mongodb.KotlinCodecProvider@1fc6f685]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsConnectionPoolListener@a23bf56], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverMonitoringMode=AUTO, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null, timeoutMS=null}
+25-10-30 15:43:31.384 [cluster-ClusterId{value='6903091306af5ab526262f4a', description='null'}-localhost:27017] [32mINFO [0;39m org.mongodb.driver.cluster           [ |  | ] - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, cryptd=false, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=27, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=25478000, minRoundTripTimeNanos=0}
+25-10-30 15:43:31.720 [restartedMain] [32mINFO [0;39m o.s.b.a.w.s.WelcomePageHandlerMapping [ |  | ] - Adding welcome page: class path resource [static/index.html]
+25-10-30 15:43:32.171 [restartedMain] [33mWARN [0;39m o.s.b.a.s.s.UserDetailsServiceAutoConfiguration [ |  | ] - 
+
+Using generated security password: ccb87d91-320c-4820-ab7a-46760028ea9f
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+25-10-30 15:43:32.178 [restartedMain] [32mINFO [0;39m o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer [ |  | ] - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+25-10-30 15:43:32.876 [restartedMain] [32mINFO [0;39m o.s.b.d.a.OptionalLiveReloadServer   [ |  | ] - LiveReload server is running on port 35729
+25-10-30 15:43:32.925 [restartedMain] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Starting ProtocolHandler ["http-nio-8080"]
+25-10-30 15:43:32.941 [restartedMain] [32mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer     [ |  | ] - Tomcat started on port 8080 (http) with context path '/'
+25-10-30 15:43:33.022 [restartedMain] [32mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer     [ |  | ] - Tomcat initialized with port 8081 (http)
+25-10-30 15:43:33.022 [restartedMain] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Initializing ProtocolHandler ["http-nio-8081"]
+25-10-30 15:43:33.022 [restartedMain] [32mINFO [0;39m o.a.catalina.core.StandardService    [ |  | ] - Starting service [Tomcat]
+25-10-30 15:43:33.022 [restartedMain] [32mINFO [0;39m o.a.catalina.core.StandardEngine     [ |  | ] - Starting Servlet engine: [Apache Tomcat/10.1.46]
+25-10-30 15:43:33.051 [restartedMain] [32mINFO [0;39m o.a.c.c.C.[Tomcat-1].[localhost].[/] [ |  | ] - Initializing Spring embedded WebApplicationContext
+25-10-30 15:43:33.052 [restartedMain] [32mINFO [0;39m o.s.b.w.s.c.ServletWebServerApplicationContext [ |  | ] - Root WebApplicationContext: initialization completed in 108 ms
+25-10-30 15:43:33.060 [restartedMain] [32mINFO [0;39m o.s.b.a.e.web.EndpointLinksResolver  [ |  | ] - Exposing 6 endpoints beneath base path '/actuator'
+25-10-30 15:43:33.090 [restartedMain] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Starting ProtocolHandler ["http-nio-8081"]
+25-10-30 15:43:33.092 [restartedMain] [32mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer     [ |  | ] - Tomcat started on port 8081 (http) with context path '/'
+25-10-30 15:43:33.111 [restartedMain] [32mINFO [0;39m c.m.m.MonewServerApplication         [ |  | ] - Started MonewServerApplication in 8.69 seconds (process running for 9.343)
+25-10-30 15:43:33.661 [RMI TCP Connection(2)-172.30.1.1] [32mINFO [0;39m o.a.c.c.C.[Tomcat].[localhost].[/]   [ |  | ] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+25-10-30 15:43:33.662 [RMI TCP Connection(2)-172.30.1.1] [32mINFO [0;39m o.s.web.servlet.DispatcherServlet    [ |  | ] - Initializing Servlet 'dispatcherServlet'
+25-10-30 15:43:33.664 [RMI TCP Connection(2)-172.30.1.1] [32mINFO [0;39m o.s.web.servlet.DispatcherServlet    [ |  | ] - Completed initialization in 2 ms
+25-10-30 15:45:29.411 [http-nio-8080-exec-4] [32mINFO [0;39m c.m.monew_server.log.LoggingAspect   [127.0.0.1-0a0e7925 | POST | ] - ArticleService#addArticleView 실행 시간: 161ms
+25-10-30 15:46:01.267 [http-nio-8080-exec-3] [31mERROR[0;39m c.m.m.e.GlobalExceptionHandler       [127.0.0.1-9d46f48e | GET | ] - 예상 못한 예외 발생: No static resource api/articles.
+org.springframework.web.servlet.resource.NoResourceFoundException: No static resource api/articles.
+	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:585)
+	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:52)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.ObservationFilterChainDecorator$FilterObservation$SimpleFilterObservation.lambda$wrap$1(ObservationFilterChainDecorator.java:490)
+	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$1(ObservationFilterChainDecorator.java:351)
+	at org.springframework.security.web.ObservationFilterChainDecorator.lambda$wrapSecured$0(ObservationFilterChainDecorator.java:83)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:129)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:241)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:228)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:138)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:125)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:119)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:241)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:228)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:138)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:241)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:228)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:138)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:241)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:228)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:138)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:241)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:228)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:138)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:241)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:228)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:138)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:241)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:228)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:138)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:241)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:228)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:138)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:241)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:228)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:138)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:241)
+	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$0(ObservationFilterChainDecorator.java:334)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:225)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:138)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:110)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1776)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:975)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:493)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+25-10-30 15:46:01.286 [http-nio-8080-exec-3] [33mWARN [0;39m o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver [127.0.0.1-9d46f48e | GET | ] - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource api/articles.]
+25-10-30 15:46:10.409 [http-nio-8080-exec-7] [32mINFO [0;39m c.m.monew_server.log.LoggingAspect   [127.0.0.1-d7438061 | GET | ] - ArticleService#fetchArticles 실행 시간: 101ms
+25-10-30 15:46:21.123 [http-nio-8080-exec-8] [32mINFO [0;39m c.m.monew_server.log.LoggingAspect   [127.0.0.1-bc47fd89 | POST | ] - ArticleService#addArticleView 실행 시간: 2ms
+25-10-30 15:46:24.729 [http-nio-8080-exec-9] [32mINFO [0;39m c.m.monew_server.log.LoggingAspect   [127.0.0.1-859d09e9 | GET | ] - ArticleService#fetchArticles 실행 시간: 12ms
+25-10-30 15:46:25.898 [http-nio-8080-exec-10] [32mINFO [0;39m c.m.monew_server.log.LoggingAspect   [127.0.0.1-627b11e5 | GET | ] - ArticleService#fetchArticles 실행 시간: 16ms
+25-10-30 15:46:26.595 [http-nio-8080-exec-1] [32mINFO [0;39m c.m.monew_server.log.LoggingAspect   [127.0.0.1-8759584c | GET | ] - ArticleService#fetchArticles 실행 시간: 9ms
+25-10-30 15:46:32.867 [http-nio-8080-exec-5] [32mINFO [0;39m c.m.monew_server.log.LoggingAspect   [127.0.0.1-ea7ba7e1 | GET | ] - ArticleService#fetchArticles 실행 시간: 13ms
+25-10-30 15:46:35.862 [http-nio-8080-exec-2] [32mINFO [0;39m c.m.monew_server.log.LoggingAspect   [127.0.0.1-74a51e82 | POST | ] - ArticleService#addArticleView 실행 시간: 1ms
+25-10-30 15:50:41.064 [File Watcher] [32mINFO [0;39m o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener [ |  | ] - Restarting due to 17 class path changes (0 additions, 0 deletions, 17 modifications)
+25-10-30 15:50:41.068 [Thread-5] [32mINFO [0;39m o.s.b.w.e.tomcat.GracefulShutdown    [ |  | ] - Commencing graceful shutdown. Waiting for active requests to complete
+25-10-30 15:50:41.069 [tomcat-shutdown] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Pausing ProtocolHandler ["http-nio-8080"]
+25-10-30 15:50:41.223 [tomcat-shutdown] [32mINFO [0;39m o.s.b.w.e.tomcat.GracefulShutdown    [ |  | ] - Graceful shutdown complete
+25-10-30 15:50:41.223 [Thread-5] [32mINFO [0;39m o.s.b.w.e.tomcat.GracefulShutdown    [ |  | ] - Commencing graceful shutdown. Waiting for active requests to complete
+25-10-30 15:50:41.224 [tomcat-shutdown] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Pausing ProtocolHandler ["http-nio-8081"]
+25-10-30 15:50:41.368 [tomcat-shutdown] [32mINFO [0;39m o.s.b.w.e.tomcat.GracefulShutdown    [ |  | ] - Graceful shutdown complete
+25-10-30 15:50:41.369 [Thread-5] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Stopping ProtocolHandler ["http-nio-8081"]
+25-10-30 15:50:41.371 [Thread-5] [32mINFO [0;39m o.a.catalina.core.StandardService    [ |  | ] - Stopping service [Tomcat]
+25-10-30 15:50:41.375 [Thread-5] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Stopping ProtocolHandler ["http-nio-8080"]
+25-10-30 15:50:41.384 [Thread-5] [32mINFO [0;39m o.s.o.j.LocalContainerEntityManagerFactoryBean [ |  | ] - Closing JPA EntityManagerFactory for persistence unit 'default'
+25-10-30 15:50:41.388 [Thread-5] [32mINFO [0;39m com.zaxxer.hikari.HikariDataSource   [ |  | ] - HikariPool-1 - Shutdown initiated...
+25-10-30 15:50:41.389 [Thread-5] [32mINFO [0;39m com.zaxxer.hikari.HikariDataSource   [ |  | ] - HikariPool-1 - Shutdown completed.
+25-10-30 15:50:41.475 [restartedMain] [32mINFO [0;39m c.m.m.MonewServerApplication         [ |  | ] - Starting MonewServerApplication v1.0.0 using Java 17.0.16 with PID 38448 (C:\dev_source\project\monew-mvc\monew-mvc\build\classes\java\main started by min in C:\dev_source\project\monew-mvc\monew-mvc)
+25-10-30 15:50:41.475 [restartedMain] [32mINFO [0;39m c.m.m.MonewServerApplication         [ |  | ] - The following 1 profile is active: "local"
+25-10-30 15:50:41.756 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Multiple Spring Data modules found, entering strict repository configuration mode
+25-10-30 15:50:41.756 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+25-10-30 15:50:41.783 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Finished Spring Data repository scanning in 25 ms. Found 4 JPA repository interfaces.
+25-10-30 15:50:41.786 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Multiple Spring Data modules found, entering strict repository configuration mode
+25-10-30 15:50:41.788 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+25-10-30 15:50:41.796 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationExtensionSupport [ |  | ] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.monew.monew_server.domain.article.repository.ArticleRepository; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+25-10-30 15:50:41.796 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationExtensionSupport [ |  | ] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.monew.monew_server.domain.article.repository.ArticleViewRepository; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+25-10-30 15:50:41.797 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationExtensionSupport [ |  | ] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.monew.monew_server.domain.comment.repository.CommentRepository; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+25-10-30 15:50:41.797 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationExtensionSupport [ |  | ] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.monew.monew_server.domain.notification.repository.NotificationRepository; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+25-10-30 15:50:41.797 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Finished Spring Data repository scanning in 8 ms. Found 0 MongoDB repository interfaces.
+25-10-30 15:50:41.920 [restartedMain] [32mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer     [ |  | ] - Tomcat initialized with port 8080 (http)
+25-10-30 15:50:41.921 [restartedMain] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Initializing ProtocolHandler ["http-nio-8080"]
+25-10-30 15:50:41.921 [restartedMain] [32mINFO [0;39m o.a.catalina.core.StandardService    [ |  | ] - Starting service [Tomcat]
+25-10-30 15:50:41.921 [restartedMain] [32mINFO [0;39m o.a.catalina.core.StandardEngine     [ |  | ] - Starting Servlet engine: [Apache Tomcat/10.1.46]
+25-10-30 15:50:41.941 [restartedMain] [32mINFO [0;39m o.a.c.c.C.[Tomcat].[localhost].[/]   [ |  | ] - Initializing Spring embedded WebApplicationContext
+25-10-30 15:50:41.941 [restartedMain] [32mINFO [0;39m o.s.b.w.s.c.ServletWebServerApplicationContext [ |  | ] - Root WebApplicationContext: initialization completed in 464 ms
+25-10-30 15:50:42.027 [restartedMain] [32mINFO [0;39m com.zaxxer.hikari.HikariDataSource   [ |  | ] - HikariPool-2 - Starting...
+25-10-30 15:50:42.086 [restartedMain] [32mINFO [0;39m com.zaxxer.hikari.pool.HikariPool    [ |  | ] - HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@6528ab6c
+25-10-30 15:50:42.086 [restartedMain] [32mINFO [0;39m com.zaxxer.hikari.HikariDataSource   [ |  | ] - HikariPool-2 - Start completed.
+25-10-30 15:50:42.106 [restartedMain] [32mINFO [0;39m o.h.jpa.internal.util.LogHelper      [ |  | ] - HHH000204: Processing PersistenceUnitInfo [name: default]
+25-10-30 15:50:42.108 [restartedMain] [32mINFO [0;39m o.h.c.i.RegionFactoryInitiator       [ |  | ] - HHH000026: Second-level cache disabled
+25-10-30 15:50:42.115 [restartedMain] [32mINFO [0;39m o.s.o.j.p.SpringPersistenceUnitInfo  [ |  | ] - No LoadTimeWeaver setup: ignoring JPA class transformer
+25-10-30 15:50:42.123 [restartedMain] [33mWARN [0;39m org.hibernate.orm.deprecation        [ |  | ] - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+25-10-30 15:50:42.124 [restartedMain] [32mINFO [0;39m o.hibernate.orm.connections.pooling  [ |  | ] - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-2)']
+	Database driver: undefined/unknown
+	Database version: 17.6
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+25-10-30 15:50:42.241 [restartedMain] [32mINFO [0;39m o.h.e.t.j.p.i.JtaPlatformInitiator   [ |  | ] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+25-10-30 15:50:42.690 [restartedMain] [32mINFO [0;39m o.s.o.j.LocalContainerEntityManagerFactoryBean [ |  | ] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+25-10-30 15:50:42.928 [restartedMain] [32mINFO [0;39m org.mongodb.driver.client            [ |  | ] - MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "5.5.1"}, "os": {"type": "Windows", "name": "Windows 11", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Amazon.com Inc./17.0.16+8-LTS"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=null, commandListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsCommandListener@3c2b52a6], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@10f817f4, com.mongodb.Jep395RecordCodecProvider@7045ced6, com.mongodb.KotlinCodecProvider@1fc6f685]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsConnectionPoolListener@379ad1b5], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverMonitoringMode=AUTO, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null, timeoutMS=null}
+25-10-30 15:50:42.929 [cluster-ClusterId{value='69030ac206af5ab526262f4b', description='null'}-localhost:27017] [32mINFO [0;39m org.mongodb.driver.cluster           [ |  | ] - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, cryptd=false, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=27, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=1409000, minRoundTripTimeNanos=0}
+25-10-30 15:50:43.040 [restartedMain] [32mINFO [0;39m o.s.b.a.w.s.WelcomePageHandlerMapping [ |  | ] - Adding welcome page: class path resource [static/index.html]
+25-10-30 15:50:43.298 [restartedMain] [33mWARN [0;39m o.s.b.a.s.s.UserDetailsServiceAutoConfiguration [ |  | ] - 
+
+Using generated security password: fdc01aab-105d-448d-8832-b3117bf67fe2
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+25-10-30 15:50:43.301 [restartedMain] [32mINFO [0;39m o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer [ |  | ] - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+25-10-30 15:50:43.641 [restartedMain] [32mINFO [0;39m o.s.b.d.a.OptionalLiveReloadServer   [ |  | ] - LiveReload server is running on port 35729
+25-10-30 15:50:43.677 [restartedMain] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Starting ProtocolHandler ["http-nio-8080"]
+25-10-30 15:50:43.680 [restartedMain] [32mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer     [ |  | ] - Tomcat started on port 8080 (http) with context path '/'
+25-10-30 15:50:43.786 [restartedMain] [32mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer     [ |  | ] - Tomcat initialized with port 8081 (http)
+25-10-30 15:50:43.786 [restartedMain] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Initializing ProtocolHandler ["http-nio-8081"]
+25-10-30 15:50:43.788 [restartedMain] [32mINFO [0;39m o.a.catalina.core.StandardService    [ |  | ] - Starting service [Tomcat]
+25-10-30 15:50:43.788 [restartedMain] [32mINFO [0;39m o.a.catalina.core.StandardEngine     [ |  | ] - Starting Servlet engine: [Apache Tomcat/10.1.46]
+25-10-30 15:50:43.815 [restartedMain] [32mINFO [0;39m o.a.c.c.C.[Tomcat-1].[localhost].[/] [ |  | ] - Initializing Spring embedded WebApplicationContext
+25-10-30 15:50:43.815 [restartedMain] [32mINFO [0;39m o.s.b.w.s.c.ServletWebServerApplicationContext [ |  | ] - Root WebApplicationContext: initialization completed in 128 ms
+25-10-30 15:50:43.822 [restartedMain] [32mINFO [0;39m o.s.b.a.e.web.EndpointLinksResolver  [ |  | ] - Exposing 6 endpoints beneath base path '/actuator'
+25-10-30 15:50:43.849 [restartedMain] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Starting ProtocolHandler ["http-nio-8081"]
+25-10-30 15:50:43.852 [restartedMain] [32mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer     [ |  | ] - Tomcat started on port 8081 (http) with context path '/'
+25-10-30 15:50:43.860 [restartedMain] [32mINFO [0;39m c.m.m.MonewServerApplication         [ |  | ] - Started MonewServerApplication in 2.411 seconds (process running for 440.092)
+25-10-30 15:50:43.862 [restartedMain] [32mINFO [0;39m o.s.b.d.a.ConditionEvaluationDeltaLoggingListener [ |  | ] - Condition evaluation unchanged
+25-10-30 15:51:16.040 [File Watcher] [32mINFO [0;39m o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener [ |  | ] - Restarting due to 17 class path changes (0 additions, 0 deletions, 17 modifications)
+25-10-30 15:51:16.042 [Thread-7] [32mINFO [0;39m o.s.b.w.e.tomcat.GracefulShutdown    [ |  | ] - Commencing graceful shutdown. Waiting for active requests to complete
+25-10-30 15:51:16.042 [tomcat-shutdown] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Pausing ProtocolHandler ["http-nio-8080"]
+25-10-30 15:51:16.197 [tomcat-shutdown] [32mINFO [0;39m o.s.b.w.e.tomcat.GracefulShutdown    [ |  | ] - Graceful shutdown complete
+25-10-30 15:51:16.197 [Thread-7] [32mINFO [0;39m o.s.b.w.e.tomcat.GracefulShutdown    [ |  | ] - Commencing graceful shutdown. Waiting for active requests to complete
+25-10-30 15:51:16.198 [tomcat-shutdown] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Pausing ProtocolHandler ["http-nio-8081"]
+25-10-30 15:51:16.337 [tomcat-shutdown] [32mINFO [0;39m o.s.b.w.e.tomcat.GracefulShutdown    [ |  | ] - Graceful shutdown complete
+25-10-30 15:51:16.337 [Thread-7] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Stopping ProtocolHandler ["http-nio-8081"]
+25-10-30 15:51:16.338 [Thread-7] [32mINFO [0;39m o.a.catalina.core.StandardService    [ |  | ] - Stopping service [Tomcat]
+25-10-30 15:51:16.339 [Thread-7] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Stopping ProtocolHandler ["http-nio-8080"]
+25-10-30 15:51:16.342 [Thread-7] [32mINFO [0;39m o.s.o.j.LocalContainerEntityManagerFactoryBean [ |  | ] - Closing JPA EntityManagerFactory for persistence unit 'default'
+25-10-30 15:51:16.342 [Thread-7] [32mINFO [0;39m com.zaxxer.hikari.HikariDataSource   [ |  | ] - HikariPool-2 - Shutdown initiated...
+25-10-30 15:51:16.344 [Thread-7] [32mINFO [0;39m com.zaxxer.hikari.HikariDataSource   [ |  | ] - HikariPool-2 - Shutdown completed.
+25-10-30 15:51:16.429 [restartedMain] [32mINFO [0;39m c.m.m.MonewServerApplication         [ |  | ] - Starting MonewServerApplication v1.0.0 using Java 17.0.16 with PID 38448 (C:\dev_source\project\monew-mvc\monew-mvc\build\classes\java\main started by min in C:\dev_source\project\monew-mvc\monew-mvc)
+25-10-30 15:51:16.430 [restartedMain] [32mINFO [0;39m c.m.m.MonewServerApplication         [ |  | ] - The following 1 profile is active: "local"
+25-10-30 15:51:16.705 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Multiple Spring Data modules found, entering strict repository configuration mode
+25-10-30 15:51:16.705 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+25-10-30 15:51:16.732 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Finished Spring Data repository scanning in 25 ms. Found 4 JPA repository interfaces.
+25-10-30 15:51:16.734 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Multiple Spring Data modules found, entering strict repository configuration mode
+25-10-30 15:51:16.734 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+25-10-30 15:51:16.741 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationExtensionSupport [ |  | ] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.monew.monew_server.domain.article.repository.ArticleRepository; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+25-10-30 15:51:16.741 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationExtensionSupport [ |  | ] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.monew.monew_server.domain.article.repository.ArticleViewRepository; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+25-10-30 15:51:16.741 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationExtensionSupport [ |  | ] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.monew.monew_server.domain.comment.repository.CommentRepository; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+25-10-30 15:51:16.741 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationExtensionSupport [ |  | ] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.monew.monew_server.domain.notification.repository.NotificationRepository; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+25-10-30 15:51:16.741 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Finished Spring Data repository scanning in 7 ms. Found 0 MongoDB repository interfaces.
+25-10-30 15:51:16.860 [restartedMain] [32mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer     [ |  | ] - Tomcat initialized with port 8080 (http)
+25-10-30 15:51:16.860 [restartedMain] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Initializing ProtocolHandler ["http-nio-8080"]
+25-10-30 15:51:16.860 [restartedMain] [32mINFO [0;39m o.a.catalina.core.StandardService    [ |  | ] - Starting service [Tomcat]
+25-10-30 15:51:16.860 [restartedMain] [32mINFO [0;39m o.a.catalina.core.StandardEngine     [ |  | ] - Starting Servlet engine: [Apache Tomcat/10.1.46]
+25-10-30 15:51:16.882 [restartedMain] [32mINFO [0;39m o.a.c.c.C.[Tomcat].[localhost].[/]   [ |  | ] - Initializing Spring embedded WebApplicationContext
+25-10-30 15:51:16.883 [restartedMain] [32mINFO [0;39m o.s.b.w.s.c.ServletWebServerApplicationContext [ |  | ] - Root WebApplicationContext: initialization completed in 452 ms
+25-10-30 15:51:16.963 [restartedMain] [32mINFO [0;39m com.zaxxer.hikari.HikariDataSource   [ |  | ] - HikariPool-3 - Starting...
+25-10-30 15:51:17.027 [restartedMain] [32mINFO [0;39m com.zaxxer.hikari.pool.HikariPool    [ |  | ] - HikariPool-3 - Added connection org.postgresql.jdbc.PgConnection@21eaa8d6
+25-10-30 15:51:17.027 [restartedMain] [32mINFO [0;39m com.zaxxer.hikari.HikariDataSource   [ |  | ] - HikariPool-3 - Start completed.
+25-10-30 15:51:17.056 [restartedMain] [32mINFO [0;39m o.h.jpa.internal.util.LogHelper      [ |  | ] - HHH000204: Processing PersistenceUnitInfo [name: default]
+25-10-30 15:51:17.060 [restartedMain] [32mINFO [0;39m o.h.c.i.RegionFactoryInitiator       [ |  | ] - HHH000026: Second-level cache disabled
+25-10-30 15:51:17.068 [restartedMain] [32mINFO [0;39m o.s.o.j.p.SpringPersistenceUnitInfo  [ |  | ] - No LoadTimeWeaver setup: ignoring JPA class transformer
+25-10-30 15:51:17.079 [restartedMain] [33mWARN [0;39m org.hibernate.orm.deprecation        [ |  | ] - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+25-10-30 15:51:17.080 [restartedMain] [32mINFO [0;39m o.hibernate.orm.connections.pooling  [ |  | ] - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-3)']
+	Database driver: undefined/unknown
+	Database version: 17.6
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+25-10-30 15:51:17.195 [restartedMain] [32mINFO [0;39m o.h.e.t.j.p.i.JtaPlatformInitiator   [ |  | ] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+25-10-30 15:51:17.677 [restartedMain] [32mINFO [0;39m o.s.o.j.LocalContainerEntityManagerFactoryBean [ |  | ] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+25-10-30 15:51:17.876 [restartedMain] [32mINFO [0;39m org.mongodb.driver.client            [ |  | ] - MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "5.5.1"}, "os": {"type": "Windows", "name": "Windows 11", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Amazon.com Inc./17.0.16+8-LTS"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=null, commandListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsCommandListener@516fdc53], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@10f817f4, com.mongodb.Jep395RecordCodecProvider@7045ced6, com.mongodb.KotlinCodecProvider@1fc6f685]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsConnectionPoolListener@11b25775], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverMonitoringMode=AUTO, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null, timeoutMS=null}
+25-10-30 15:51:17.878 [cluster-ClusterId{value='69030ae506af5ab526262f4c', description='null'}-localhost:27017] [32mINFO [0;39m org.mongodb.driver.cluster           [ |  | ] - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, cryptd=false, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=27, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=2714700, minRoundTripTimeNanos=0}
+25-10-30 15:51:17.969 [restartedMain] [32mINFO [0;39m o.s.b.a.w.s.WelcomePageHandlerMapping [ |  | ] - Adding welcome page: class path resource [static/index.html]
+25-10-30 15:51:18.168 [restartedMain] [33mWARN [0;39m o.s.b.a.s.s.UserDetailsServiceAutoConfiguration [ |  | ] - 
+
+Using generated security password: 8299ad50-74c8-417f-88ab-15d4bfce96c7
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+25-10-30 15:51:18.170 [restartedMain] [32mINFO [0;39m o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer [ |  | ] - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+25-10-30 15:51:18.430 [restartedMain] [32mINFO [0;39m o.s.b.d.a.OptionalLiveReloadServer   [ |  | ] - LiveReload server is running on port 35729
+25-10-30 15:51:18.445 [restartedMain] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Starting ProtocolHandler ["http-nio-8080"]
+25-10-30 15:51:18.447 [restartedMain] [32mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer     [ |  | ] - Tomcat started on port 8080 (http) with context path '/'
+25-10-30 15:51:18.492 [restartedMain] [32mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer     [ |  | ] - Tomcat initialized with port 8081 (http)
+25-10-30 15:51:18.492 [restartedMain] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Initializing ProtocolHandler ["http-nio-8081"]
+25-10-30 15:51:18.492 [restartedMain] [32mINFO [0;39m o.a.catalina.core.StandardService    [ |  | ] - Starting service [Tomcat]
+25-10-30 15:51:18.492 [restartedMain] [32mINFO [0;39m o.a.catalina.core.StandardEngine     [ |  | ] - Starting Servlet engine: [Apache Tomcat/10.1.46]
+25-10-30 15:51:18.518 [restartedMain] [32mINFO [0;39m o.a.c.c.C.[Tomcat-1].[localhost].[/] [ |  | ] - Initializing Spring embedded WebApplicationContext
+25-10-30 15:51:18.518 [restartedMain] [32mINFO [0;39m o.s.b.w.s.c.ServletWebServerApplicationContext [ |  | ] - Root WebApplicationContext: initialization completed in 69 ms
+25-10-30 15:51:18.524 [restartedMain] [32mINFO [0;39m o.s.b.a.e.web.EndpointLinksResolver  [ |  | ] - Exposing 6 endpoints beneath base path '/actuator'
+25-10-30 15:51:18.545 [restartedMain] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Starting ProtocolHandler ["http-nio-8081"]
+25-10-30 15:51:18.548 [restartedMain] [32mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer     [ |  | ] - Tomcat started on port 8081 (http) with context path '/'
+25-10-30 15:51:18.558 [restartedMain] [32mINFO [0;39m c.m.m.MonewServerApplication         [ |  | ] - Started MonewServerApplication in 2.158 seconds (process running for 474.789)
+25-10-30 15:51:18.559 [restartedMain] [32mINFO [0;39m o.s.b.d.a.ConditionEvaluationDeltaLoggingListener [ |  | ] - Condition evaluation unchanged
+25-10-30 15:52:47.858 [File Watcher] [32mINFO [0;39m o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener [ |  | ] - Restarting due to 17 class path changes (0 additions, 0 deletions, 17 modifications)
+25-10-30 15:52:47.860 [Thread-11] [32mINFO [0;39m o.s.b.w.e.tomcat.GracefulShutdown    [ |  | ] - Commencing graceful shutdown. Waiting for active requests to complete
+25-10-30 15:52:47.861 [tomcat-shutdown] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Pausing ProtocolHandler ["http-nio-8080"]
+25-10-30 15:52:48.006 [tomcat-shutdown] [32mINFO [0;39m o.s.b.w.e.tomcat.GracefulShutdown    [ |  | ] - Graceful shutdown complete
+25-10-30 15:52:48.006 [Thread-11] [32mINFO [0;39m o.s.b.w.e.tomcat.GracefulShutdown    [ |  | ] - Commencing graceful shutdown. Waiting for active requests to complete
+25-10-30 15:52:48.007 [tomcat-shutdown] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Pausing ProtocolHandler ["http-nio-8081"]
+25-10-30 15:52:48.150 [tomcat-shutdown] [32mINFO [0;39m o.s.b.w.e.tomcat.GracefulShutdown    [ |  | ] - Graceful shutdown complete
+25-10-30 15:52:48.150 [Thread-11] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Stopping ProtocolHandler ["http-nio-8081"]
+25-10-30 15:52:48.151 [Thread-11] [32mINFO [0;39m o.a.catalina.core.StandardService    [ |  | ] - Stopping service [Tomcat]
+25-10-30 15:52:48.153 [Thread-11] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Stopping ProtocolHandler ["http-nio-8080"]
+25-10-30 15:52:48.155 [Thread-11] [32mINFO [0;39m o.s.o.j.LocalContainerEntityManagerFactoryBean [ |  | ] - Closing JPA EntityManagerFactory for persistence unit 'default'
+25-10-30 15:52:48.155 [Thread-11] [32mINFO [0;39m com.zaxxer.hikari.HikariDataSource   [ |  | ] - HikariPool-3 - Shutdown initiated...
+25-10-30 15:52:48.156 [Thread-11] [32mINFO [0;39m com.zaxxer.hikari.HikariDataSource   [ |  | ] - HikariPool-3 - Shutdown completed.
+25-10-30 15:52:48.245 [restartedMain] [32mINFO [0;39m c.m.m.MonewServerApplication         [ |  | ] - Starting MonewServerApplication v1.0.0 using Java 17.0.16 with PID 38448 (C:\dev_source\project\monew-mvc\monew-mvc\build\classes\java\main started by min in C:\dev_source\project\monew-mvc\monew-mvc)
+25-10-30 15:52:48.246 [restartedMain] [32mINFO [0;39m c.m.m.MonewServerApplication         [ |  | ] - The following 1 profile is active: "local"
+25-10-30 15:52:48.507 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Multiple Spring Data modules found, entering strict repository configuration mode
+25-10-30 15:52:48.507 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+25-10-30 15:52:48.533 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Finished Spring Data repository scanning in 25 ms. Found 4 JPA repository interfaces.
+25-10-30 15:52:48.535 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Multiple Spring Data modules found, entering strict repository configuration mode
+25-10-30 15:52:48.535 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+25-10-30 15:52:48.542 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationExtensionSupport [ |  | ] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.monew.monew_server.domain.article.repository.ArticleRepository; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+25-10-30 15:52:48.543 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationExtensionSupport [ |  | ] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.monew.monew_server.domain.article.repository.ArticleViewRepository; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+25-10-30 15:52:48.543 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationExtensionSupport [ |  | ] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.monew.monew_server.domain.comment.repository.CommentRepository; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+25-10-30 15:52:48.543 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationExtensionSupport [ |  | ] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.monew.monew_server.domain.notification.repository.NotificationRepository; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+25-10-30 15:52:48.543 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Finished Spring Data repository scanning in 7 ms. Found 0 MongoDB repository interfaces.
+25-10-30 15:52:48.655 [restartedMain] [32mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer     [ |  | ] - Tomcat initialized with port 8080 (http)
+25-10-30 15:52:48.655 [restartedMain] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Initializing ProtocolHandler ["http-nio-8080"]
+25-10-30 15:52:48.655 [restartedMain] [32mINFO [0;39m o.a.catalina.core.StandardService    [ |  | ] - Starting service [Tomcat]
+25-10-30 15:52:48.656 [restartedMain] [32mINFO [0;39m o.a.catalina.core.StandardEngine     [ |  | ] - Starting Servlet engine: [Apache Tomcat/10.1.46]
+25-10-30 15:52:48.674 [restartedMain] [32mINFO [0;39m o.a.c.c.C.[Tomcat].[localhost].[/]   [ |  | ] - Initializing Spring embedded WebApplicationContext
+25-10-30 15:52:48.674 [restartedMain] [32mINFO [0;39m o.s.b.w.s.c.ServletWebServerApplicationContext [ |  | ] - Root WebApplicationContext: initialization completed in 427 ms
+25-10-30 15:52:48.740 [restartedMain] [32mINFO [0;39m com.zaxxer.hikari.HikariDataSource   [ |  | ] - HikariPool-4 - Starting...
+25-10-30 15:52:48.781 [restartedMain] [32mINFO [0;39m com.zaxxer.hikari.pool.HikariPool    [ |  | ] - HikariPool-4 - Added connection org.postgresql.jdbc.PgConnection@544cb773
+25-10-30 15:52:48.781 [restartedMain] [32mINFO [0;39m com.zaxxer.hikari.HikariDataSource   [ |  | ] - HikariPool-4 - Start completed.
+25-10-30 15:52:48.802 [restartedMain] [32mINFO [0;39m o.h.jpa.internal.util.LogHelper      [ |  | ] - HHH000204: Processing PersistenceUnitInfo [name: default]
+25-10-30 15:52:48.805 [restartedMain] [32mINFO [0;39m o.h.c.i.RegionFactoryInitiator       [ |  | ] - HHH000026: Second-level cache disabled
+25-10-30 15:52:48.810 [restartedMain] [32mINFO [0;39m o.s.o.j.p.SpringPersistenceUnitInfo  [ |  | ] - No LoadTimeWeaver setup: ignoring JPA class transformer
+25-10-30 15:52:48.817 [restartedMain] [33mWARN [0;39m org.hibernate.orm.deprecation        [ |  | ] - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+25-10-30 15:52:48.818 [restartedMain] [32mINFO [0;39m o.hibernate.orm.connections.pooling  [ |  | ] - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-4)']
+	Database driver: undefined/unknown
+	Database version: 17.6
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+25-10-30 15:52:48.905 [restartedMain] [32mINFO [0;39m o.h.e.t.j.p.i.JtaPlatformInitiator   [ |  | ] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+25-10-30 15:52:49.315 [restartedMain] [32mINFO [0;39m o.s.o.j.LocalContainerEntityManagerFactoryBean [ |  | ] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+25-10-30 15:52:49.501 [restartedMain] [32mINFO [0;39m org.mongodb.driver.client            [ |  | ] - MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "5.5.1"}, "os": {"type": "Windows", "name": "Windows 11", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Amazon.com Inc./17.0.16+8-LTS"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=null, commandListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsCommandListener@74b3e046], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@10f817f4, com.mongodb.Jep395RecordCodecProvider@7045ced6, com.mongodb.KotlinCodecProvider@1fc6f685]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsConnectionPoolListener@4535589a], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverMonitoringMode=AUTO, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null, timeoutMS=null}
+25-10-30 15:52:49.506 [cluster-ClusterId{value='69030b4106af5ab526262f4d', description='null'}-localhost:27017] [32mINFO [0;39m org.mongodb.driver.cluster           [ |  | ] - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, cryptd=false, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=27, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=4105300, minRoundTripTimeNanos=0}
+25-10-30 15:52:49.596 [restartedMain] [32mINFO [0;39m o.s.b.a.w.s.WelcomePageHandlerMapping [ |  | ] - Adding welcome page: class path resource [static/index.html]
+25-10-30 15:52:49.778 [restartedMain] [33mWARN [0;39m o.s.b.a.s.s.UserDetailsServiceAutoConfiguration [ |  | ] - 
+
+Using generated security password: fcf7a4d4-1a86-4fab-9c83-c24e7e74c532
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+25-10-30 15:52:49.780 [restartedMain] [32mINFO [0;39m o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer [ |  | ] - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+25-10-30 15:52:50.027 [restartedMain] [32mINFO [0;39m o.s.b.d.a.OptionalLiveReloadServer   [ |  | ] - LiveReload server is running on port 35729
+25-10-30 15:52:50.041 [restartedMain] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Starting ProtocolHandler ["http-nio-8080"]
+25-10-30 15:52:50.043 [restartedMain] [32mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer     [ |  | ] - Tomcat started on port 8080 (http) with context path '/'
+25-10-30 15:52:50.078 [restartedMain] [32mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer     [ |  | ] - Tomcat initialized with port 8081 (http)
+25-10-30 15:52:50.078 [restartedMain] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Initializing ProtocolHandler ["http-nio-8081"]
+25-10-30 15:52:50.078 [restartedMain] [32mINFO [0;39m o.a.catalina.core.StandardService    [ |  | ] - Starting service [Tomcat]
+25-10-30 15:52:50.078 [restartedMain] [32mINFO [0;39m o.a.catalina.core.StandardEngine     [ |  | ] - Starting Servlet engine: [Apache Tomcat/10.1.46]
+25-10-30 15:52:50.097 [restartedMain] [32mINFO [0;39m o.a.c.c.C.[Tomcat-1].[localhost].[/] [ |  | ] - Initializing Spring embedded WebApplicationContext
+25-10-30 15:52:50.097 [restartedMain] [32mINFO [0;39m o.s.b.w.s.c.ServletWebServerApplicationContext [ |  | ] - Root WebApplicationContext: initialization completed in 53 ms
+25-10-30 15:52:50.101 [restartedMain] [32mINFO [0;39m o.s.b.a.e.web.EndpointLinksResolver  [ |  | ] - Exposing 6 endpoints beneath base path '/actuator'
+25-10-30 15:52:50.116 [restartedMain] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Starting ProtocolHandler ["http-nio-8081"]
+25-10-30 15:52:50.122 [restartedMain] [32mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer     [ |  | ] - Tomcat started on port 8081 (http) with context path '/'
+25-10-30 15:52:50.129 [restartedMain] [32mINFO [0;39m c.m.m.MonewServerApplication         [ |  | ] - Started MonewServerApplication in 1.918 seconds (process running for 566.361)
+25-10-30 15:52:50.130 [restartedMain] [32mINFO [0;39m o.s.b.d.a.ConditionEvaluationDeltaLoggingListener [ |  | ] - Condition evaluation unchanged
+25-10-30 15:55:23.400 [File Watcher] [32mINFO [0;39m o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener [ |  | ] - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+25-10-30 15:55:23.401 [Thread-15] [32mINFO [0;39m o.s.b.w.e.tomcat.GracefulShutdown    [ |  | ] - Commencing graceful shutdown. Waiting for active requests to complete
+25-10-30 15:55:23.402 [tomcat-shutdown] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Pausing ProtocolHandler ["http-nio-8080"]
+25-10-30 15:55:23.542 [tomcat-shutdown] [32mINFO [0;39m o.s.b.w.e.tomcat.GracefulShutdown    [ |  | ] - Graceful shutdown complete
+25-10-30 15:55:23.543 [Thread-15] [32mINFO [0;39m o.s.b.w.e.tomcat.GracefulShutdown    [ |  | ] - Commencing graceful shutdown. Waiting for active requests to complete
+25-10-30 15:55:23.543 [tomcat-shutdown] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Pausing ProtocolHandler ["http-nio-8081"]
+25-10-30 15:55:23.697 [tomcat-shutdown] [32mINFO [0;39m o.s.b.w.e.tomcat.GracefulShutdown    [ |  | ] - Graceful shutdown complete
+25-10-30 15:55:23.697 [Thread-15] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Stopping ProtocolHandler ["http-nio-8081"]
+25-10-30 15:55:23.698 [Thread-15] [32mINFO [0;39m o.a.catalina.core.StandardService    [ |  | ] - Stopping service [Tomcat]
+25-10-30 15:55:23.699 [Thread-15] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Stopping ProtocolHandler ["http-nio-8080"]
+25-10-30 15:55:23.701 [Thread-15] [32mINFO [0;39m o.s.o.j.LocalContainerEntityManagerFactoryBean [ |  | ] - Closing JPA EntityManagerFactory for persistence unit 'default'
+25-10-30 15:55:23.701 [Thread-15] [32mINFO [0;39m com.zaxxer.hikari.HikariDataSource   [ |  | ] - HikariPool-4 - Shutdown initiated...
+25-10-30 15:55:23.705 [Thread-15] [32mINFO [0;39m com.zaxxer.hikari.HikariDataSource   [ |  | ] - HikariPool-4 - Shutdown completed.
+25-10-30 15:55:23.782 [restartedMain] [32mINFO [0;39m c.m.m.MonewServerApplication         [ |  | ] - Starting MonewServerApplication v1.0.0 using Java 17.0.16 with PID 38448 (C:\dev_source\project\monew-mvc\monew-mvc\build\classes\java\main started by min in C:\dev_source\project\monew-mvc\monew-mvc)
+25-10-30 15:55:23.782 [restartedMain] [32mINFO [0;39m c.m.m.MonewServerApplication         [ |  | ] - The following 1 profile is active: "local"
+25-10-30 15:55:24.042 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Multiple Spring Data modules found, entering strict repository configuration mode
+25-10-30 15:55:24.042 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+25-10-30 15:55:24.068 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Finished Spring Data repository scanning in 25 ms. Found 4 JPA repository interfaces.
+25-10-30 15:55:24.071 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Multiple Spring Data modules found, entering strict repository configuration mode
+25-10-30 15:55:24.071 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+25-10-30 15:55:24.078 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationExtensionSupport [ |  | ] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.monew.monew_server.domain.article.repository.ArticleRepository; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+25-10-30 15:55:24.078 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationExtensionSupport [ |  | ] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.monew.monew_server.domain.article.repository.ArticleViewRepository; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+25-10-30 15:55:24.078 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationExtensionSupport [ |  | ] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.monew.monew_server.domain.comment.repository.CommentRepository; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+25-10-30 15:55:24.078 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationExtensionSupport [ |  | ] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.monew.monew_server.domain.notification.repository.NotificationRepository; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+25-10-30 15:55:24.078 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Finished Spring Data repository scanning in 6 ms. Found 0 MongoDB repository interfaces.
+25-10-30 15:55:24.190 [restartedMain] [32mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer     [ |  | ] - Tomcat initialized with port 8080 (http)
+25-10-30 15:55:24.190 [restartedMain] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Initializing ProtocolHandler ["http-nio-8080"]
+25-10-30 15:55:24.190 [restartedMain] [32mINFO [0;39m o.a.catalina.core.StandardService    [ |  | ] - Starting service [Tomcat]
+25-10-30 15:55:24.190 [restartedMain] [32mINFO [0;39m o.a.catalina.core.StandardEngine     [ |  | ] - Starting Servlet engine: [Apache Tomcat/10.1.46]
+25-10-30 15:55:24.211 [restartedMain] [32mINFO [0;39m o.a.c.c.C.[Tomcat].[localhost].[/]   [ |  | ] - Initializing Spring embedded WebApplicationContext
+25-10-30 15:55:24.211 [restartedMain] [32mINFO [0;39m o.s.b.w.s.c.ServletWebServerApplicationContext [ |  | ] - Root WebApplicationContext: initialization completed in 427 ms
+25-10-30 15:55:24.268 [restartedMain] [32mINFO [0;39m com.zaxxer.hikari.HikariDataSource   [ |  | ] - HikariPool-5 - Starting...
+25-10-30 15:55:24.311 [restartedMain] [32mINFO [0;39m com.zaxxer.hikari.pool.HikariPool    [ |  | ] - HikariPool-5 - Added connection org.postgresql.jdbc.PgConnection@3c63d921
+25-10-30 15:55:24.311 [restartedMain] [32mINFO [0;39m com.zaxxer.hikari.HikariDataSource   [ |  | ] - HikariPool-5 - Start completed.
+25-10-30 15:55:24.331 [restartedMain] [32mINFO [0;39m o.h.jpa.internal.util.LogHelper      [ |  | ] - HHH000204: Processing PersistenceUnitInfo [name: default]
+25-10-30 15:55:24.333 [restartedMain] [32mINFO [0;39m o.h.c.i.RegionFactoryInitiator       [ |  | ] - HHH000026: Second-level cache disabled
+25-10-30 15:55:24.339 [restartedMain] [32mINFO [0;39m o.s.o.j.p.SpringPersistenceUnitInfo  [ |  | ] - No LoadTimeWeaver setup: ignoring JPA class transformer
+25-10-30 15:55:24.345 [restartedMain] [33mWARN [0;39m org.hibernate.orm.deprecation        [ |  | ] - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+25-10-30 15:55:24.345 [restartedMain] [32mINFO [0;39m o.hibernate.orm.connections.pooling  [ |  | ] - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-5)']
+	Database driver: undefined/unknown
+	Database version: 17.6
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+25-10-30 15:55:24.423 [restartedMain] [32mINFO [0;39m o.h.e.t.j.p.i.JtaPlatformInitiator   [ |  | ] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+25-10-30 15:55:24.831 [restartedMain] [32mINFO [0;39m o.s.o.j.LocalContainerEntityManagerFactoryBean [ |  | ] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+25-10-30 15:55:25.028 [restartedMain] [32mINFO [0;39m org.mongodb.driver.client            [ |  | ] - MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "5.5.1"}, "os": {"type": "Windows", "name": "Windows 11", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Amazon.com Inc./17.0.16+8-LTS"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=null, commandListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsCommandListener@50ed9200], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@10f817f4, com.mongodb.Jep395RecordCodecProvider@7045ced6, com.mongodb.KotlinCodecProvider@1fc6f685]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsConnectionPoolListener@672df9c3], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverMonitoringMode=AUTO, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null, timeoutMS=null}
+25-10-30 15:55:25.031 [cluster-ClusterId{value='69030bdd06af5ab526262f4e', description='null'}-localhost:27017] [32mINFO [0;39m org.mongodb.driver.cluster           [ |  | ] - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, cryptd=false, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=27, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=1315200, minRoundTripTimeNanos=0}
+25-10-30 15:55:25.126 [restartedMain] [32mINFO [0;39m o.s.b.a.w.s.WelcomePageHandlerMapping [ |  | ] - Adding welcome page: class path resource [static/index.html]
+25-10-30 15:55:25.333 [restartedMain] [33mWARN [0;39m o.s.b.a.s.s.UserDetailsServiceAutoConfiguration [ |  | ] - 
+
+Using generated security password: ec53ab3a-bf64-4926-a2fb-7f9515c701a0
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+25-10-30 15:55:25.334 [restartedMain] [32mINFO [0;39m o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer [ |  | ] - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+25-10-30 15:55:25.609 [restartedMain] [32mINFO [0;39m o.s.b.d.a.OptionalLiveReloadServer   [ |  | ] - LiveReload server is running on port 35729
+25-10-30 15:55:25.624 [restartedMain] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Starting ProtocolHandler ["http-nio-8080"]
+25-10-30 15:55:25.626 [restartedMain] [32mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer     [ |  | ] - Tomcat started on port 8080 (http) with context path '/'
+25-10-30 15:55:25.668 [restartedMain] [32mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer     [ |  | ] - Tomcat initialized with port 8081 (http)
+25-10-30 15:55:25.669 [restartedMain] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Initializing ProtocolHandler ["http-nio-8081"]
+25-10-30 15:55:25.669 [restartedMain] [32mINFO [0;39m o.a.catalina.core.StandardService    [ |  | ] - Starting service [Tomcat]
+25-10-30 15:55:25.669 [restartedMain] [32mINFO [0;39m o.a.catalina.core.StandardEngine     [ |  | ] - Starting Servlet engine: [Apache Tomcat/10.1.46]
+25-10-30 15:55:25.691 [restartedMain] [32mINFO [0;39m o.a.c.c.C.[Tomcat-1].[localhost].[/] [ |  | ] - Initializing Spring embedded WebApplicationContext
+25-10-30 15:55:25.691 [restartedMain] [32mINFO [0;39m o.s.b.w.s.c.ServletWebServerApplicationContext [ |  | ] - Root WebApplicationContext: initialization completed in 64 ms
+25-10-30 15:55:25.695 [restartedMain] [32mINFO [0;39m o.s.b.a.e.web.EndpointLinksResolver  [ |  | ] - Exposing 6 endpoints beneath base path '/actuator'
+25-10-30 15:55:25.715 [restartedMain] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Starting ProtocolHandler ["http-nio-8081"]
+25-10-30 15:55:25.720 [restartedMain] [32mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer     [ |  | ] - Tomcat started on port 8081 (http) with context path '/'
+25-10-30 15:55:25.726 [restartedMain] [32mINFO [0;39m c.m.m.MonewServerApplication         [ |  | ] - Started MonewServerApplication in 1.971 seconds (process running for 721.958)
+25-10-30 15:55:25.728 [restartedMain] [32mINFO [0;39m o.s.b.d.a.ConditionEvaluationDeltaLoggingListener [ |  | ] - Condition evaluation unchanged
+25-10-30 15:55:30.629 [SpringApplicationShutdownHook] [32mINFO [0;39m o.s.b.w.e.tomcat.GracefulShutdown    [ |  | ] - Commencing graceful shutdown. Waiting for active requests to complete
+25-10-30 15:55:30.767 [tomcat-shutdown] [32mINFO [0;39m o.s.b.w.e.tomcat.GracefulShutdown    [ |  | ] - Graceful shutdown complete
+25-10-30 15:55:30.768 [SpringApplicationShutdownHook] [32mINFO [0;39m o.s.b.w.e.tomcat.GracefulShutdown    [ |  | ] - Commencing graceful shutdown. Waiting for active requests to complete
+25-10-30 15:55:31.026 [tomcat-shutdown] [32mINFO [0;39m o.s.b.w.e.tomcat.GracefulShutdown    [ |  | ] - Graceful shutdown complete
+25-10-30 15:55:31.031 [SpringApplicationShutdownHook] [32mINFO [0;39m o.s.o.j.LocalContainerEntityManagerFactoryBean [ |  | ] - Closing JPA EntityManagerFactory for persistence unit 'default'
+25-10-30 15:55:31.032 [SpringApplicationShutdownHook] [32mINFO [0;39m com.zaxxer.hikari.HikariDataSource   [ |  | ] - HikariPool-5 - Shutdown initiated...
+25-10-30 15:55:31.034 [SpringApplicationShutdownHook] [32mINFO [0;39m com.zaxxer.hikari.HikariDataSource   [ |  | ] - HikariPool-5 - Shutdown completed.
+25-10-30 15:55:34.186 [background-preinit] [32mINFO [0;39m o.h.validator.internal.util.Version  [ |  | ] - HV000001: Hibernate Validator 8.0.3.Final
+25-10-30 15:55:34.222 [restartedMain] [32mINFO [0;39m c.m.m.MonewServerApplication         [ |  | ] - Starting MonewServerApplication v1.0.0 using Java 17.0.16 with PID 17680 (C:\dev_source\project\monew-mvc\monew-mvc\build\classes\java\main started by min in C:\dev_source\project\monew-mvc\monew-mvc)
+25-10-30 15:55:34.222 [restartedMain] [32mINFO [0;39m c.m.m.MonewServerApplication         [ |  | ] - The following 1 profile is active: "local"
+25-10-30 15:55:34.254 [restartedMain] [32mINFO [0;39m o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor [ |  | ] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+25-10-30 15:55:34.254 [restartedMain] [32mINFO [0;39m o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor [ |  | ] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+25-10-30 15:55:35.125 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Multiple Spring Data modules found, entering strict repository configuration mode
+25-10-30 15:55:35.126 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+25-10-30 15:55:35.189 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Finished Spring Data repository scanning in 58 ms. Found 4 JPA repository interfaces.
+25-10-30 15:55:35.196 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Multiple Spring Data modules found, entering strict repository configuration mode
+25-10-30 15:55:35.196 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+25-10-30 15:55:35.207 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationExtensionSupport [ |  | ] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.monew.monew_server.domain.article.repository.ArticleRepository; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+25-10-30 15:55:35.207 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationExtensionSupport [ |  | ] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.monew.monew_server.domain.article.repository.ArticleViewRepository; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+25-10-30 15:55:35.208 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationExtensionSupport [ |  | ] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.monew.monew_server.domain.comment.repository.CommentRepository; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+25-10-30 15:55:35.208 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationExtensionSupport [ |  | ] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.monew.monew_server.domain.notification.repository.NotificationRepository; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+25-10-30 15:55:35.208 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Finished Spring Data repository scanning in 10 ms. Found 0 MongoDB repository interfaces.
+25-10-30 15:55:35.796 [restartedMain] [32mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer     [ |  | ] - Tomcat initialized with port 8080 (http)
+25-10-30 15:55:35.804 [restartedMain] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Initializing ProtocolHandler ["http-nio-8080"]
+25-10-30 15:55:35.805 [restartedMain] [32mINFO [0;39m o.a.catalina.core.StandardService    [ |  | ] - Starting service [Tomcat]
+25-10-30 15:55:35.805 [restartedMain] [32mINFO [0;39m o.a.catalina.core.StandardEngine     [ |  | ] - Starting Servlet engine: [Apache Tomcat/10.1.46]
+25-10-30 15:55:35.850 [restartedMain] [32mINFO [0;39m o.a.c.c.C.[Tomcat].[localhost].[/]   [ |  | ] - Initializing Spring embedded WebApplicationContext
+25-10-30 15:55:35.850 [restartedMain] [32mINFO [0;39m o.s.b.w.s.c.ServletWebServerApplicationContext [ |  | ] - Root WebApplicationContext: initialization completed in 1595 ms
+25-10-30 15:55:36.014 [restartedMain] [32mINFO [0;39m com.zaxxer.hikari.HikariDataSource   [ |  | ] - HikariPool-1 - Starting...
+25-10-30 15:55:36.137 [restartedMain] [32mINFO [0;39m com.zaxxer.hikari.pool.HikariPool    [ |  | ] - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1617dd35
+25-10-30 15:55:36.138 [restartedMain] [32mINFO [0;39m com.zaxxer.hikari.HikariDataSource   [ |  | ] - HikariPool-1 - Start completed.
+25-10-30 15:55:36.204 [restartedMain] [32mINFO [0;39m o.h.jpa.internal.util.LogHelper      [ |  | ] - HHH000204: Processing PersistenceUnitInfo [name: default]
+25-10-30 15:55:36.247 [restartedMain] [32mINFO [0;39m org.hibernate.Version                [ |  | ] - HHH000412: Hibernate ORM core version 6.6.29.Final
+25-10-30 15:55:36.273 [restartedMain] [32mINFO [0;39m o.h.c.i.RegionFactoryInitiator       [ |  | ] - HHH000026: Second-level cache disabled
+25-10-30 15:55:36.478 [restartedMain] [32mINFO [0;39m o.s.o.j.p.SpringPersistenceUnitInfo  [ |  | ] - No LoadTimeWeaver setup: ignoring JPA class transformer
+25-10-30 15:55:36.526 [restartedMain] [33mWARN [0;39m org.hibernate.orm.deprecation        [ |  | ] - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+25-10-30 15:55:36.554 [restartedMain] [32mINFO [0;39m o.hibernate.orm.connections.pooling  [ |  | ] - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.6
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+25-10-30 15:55:37.738 [restartedMain] [32mINFO [0;39m o.h.e.t.j.p.i.JtaPlatformInitiator   [ |  | ] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+25-10-30 15:55:38.245 [restartedMain] [32mINFO [0;39m o.s.o.j.LocalContainerEntityManagerFactoryBean [ |  | ] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+25-10-30 15:55:38.534 [restartedMain] [32mINFO [0;39m o.s.d.j.r.query.QueryEnhancerFactory [ |  | ] - Hibernate is in classpath; If applicable, HQL parser will be used.
+25-10-30 15:55:39.423 [restartedMain] [32mINFO [0;39m org.mongodb.driver.client            [ |  | ] - MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "5.5.1"}, "os": {"type": "Windows", "name": "Windows 11", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Amazon.com Inc./17.0.16+8-LTS"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=null, commandListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsCommandListener@b9a9202], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@3f16046a, com.mongodb.Jep395RecordCodecProvider@5b28a3f4, com.mongodb.KotlinCodecProvider@332261f2]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsConnectionPoolListener@badcfa0], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverMonitoringMode=AUTO, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null, timeoutMS=null}
+25-10-30 15:55:39.427 [cluster-ClusterId{value='69030beba0edcb1ea6666338', description='null'}-localhost:27017] [32mINFO [0;39m org.mongodb.driver.cluster           [ |  | ] - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, cryptd=false, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=27, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=18097700, minRoundTripTimeNanos=0}
+25-10-30 15:55:39.676 [restartedMain] [32mINFO [0;39m o.s.b.a.w.s.WelcomePageHandlerMapping [ |  | ] - Adding welcome page: class path resource [static/index.html]
+25-10-30 15:55:40.078 [restartedMain] [33mWARN [0;39m o.s.b.a.s.s.UserDetailsServiceAutoConfiguration [ |  | ] - 
+
+Using generated security password: 8e481550-3260-4499-8098-c6eaa8275f65
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+25-10-30 15:55:40.086 [restartedMain] [32mINFO [0;39m o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer [ |  | ] - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+25-10-30 15:55:40.609 [restartedMain] [32mINFO [0;39m o.s.b.d.a.OptionalLiveReloadServer   [ |  | ] - LiveReload server is running on port 35729
+25-10-30 15:55:40.654 [restartedMain] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Starting ProtocolHandler ["http-nio-8080"]
+25-10-30 15:55:40.669 [restartedMain] [32mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer     [ |  | ] - Tomcat started on port 8080 (http) with context path '/'
+25-10-30 15:55:40.738 [restartedMain] [32mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer     [ |  | ] - Tomcat initialized with port 8081 (http)
+25-10-30 15:55:40.739 [restartedMain] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Initializing ProtocolHandler ["http-nio-8081"]
+25-10-30 15:55:40.739 [restartedMain] [32mINFO [0;39m o.a.catalina.core.StandardService    [ |  | ] - Starting service [Tomcat]
+25-10-30 15:55:40.739 [restartedMain] [32mINFO [0;39m o.a.catalina.core.StandardEngine     [ |  | ] - Starting Servlet engine: [Apache Tomcat/10.1.46]
+25-10-30 15:55:40.762 [restartedMain] [32mINFO [0;39m o.a.c.c.C.[Tomcat-1].[localhost].[/] [ |  | ] - Initializing Spring embedded WebApplicationContext
+25-10-30 15:55:40.762 [restartedMain] [32mINFO [0;39m o.s.b.w.s.c.ServletWebServerApplicationContext [ |  | ] - Root WebApplicationContext: initialization completed in 89 ms
+25-10-30 15:55:40.771 [restartedMain] [32mINFO [0;39m o.s.b.a.e.web.EndpointLinksResolver  [ |  | ] - Exposing 6 endpoints beneath base path '/actuator'
+25-10-30 15:55:40.795 [restartedMain] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Starting ProtocolHandler ["http-nio-8081"]
+25-10-30 15:55:40.798 [restartedMain] [32mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer     [ |  | ] - Tomcat started on port 8081 (http) with context path '/'
+25-10-30 15:55:40.811 [restartedMain] [32mINFO [0;39m c.m.m.MonewServerApplication         [ |  | ] - Started MonewServerApplication in 7.021 seconds (process running for 7.464)
+25-10-30 15:55:41.078 [RMI TCP Connection(2)-172.30.1.1] [32mINFO [0;39m o.a.c.c.C.[Tomcat].[localhost].[/]   [ |  | ] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+25-10-30 15:55:41.079 [RMI TCP Connection(2)-172.30.1.1] [32mINFO [0;39m o.s.web.servlet.DispatcherServlet    [ |  | ] - Initializing Servlet 'dispatcherServlet'
+25-10-30 15:55:41.080 [RMI TCP Connection(2)-172.30.1.1] [32mINFO [0;39m o.s.web.servlet.DispatcherServlet    [ |  | ] - Completed initialization in 1 ms
+25-10-30 15:55:44.342 [http-nio-8080-exec-1] [32mINFO [0;39m c.m.monew_server.log.LoggingAspect   [127.0.0.1-d431fc06 | POST | ] - ArticleService#addArticleView 실행 시간: 119ms
+25-10-30 15:59:17.121 [SpringApplicationShutdownHook] [32mINFO [0;39m o.s.b.w.e.tomcat.GracefulShutdown    [ |  | ] - Commencing graceful shutdown. Waiting for active requests to complete
+25-10-30 15:59:17.268 [tomcat-shutdown] [32mINFO [0;39m o.s.b.w.e.tomcat.GracefulShutdown    [ |  | ] - Graceful shutdown complete
+25-10-30 15:59:17.268 [SpringApplicationShutdownHook] [32mINFO [0;39m o.s.b.w.e.tomcat.GracefulShutdown    [ |  | ] - Commencing graceful shutdown. Waiting for active requests to complete
+25-10-30 15:59:17.498 [tomcat-shutdown] [32mINFO [0;39m o.s.b.w.e.tomcat.GracefulShutdown    [ |  | ] - Graceful shutdown complete
+25-10-30 15:59:17.512 [SpringApplicationShutdownHook] [32mINFO [0;39m o.s.o.j.LocalContainerEntityManagerFactoryBean [ |  | ] - Closing JPA EntityManagerFactory for persistence unit 'default'
+25-10-30 15:59:17.515 [SpringApplicationShutdownHook] [32mINFO [0;39m com.zaxxer.hikari.HikariDataSource   [ |  | ] - HikariPool-1 - Shutdown initiated...
+25-10-30 15:59:17.517 [SpringApplicationShutdownHook] [32mINFO [0;39m com.zaxxer.hikari.HikariDataSource   [ |  | ] - HikariPool-1 - Shutdown completed.
+25-10-30 15:59:20.354 [background-preinit] [32mINFO [0;39m o.h.validator.internal.util.Version  [ |  | ] - HV000001: Hibernate Validator 8.0.3.Final
+25-10-30 15:59:20.392 [restartedMain] [32mINFO [0;39m c.m.m.MonewServerApplication         [ |  | ] - Starting MonewServerApplication v1.0.0 using Java 17.0.16 with PID 30784 (C:\dev_source\project\monew-mvc\monew-mvc\build\classes\java\main started by min in C:\dev_source\project\monew-mvc\monew-mvc)
+25-10-30 15:59:20.393 [restartedMain] [32mINFO [0;39m c.m.m.MonewServerApplication         [ |  | ] - The following 1 profile is active: "local"
+25-10-30 15:59:20.426 [restartedMain] [32mINFO [0;39m o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor [ |  | ] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+25-10-30 15:59:20.426 [restartedMain] [32mINFO [0;39m o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor [ |  | ] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+25-10-30 15:59:21.318 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Multiple Spring Data modules found, entering strict repository configuration mode
+25-10-30 15:59:21.320 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+25-10-30 15:59:21.383 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Finished Spring Data repository scanning in 57 ms. Found 4 JPA repository interfaces.
+25-10-30 15:59:21.392 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Multiple Spring Data modules found, entering strict repository configuration mode
+25-10-30 15:59:21.392 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+25-10-30 15:59:21.404 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationExtensionSupport [ |  | ] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.monew.monew_server.domain.article.repository.ArticleRepository; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+25-10-30 15:59:21.404 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationExtensionSupport [ |  | ] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.monew.monew_server.domain.article.repository.ArticleViewRepository; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+25-10-30 15:59:21.404 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationExtensionSupport [ |  | ] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.monew.monew_server.domain.comment.repository.CommentRepository; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+25-10-30 15:59:21.405 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationExtensionSupport [ |  | ] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.monew.monew_server.domain.notification.repository.NotificationRepository; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+25-10-30 15:59:21.405 [restartedMain] [32mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate [ |  | ] - Finished Spring Data repository scanning in 12 ms. Found 0 MongoDB repository interfaces.
+25-10-30 15:59:21.995 [restartedMain] [32mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer     [ |  | ] - Tomcat initialized with port 8080 (http)
+25-10-30 15:59:22.004 [restartedMain] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Initializing ProtocolHandler ["http-nio-8080"]
+25-10-30 15:59:22.005 [restartedMain] [32mINFO [0;39m o.a.catalina.core.StandardService    [ |  | ] - Starting service [Tomcat]
+25-10-30 15:59:22.005 [restartedMain] [32mINFO [0;39m o.a.catalina.core.StandardEngine     [ |  | ] - Starting Servlet engine: [Apache Tomcat/10.1.46]
+25-10-30 15:59:22.054 [restartedMain] [32mINFO [0;39m o.a.c.c.C.[Tomcat].[localhost].[/]   [ |  | ] - Initializing Spring embedded WebApplicationContext
+25-10-30 15:59:22.054 [restartedMain] [32mINFO [0;39m o.s.b.w.s.c.ServletWebServerApplicationContext [ |  | ] - Root WebApplicationContext: initialization completed in 1628 ms
+25-10-30 15:59:22.236 [restartedMain] [32mINFO [0;39m com.zaxxer.hikari.HikariDataSource   [ |  | ] - HikariPool-1 - Starting...
+25-10-30 15:59:22.355 [restartedMain] [32mINFO [0;39m com.zaxxer.hikari.pool.HikariPool    [ |  | ] - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@607d86c5
+25-10-30 15:59:22.357 [restartedMain] [32mINFO [0;39m com.zaxxer.hikari.HikariDataSource   [ |  | ] - HikariPool-1 - Start completed.
+25-10-30 15:59:22.426 [restartedMain] [32mINFO [0;39m o.h.jpa.internal.util.LogHelper      [ |  | ] - HHH000204: Processing PersistenceUnitInfo [name: default]
+25-10-30 15:59:22.462 [restartedMain] [32mINFO [0;39m org.hibernate.Version                [ |  | ] - HHH000412: Hibernate ORM core version 6.6.29.Final
+25-10-30 15:59:22.489 [restartedMain] [32mINFO [0;39m o.h.c.i.RegionFactoryInitiator       [ |  | ] - HHH000026: Second-level cache disabled
+25-10-30 15:59:22.690 [restartedMain] [32mINFO [0;39m o.s.o.j.p.SpringPersistenceUnitInfo  [ |  | ] - No LoadTimeWeaver setup: ignoring JPA class transformer
+25-10-30 15:59:22.737 [restartedMain] [33mWARN [0;39m org.hibernate.orm.deprecation        [ |  | ] - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+25-10-30 15:59:22.747 [restartedMain] [32mINFO [0;39m o.hibernate.orm.connections.pooling  [ |  | ] - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.6
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+25-10-30 15:59:23.511 [restartedMain] [32mINFO [0;39m o.h.e.t.j.p.i.JtaPlatformInitiator   [ |  | ] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+25-10-30 15:59:23.932 [restartedMain] [32mINFO [0;39m o.s.o.j.LocalContainerEntityManagerFactoryBean [ |  | ] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+25-10-30 15:59:24.215 [restartedMain] [32mINFO [0;39m o.s.d.j.r.query.QueryEnhancerFactory [ |  | ] - Hibernate is in classpath; If applicable, HQL parser will be used.
+25-10-30 15:59:25.058 [restartedMain] [32mINFO [0;39m org.mongodb.driver.client            [ |  | ] - MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "5.5.1"}, "os": {"type": "Windows", "name": "Windows 11", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Amazon.com Inc./17.0.16+8-LTS"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=null, commandListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsCommandListener@5d364e7e], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@18d1ab7e, com.mongodb.Jep395RecordCodecProvider@376a65b4, com.mongodb.KotlinCodecProvider@71183287]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsConnectionPoolListener@4b866c5f], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverMonitoringMode=AUTO, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null, timeoutMS=null}
+25-10-30 15:59:25.065 [cluster-ClusterId{value='69030ccceb7f0042ca0e590e', description='null'}-localhost:27017] [32mINFO [0;39m org.mongodb.driver.cluster           [ |  | ] - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, cryptd=false, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=27, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=21124700, minRoundTripTimeNanos=0}
+25-10-30 15:59:25.321 [restartedMain] [32mINFO [0;39m o.s.b.a.w.s.WelcomePageHandlerMapping [ |  | ] - Adding welcome page: class path resource [static/index.html]
+25-10-30 15:59:25.715 [restartedMain] [33mWARN [0;39m o.s.b.a.s.s.UserDetailsServiceAutoConfiguration [ |  | ] - 
+
+Using generated security password: 5b01da57-c3de-4eb9-925b-17c0748708c4
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+25-10-30 15:59:25.722 [restartedMain] [32mINFO [0;39m o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer [ |  | ] - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+25-10-30 15:59:26.250 [restartedMain] [32mINFO [0;39m o.s.b.d.a.OptionalLiveReloadServer   [ |  | ] - LiveReload server is running on port 35729
+25-10-30 15:59:26.293 [restartedMain] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Starting ProtocolHandler ["http-nio-8080"]
+25-10-30 15:59:26.306 [restartedMain] [32mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer     [ |  | ] - Tomcat started on port 8080 (http) with context path '/'
+25-10-30 15:59:26.383 [restartedMain] [32mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer     [ |  | ] - Tomcat initialized with port 8081 (http)
+25-10-30 15:59:26.384 [restartedMain] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Initializing ProtocolHandler ["http-nio-8081"]
+25-10-30 15:59:26.385 [restartedMain] [32mINFO [0;39m o.a.catalina.core.StandardService    [ |  | ] - Starting service [Tomcat]
+25-10-30 15:59:26.385 [restartedMain] [32mINFO [0;39m o.a.catalina.core.StandardEngine     [ |  | ] - Starting Servlet engine: [Apache Tomcat/10.1.46]
+25-10-30 15:59:26.413 [restartedMain] [32mINFO [0;39m o.a.c.c.C.[Tomcat-1].[localhost].[/] [ |  | ] - Initializing Spring embedded WebApplicationContext
+25-10-30 15:59:26.413 [restartedMain] [32mINFO [0;39m o.s.b.w.s.c.ServletWebServerApplicationContext [ |  | ] - Root WebApplicationContext: initialization completed in 104 ms
+25-10-30 15:59:26.422 [restartedMain] [32mINFO [0;39m o.s.b.a.e.web.EndpointLinksResolver  [ |  | ] - Exposing 6 endpoints beneath base path '/actuator'
+25-10-30 15:59:26.451 [restartedMain] [32mINFO [0;39m o.a.coyote.http11.Http11NioProtocol  [ |  | ] - Starting ProtocolHandler ["http-nio-8081"]
+25-10-30 15:59:26.453 [restartedMain] [32mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer     [ |  | ] - Tomcat started on port 8081 (http) with context path '/'
+25-10-30 15:59:26.466 [restartedMain] [32mINFO [0;39m c.m.m.MonewServerApplication         [ |  | ] - Started MonewServerApplication in 6.478 seconds (process running for 6.917)
+25-10-30 15:59:26.842 [RMI TCP Connection(4)-172.30.1.1] [32mINFO [0;39m o.a.c.c.C.[Tomcat].[localhost].[/]   [ |  | ] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+25-10-30 15:59:26.843 [RMI TCP Connection(4)-172.30.1.1] [32mINFO [0;39m o.s.web.servlet.DispatcherServlet    [ |  | ] - Initializing Servlet 'dispatcherServlet'
+25-10-30 15:59:26.844 [RMI TCP Connection(4)-172.30.1.1] [32mINFO [0;39m o.s.web.servlet.DispatcherServlet    [ |  | ] - Completed initialization in 1 ms
+25-10-30 15:59:35.979 [http-nio-8080-exec-1] [32mINFO [0;39m c.m.monew_server.log.LoggingAspect   [127.0.0.1-8ab70419 | POST | ] - ArticleService#addArticleView 실행 시간: 212ms
+25-10-30 16:00:02.555 [http-nio-8080-exec-8] [32mINFO [0;39m c.m.monew_server.log.LoggingAspect   [127.0.0.1-c0d05b6d | GET | ] - ArticleService#fetchArticles 실행 시간: 89ms
+25-10-30 16:00:06.985 [http-nio-8080-exec-4] [32mINFO [0;39m c.m.monew_server.log.LoggingAspect   [127.0.0.1-8db0e4d6 | POST | ] - ArticleService#addArticleView 실행 시간: 5ms
+25-10-30 16:00:08.074 [http-nio-8080-exec-5] [32mINFO [0;39m c.m.monew_server.log.LoggingAspect   [127.0.0.1-4e73e659 | POST | ] - ArticleService#addArticleView 실행 시간: 4ms
+25-10-30 16:00:10.674 [http-nio-8080-exec-6] [32mINFO [0;39m c.m.monew_server.log.LoggingAspect   [127.0.0.1-224bc922 | GET | ] - ArticleService#fetchArticles 실행 시간: 9ms
+25-10-30 16:00:11.673 [http-nio-8080-exec-7] [32mINFO [0;39m c.m.monew_server.log.LoggingAspect   [127.0.0.1-ddf46bd2 | GET | ] - ArticleService#fetchArticles 실행 시간: 9ms
+25-10-30 16:00:19.990 [http-nio-8080-exec-3] [32mINFO [0;39m c.m.monew_server.log.LoggingAspect   [127.0.0.1-e8b9ed32 | POST | ] - ArticleService#addArticleView 실행 시간: 3ms
+25-10-30 16:00:24.098 [http-nio-8080-exec-9] [32mINFO [0;39m c.m.monew_server.log.LoggingAspect   [127.0.0.1-e48b91f3 | GET | ] - ArticleService#fetchArticles 실행 시간: 8ms
+25-10-30 16:00:25.042 [http-nio-8080-exec-10] [32mINFO [0;39m c.m.monew_server.log.LoggingAspect   [127.0.0.1-fc276dde | GET | ] - ArticleService#fetchArticles 실행 시간: 8ms
+25-10-30 16:00:36.704 [SpringApplicationShutdownHook] [32mINFO [0;39m o.s.b.w.e.tomcat.GracefulShutdown    [ |  | ] - Commencing graceful shutdown. Waiting for active requests to complete
+25-10-30 16:00:36.843 [tomcat-shutdown] [32mINFO [0;39m o.s.b.w.e.tomcat.GracefulShutdown    [ |  | ] - Graceful shutdown complete
+25-10-30 16:00:36.843 [SpringApplicationShutdownHook] [32mINFO [0;39m o.s.b.w.e.tomcat.GracefulShutdown    [ |  | ] - Commencing graceful shutdown. Waiting for active requests to complete
+25-10-30 16:00:37.052 [tomcat-shutdown] [32mINFO [0;39m o.s.b.w.e.tomcat.GracefulShutdown    [ |  | ] - Graceful shutdown complete
+25-10-30 16:00:37.068 [SpringApplicationShutdownHook] [32mINFO [0;39m o.s.o.j.LocalContainerEntityManagerFactoryBean [ |  | ] - Closing JPA EntityManagerFactory for persistence unit 'default'
+25-10-30 16:00:37.071 [SpringApplicationShutdownHook] [32mINFO [0;39m com.zaxxer.hikari.HikariDataSource   [ |  | ] - HikariPool-1 - Shutdown initiated...
+25-10-30 16:00:37.073 [SpringApplicationShutdownHook] [32mINFO [0;39m com.zaxxer.hikari.HikariDataSource   [ |  | ] - HikariPool-1 - Shutdown completed.
