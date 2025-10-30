@@ -3,6 +3,8 @@ package com.monew.monew_server.domain.user.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.monew.monew_server.domain.user.dto.UserDto;
+import com.monew.monew_server.domain.user.dto.UserLoginRequest;
 import com.monew.monew_server.domain.user.dto.UserRegisterRequest;
 import com.monew.monew_server.domain.user.entity.User;
 import com.monew.monew_server.domain.user.repository.UserRepository;
@@ -37,5 +39,24 @@ public class UserService {
 		userRepository.save(user);
 	}
 
-	public User login ()
+	@Transactional(readOnly = true)
+	public UserDto login (UserLoginRequest request) {
+		User user = userRepository.findByEmail(request.getEmail())
+			.orElseThrow(() -> new IllegalArgumentException("올바르지 않는 이메일입니다."));
+
+		if (user.getDeletedAt() != null) {
+			throw new IllegalArgumentException("존재하지 않는 사용자입니다.");
+		}
+
+		if (!user.getPassword().equals(request.getPassword())){
+			throw new IllegalArgumentException("비밀번호가 올바르지 않습니다.");
+		}
+
+		return UserDto.builder()
+			.id(user.getId())
+			.email(user.getEmail())
+			.nickname(user.getNickname())
+			.createdAt(user.getCreatedAt().atOffset(java.time.ZoneOffset.UTC))
+			.build();
+	}
 }
