@@ -1,6 +1,8 @@
 package com.monew.monew_server.domain.interest.repository;
 
 import com.monew.monew_server.domain.interest.entity.Interest;
+import com.monew.monew_server.exception.ErrorCode;
+import com.monew.monew_server.exception.NotFoundException;
 import java.util.List;
 import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,4 +22,10 @@ public interface InterestRepository extends JpaRepository<Interest, UUID>, Inter
             """,
         nativeQuery = true)
     List<Interest> findSimilarInterests(@Param("name") String name);
+
+    default Interest getOrThrow(UUID id) {
+        return findById(id).orElseThrow(() ->
+            new NotFoundException(ErrorCode.INTEREST_NOT_FOUND, "Interest not found with id: " + id)
+        );
+    }
 }
