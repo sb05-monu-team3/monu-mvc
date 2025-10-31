@@ -10,6 +10,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.http.MediaType;
 
@@ -20,14 +21,16 @@ import java.util.UUID;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.willReturn;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@SpringBootTest
-@AutoConfigureMockMvc
+
+
+@WebMvcTest(CommentController.class)
 class CommentControllerTest {
 
     @Autowired
@@ -165,6 +168,34 @@ class CommentControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].content").value("첫번째 댓글입니다"))
                                 .andExpect(jsonPath("$[0].likeCount").value(5));
+    }
+
+    @Test
+    @DisplayName("DELETE /api/comments/{commentId} - 논리 삭제 성공")
+    void deleteComment_Success() throws Exception {
+        // Given: 테스트 데이터 준비
+        UUID commentId = UUID.randomUUID();
+        UUID userId = UUID.randomUUID();
+
+        // When & Then: HTTP DELETE 요청 + 검증
+        mockMvc.perform(delete("/api/comments/{commentId}", commentId)
+                        .header("Monew-Request-User-ID", userId.toString()))
+                .andDo(print())
+                .andExpect(status().isNoContent());
+    }
+
+    @Test
+    @DisplayName("DELETE /api/comments/{commentId}/hard - 물리 삭제 성공")
+    void hardDeleteComment_Success() throws Exception {
+        // Given: 테스트 데이터 준비
+        UUID commentId = UUID.randomUUID();
+        UUID userId = UUID.randomUUID();
+
+        // When & Then: HTTP DELETE 요청 + 검증
+        mockMvc.perform(delete("/api/comments/{commentId}/hard", commentId)
+                        .header("Monew-Request-User-ID", userId.toString()))
+                .andDo(print())
+                .andExpect(status().isNoContent());
     }
 
 }

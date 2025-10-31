@@ -9,11 +9,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.time.Instant;
 import java.util.List;
-import java.util.ResourceBundle;
 import java.util.UUID;
+
+
 
 @Slf4j
 @RestController
@@ -39,10 +39,12 @@ public class CommentController {
                 commentService.createComment(request);
 
         return ResponseEntity
-                .status(HttpStatus.CREATED)  // 20133
+                .status(HttpStatus.CREATED)
                 .body(createdComment);
     }
 
+
+    // 기본 댓글 조회 (단순 버전 - 현재 사용 중)
     @GetMapping
     public ResponseEntity<List<CommentDto>> getComments(
             @RequestParam UUID articleId,
@@ -53,8 +55,8 @@ public class CommentController {
             @RequestParam(defaultValue = "50") int limit,
             @RequestHeader("Monew-Request-User-ID") UUID userId
     ) {
-        log.info("GET /api/comments - articleId={}, orderBy={}, direction={}",
-                articleId, orderBy, direction);
+        log.info("GET /api/comments - articleId={}, orderBy={}, direction={}, cursor={}, limit={}",
+                articleId, orderBy, direction, cursor, limit);
 
         List<CommentDto> comments = commentService.getComments(
                 articleId, orderBy, direction, cursor, after, limit
@@ -62,7 +64,6 @@ public class CommentController {
 
         return ResponseEntity.ok(comments);
     }
-
 
     @PatchMapping("/{commentId}")
     public ResponseEntity<CommentDto> updateComment(
@@ -76,5 +77,32 @@ public class CommentController {
 
         return ResponseEntity.ok(updatedComment);
     }
+
+
+
+    @DeleteMapping("/{commentId}")
+    public ResponseEntity<Void> deleteComment(
+            @PathVariable UUID commentId,
+            @RequestHeader("Monew-Request-User-ID") UUID userId
+    ) {
+        log.info("DELETE /api/comments/{} - 논리 삭제 요청, userId={}", commentId, userId);
+
+        commentService.deleteComment(commentId, userId);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/{commentId}/hard")
+    public ResponseEntity<Void> deleteHardComment(
+            @PathVariable UUID commentId,
+            @RequestHeader("Monew-Request-User-ID") UUID userId
+    ) {
+        log.info("DELETE /api/comments/{}/hard - 물리 삭제 요청, userId={}", commentId, userId);
+
+        commentService.hardDeleteComment(commentId, userId);
+
+        return ResponseEntity.noContent().build();
+    }
+
 
 }
