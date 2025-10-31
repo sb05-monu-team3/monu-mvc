@@ -186,4 +186,12 @@ public class ArticleService {
 		article.softDelete();
 		articleRepository.save(article);
 	}
+
+	@Transactional
+	public void hardDeleteArticle(UUID articleId) {
+		Article article = articleRepository.findById(articleId)
+			.orElseThrow(() -> new BusinessException(ErrorCode.ARTICLE_NOT_FOUND));
+
+		articleRepository.delete(article);
+	}
 }
