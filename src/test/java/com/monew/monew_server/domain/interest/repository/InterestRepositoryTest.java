@@ -1,9 +1,8 @@
-package com.monew.monew_server.domain.interest;
+package com.monew.monew_server.domain.interest.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.monew.monew_server.domain.interest.entity.Interest;
-import com.monew.monew_server.domain.interest.repository.InterestRepository;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

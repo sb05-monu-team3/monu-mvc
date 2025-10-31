@@ -4,6 +4,7 @@ import com.monew.monew_server.domain.interest.dto.CursorPageResponseInterestDto;
 import com.monew.monew_server.domain.interest.dto.InterestDto;
 import com.monew.monew_server.domain.interest.dto.InterestQuery;
 import com.monew.monew_server.domain.interest.dto.InterestRegisterRequest;
+import com.monew.monew_server.domain.interest.dto.SubscriptionDto;
 import com.monew.monew_server.domain.interest.service.InterestService;
 import jakarta.validation.Valid;
 import java.util.UUID;
@@ -12,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -43,4 +45,12 @@ public class InterestController {
         return interestService.create(request);
     }
 
+    @PostMapping("{interestId}/subscriptions")
+    @ResponseStatus(HttpStatus.OK)
+    public SubscriptionDto subscribe(
+        @PathVariable UUID interestId,
+        @RequestHeader("Monew-Request-User-Id") UUID userId
+    ) {
+        return interestService.subscribe(interestId, userId);
+    }
 }
