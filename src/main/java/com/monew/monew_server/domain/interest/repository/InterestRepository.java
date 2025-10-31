@@ -9,15 +9,15 @@ import org.springframework.data.repository.query.Param;
 
 public interface InterestRepository extends JpaRepository<Interest, UUID>, InterestQueryRepository {
 
-  @Query(
-      value =
-          """
-        SELECT *
-        FROM interests
-        WHERE (
-                1.0 - (levenshtein(name, :name) / (GREATEST(length(name), length(:name))::float))
-            ) > 0.8
-        """,
-      nativeQuery = true)
-  List<Interest> findSimilarInterests(@Param("name") String name);
+    @Query(
+        value =
+            """
+            SELECT *
+            FROM interests
+            WHERE (
+                    1.0 - (levenshtein(name, :name) / (GREATEST(length(name), length(:name))::float))
+                ) > 0.8
+            """,
+        nativeQuery = true)
+    List<Interest> findSimilarInterests(@Param("name") String name);
 }

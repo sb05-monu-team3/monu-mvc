@@ -1,4 +1,4 @@
-package com.monew.monew_server.domain.interest;
+package com.monew.monew_server.domain.interest.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -13,12 +13,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.monew.monew_server.domain.interest.controller.InterestController;
 import com.monew.monew_server.domain.interest.dto.CursorPageResponseInterestDto;
 import com.monew.monew_server.domain.interest.dto.InterestDto;
 import com.monew.monew_server.domain.interest.dto.InterestQuery;
 import com.monew.monew_server.domain.interest.dto.InterestRegisterRequest;
+import com.monew.monew_server.domain.interest.dto.SubscriptionDto;
 import com.monew.monew_server.domain.interest.service.InterestService;
+import jakarta.persistence.EntityNotFoundException;
 import java.time.Instant;
 import java.util.Collections;
 import java.util.List;
@@ -169,5 +170,73 @@ class InterestControllerTest {
             Arguments.of("keywords: 0개 (min=1 위반)", new InterestRegisterRequest("Valid Name", Collections.emptyList())),
             Arguments.of("keywords: 11개 (max=10 위반)", new InterestRegisterRequest("Valid Name", keywordsTooMany))
         );
+    }
+
+    @Test
+    @DisplayName("POST /api/interests/{id}/subscriptions - 성공 (200 OK): 관심사 구독")
+    void subscribe_success() throws Exception {
+        // given
+        UUID interestId = UUID.randomUUID();
+
+        SubscriptionDto responseDto = new SubscriptionDto(
+            UUID.randomUUID(),
+            interestId,
+            "Test Interest",
+            List.of("k1"),
+            1L,
+            Instant.now()
+        );
+
+        // Service가 성공적으로 DTO를 반환하도록 Mocking
+        when(interestService.subscribe(interestId, userId)).thenReturn(responseDto);
+
+        // when & then
+        mockMvc.perform(post("/api/interests/{interestId}/subscriptions", interestId) // POST
+                .header(HEADER_USER_ID, userId.toString()) // 필수 헤더
+                .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk()) // @ResponseStatus(HttpStatus.OK) 검증
+            .andExpect(jsonPath("$.id").value(responseDto.id().toString()))
+            .andExpect(jsonPath("$.interestName").value("Test Interest"))
+            .andDo(print());
+
+        // verify: Service가 정확한 ID로 1회 호출되었는지 검증
+        verify(interestService).subscribe(interestId, userId);
+    }
+
+    @Test
+    @DisplayName("POST /api/interests/{id}/subscriptions - 실패 (400 Bad Request): 필수 헤더 누락")
+    void subscribe_fail_missingHeader() throws Exception {
+        // given
+        UUID interestId = UUID.randomUUID();
+
+        // when & then: 헤더 없이 POST 요청
+        mockMvc.perform(post("/api/interests/{interestId}/subscriptions", interestId)
+                .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isBadRequest()) // MissingRequestHeaderException (400)
+            .andDo(print());
+
+        // verify: 헤더가 없어 컨트롤러 진입 전 실패하므로 서비스가 호출되지 않음
+        verify(interestService, never()).subscribe(any(), any());
+    }
+
+    @Test
+    @DisplayName("POST /api/interests/{id}/subscriptions - 실패 (404 Not Found): 관심사 없음")
+    void subscribe_fail_interestNotFound() throws Exception {
+        // given
+        UUID interestId = UUID.randomUUID();
+
+        // Service가 EntityNotFoundException을 던지도록 Mocking
+        when(interestService.subscribe(interestId, userId))
+            .thenThrow(new EntityNotFoundException("Interest not found"));
+
+        // when & then
+        mockMvc.perform(post("/api/interests/{interestId}/subscriptions", interestId)
+                .header(HEADER_USER_ID, userId.toString())
+                .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isNotFound())
+            .andDo(print());
+
+        // verify: Service는 호출되었으나 예외가 발생함
+        verify(interestService).subscribe(interestId, userId);
     }
 }

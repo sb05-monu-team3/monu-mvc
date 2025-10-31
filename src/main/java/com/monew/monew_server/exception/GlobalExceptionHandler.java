@@ -1,5 +1,6 @@
 package com.monew.monew_server.exception;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import java.time.Instant;
 import java.util.HashMap;
@@ -72,7 +73,7 @@ public class GlobalExceptionHandler {
 
 	@ExceptionHandler(MissingRequestHeaderException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
-	public ErrorResponse handleInvalidJson(
+	public ErrorResponse handleMissingHeader(
 		MissingRequestHeaderException exception,
 		HttpServletRequest request
 	) {
@@ -83,5 +84,21 @@ public class GlobalExceptionHandler {
 			request.getRequestURI()
 		);
 		return new ErrorResponse(exception, HttpStatus.BAD_REQUEST.value());
+	}
+
+	@ExceptionHandler(EntityNotFoundException.class)
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	public ErrorResponse handleEntityNotFound(
+		EntityNotFoundException exception,
+		HttpServletRequest request
+	) {
+		log.warn(
+			"Entity not found [404]: {} (Request: {} {})",
+			exception.getMessage(),
+			request.getMethod(),
+			request.getRequestURI()
+		);
+
+		return new ErrorResponse(exception, HttpStatus.NOT_FOUND.value());
 	}
 }
