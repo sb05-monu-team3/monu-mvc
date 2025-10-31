@@ -14,6 +14,7 @@ import com.monew.monew_server.domain.interest.dto.CursorPageResponseInterestDto;
 import com.monew.monew_server.domain.interest.dto.InterestDto;
 import com.monew.monew_server.domain.interest.dto.InterestQuery;
 import com.monew.monew_server.domain.interest.dto.InterestRegisterRequest;
+import com.monew.monew_server.domain.interest.dto.InterestUpdateRequest;
 import com.monew.monew_server.domain.interest.dto.SubscriptionDto;
 import com.monew.monew_server.domain.interest.service.InterestService;
 import com.monew.monew_server.exception.ErrorCode;
@@ -305,5 +306,93 @@ class InterestControllerTest {
 
         // verify: Service의 delete가 1회 호출되었는지 검증
         verify(interestService).delete(fakeInterestId);
+    }
+
+    @Test
+    @DisplayName("PATCH /api/interests/{id} - 성공 (200 OK): 관심사 키워드 수정")
+    void update_success() throws Exception {
+        // given
+        UUID interestId = UUID.randomUUID();
+        InterestUpdateRequest request = new InterestUpdateRequest(List.of("k1", "k2"));
+
+        // 1. 갱신된 DTO Mocking
+        InterestDto updatedDto = new InterestDto(
+            interestId,
+            "Updated Name", // (이름은 바뀌지 않지만 DTO는 새로 생성됨)
+            List.of("k1", "k2"),
+            0L,
+            null
+        );
+        when(interestService.update(eq(interestId), any(InterestUpdateRequest.class)))
+            .thenReturn(updatedDto);
+
+        // 2. 서비스로 전달된 request 캡처
+        ArgumentCaptor<InterestUpdateRequest> requestCaptor =
+            ArgumentCaptor.forClass(InterestUpdateRequest.class);
+
+        // when & then
+        mockMvc.perform(patch("/api/interests/{interestId}", interestId) // ⬅️ PATCH
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(request)))
+            .andExpect(status().isOk()) // @ResponseStatus(HttpStatus.OK) 검증
+            .andExpect(jsonPath("$.id").value(interestId.toString()))
+            .andExpect(jsonPath("$.keywords[0]").value("k1"))
+            .andDo(print());
+
+        // verify: Service가 캡처된 request로 1회 호출되었는지 검증
+        verify(interestService).update(eq(interestId), requestCaptor.capture());
+        assertThat(requestCaptor.getValue().keywords()).containsExactly("k1", "k2");
+    }
+
+    @Test
+    @DisplayName("PATCH /api/interests/{id} - 실패 (404 Not Found): 갱신할 관심사 없음")
+    void update_fail_whenInterestNotFound() throws Exception {
+        // given
+        UUID fakeInterestId = UUID.randomUUID();
+        InterestUpdateRequest request = new InterestUpdateRequest(List.of("k1"));
+
+        // 1. service.update(id)가 호출될 때 NotFoundException을 던지도록 Mocking
+        when(interestService.update(eq(fakeInterestId), any(InterestUpdateRequest.class)))
+            .thenThrow(new NotFoundException(ErrorCode.INTEREST_NOT_FOUND, "Test Not Found"));
+
+        // when & then
+        mockMvc.perform(patch("/api/interests/{interestId}", fakeInterestId)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(request)))
+            .andExpect(status().isNotFound()) // (GlobalExceptionHandler가 404로 처리한다고 가정)
+            .andDo(print());
+
+        // verify
+        verify(interestService).update(eq(fakeInterestId), any(InterestUpdateRequest.class));
+    }
+
+    @DisplayName("PATCH /api/interests/{id} - 실패 (400 Bad Request): 유효성 검사 실패")
+    @ParameterizedTest(name = "[{index}] {0}")
+    @MethodSource("invalidInterestUpdateRequests") // ⬅️ DTO 유효성 검사용 새 MethodSource
+    void update_fail_validation(String testName, InterestUpdateRequest invalidRequest) throws Exception {
+        // given
+        UUID interestId = UUID.randomUUID();
+
+        // when & then
+        mockMvc.perform(patch("/api/interests/{interestId}", interestId)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(invalidRequest)))
+            .andExpect(status().isBadRequest())
+            .andDo(print());
+
+        // verify: 유효성 검사 실패 시 서비스가 호출되지 않음
+        verify(interestService, never()).update(any(), any());
+    }
+
+    private static Stream<Arguments> invalidInterestUpdateRequests() {
+        List<String> keywordsTooMany = IntStream.range(0, 11) // @Size(max=10) 위반 (11개)
+            .mapToObj(i -> "k" + i)
+            .toList();
+
+        return Stream.of(
+            Arguments.of("keywords: null", new InterestUpdateRequest(null)),
+            Arguments.of("keywords: 0개 (min=1 위반)", new InterestUpdateRequest(Collections.emptyList())),
+            Arguments.of("keywords: 11개 (max=10 위반)", new InterestUpdateRequest(keywordsTooMany))
+        );
     }
 }

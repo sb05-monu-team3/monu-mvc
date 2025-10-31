@@ -4,6 +4,7 @@ import com.monew.monew_server.domain.interest.dto.CursorPageResponseInterestDto;
 import com.monew.monew_server.domain.interest.dto.InterestDto;
 import com.monew.monew_server.domain.interest.dto.InterestQuery;
 import com.monew.monew_server.domain.interest.dto.InterestRegisterRequest;
+import com.monew.monew_server.domain.interest.dto.InterestUpdateRequest;
 import com.monew.monew_server.domain.interest.dto.SubscriptionDto;
 import com.monew.monew_server.domain.interest.service.InterestService;
 import jakarta.validation.Valid;
@@ -14,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -49,6 +51,15 @@ public class InterestController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable UUID interestId) {
         interestService.delete(interestId);
+    }
+
+    @PatchMapping("{interestId}")
+    @ResponseStatus(HttpStatus.OK)
+    public InterestDto update(
+        @PathVariable UUID interestId,
+        @RequestBody @Valid InterestUpdateRequest request
+    ) {
+        return interestService.update(interestId, request);
     }
 
     @PostMapping("{interestId}/subscriptions")

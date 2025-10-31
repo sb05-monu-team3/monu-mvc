@@ -24,7 +24,7 @@ class InterestMapperTest {
     void toDto_shouldMapAllFieldsCorrectly() {
         Interest interest = Interest.builder().name("Spring").build();
         List<String> keywords = List.of("k1", "k2");
-        Integer subscriberCount = 10;
+        Long subscriberCount = 10L;
         Boolean subscribedByMe = true;
 
         InterestDto dto = interestMapper.toDto(interest, keywords, subscriberCount, subscribedByMe);
@@ -50,7 +50,7 @@ class InterestMapperTest {
     @DisplayName("toDto: Interest 객체만 null일 때, DTO의 id와 name은 null이어야 한다")
     void toDto_shouldHandleNullInterest() {
         List<String> keywords = List.of("k1");
-        Integer subscriberCount = 5;
+        Long subscriberCount = 5L;
         Boolean subscribedByMe = false;
 
         InterestDto dto = interestMapper.toDto(null, keywords, subscriberCount, subscribedByMe);
@@ -68,7 +68,7 @@ class InterestMapperTest {
     void toDto_shouldHandleNullKeywords() {
         Interest interest = Interest.builder().name("Java").build();
 
-        InterestDto dto = interestMapper.toDto(interest, null, 5, true);
+        InterestDto dto = interestMapper.toDto(interest, null, 5L, true);
 
         assertThat(dto).isNotNull();
         assertThat(dto.name()).isEqualTo("Java");

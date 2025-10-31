@@ -7,6 +7,7 @@ import com.monew.monew_server.domain.interest.dto.CursorPageResponseInterestDto;
 import com.monew.monew_server.domain.interest.dto.InterestDto;
 import com.monew.monew_server.domain.interest.dto.InterestQuery;
 import com.monew.monew_server.domain.interest.dto.InterestRegisterRequest;
+import com.monew.monew_server.domain.interest.dto.InterestUpdateRequest;
 import com.monew.monew_server.domain.interest.dto.SubscriptionDto;
 import com.monew.monew_server.domain.interest.entity.Interest;
 import com.monew.monew_server.domain.interest.entity.InterestKeyword;
@@ -353,6 +354,53 @@ class InterestServiceTest {
         NotFoundException exception = assertThrows(NotFoundException.class, () -> interestService.delete(fakeInterestId));
 
         // 3. 예외 상세 내용 검증 (ErrorCode.INTEREST_NOT_FOUND는 getOrThrow에 정의됨)
+        assertThat(exception.getErrorCode()).isEqualTo(ErrorCode.INTEREST_NOT_FOUND);
+        assertThat(exception.getMessage()).contains("Interest not found with id: " + fakeInterestId);
+    }
+
+    @Test
+    @DisplayName("update - 성공: 기존 키워드를 삭제하고 새 키워드로 갱신한다")
+    void update_shouldReplaceKeywords_whenInterestExists() {
+        // given
+        // (@BeforeEach에서 interest1("Java")에 "JVM" 키워드가 있음)
+        UUID interestId = interest1.getId();
+        long initialSubCount = subscriptionRepository.countByInterestId(interestId); // 1
+
+        InterestUpdateRequest request = new InterestUpdateRequest(
+            List.of("Spring", "JPA") // "JVM"을 "Spring", "JPA"로 교체
+        );
+
+        // when
+        InterestDto resultDto = interestService.update(interestId, request);
+        entityManager.flush();
+        entityManager.clear();
+
+        // then
+        // 1. DTO 검증 (이름, 구독자 수는 불변)
+        assertThat(resultDto.id()).isEqualTo(interestId);
+        assertThat(resultDto.name()).isEqualTo("Java"); // 이름은 변경되지 않음
+        assertThat(resultDto.keywords()).containsExactlyInAnyOrder("Spring", "JPA");
+        assertThat(resultDto.subscriberCount()).isEqualTo(initialSubCount); // 구독자 수 불변
+        assertThat(resultDto.subscribedByMe()).isNull(); // userId가 없으므로 null
+
+        // 2. DB 검증 (기존 "JVM"이 삭제되었는지)
+        List<String> keywordsInDb = interestKeywordRepository.findKeywordsByInterestId(interestId);
+        assertThat(keywordsInDb)
+            .containsExactlyInAnyOrder("Spring", "JPA")
+            .doesNotContain("JVM");
+    }
+
+    @Test
+    @DisplayName("update - 실패 (404 Not Found): 갱신할 관심사가 존재하지 않는다")
+    void update_shouldThrowNotFound_whenInterestDoesNotExist() {
+        // given
+        UUID fakeInterestId = UUID.randomUUID();
+        InterestUpdateRequest request = new InterestUpdateRequest(List.of("k1"));
+
+        // when & then (getOrThrow 검증)
+        NotFoundException exception = assertThrows(NotFoundException.class, () -> interestService.update(fakeInterestId, request));
+
+        // 3. 예외 상세 내용 검증
         assertThat(exception.getErrorCode()).isEqualTo(ErrorCode.INTEREST_NOT_FOUND);
         assertThat(exception.getMessage()).contains("Interest not found with id: " + fakeInterestId);
     }
