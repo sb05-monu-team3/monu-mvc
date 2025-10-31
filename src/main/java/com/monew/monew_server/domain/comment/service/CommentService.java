@@ -35,18 +35,18 @@ public class CommentService {
         Article article = entityManager.getReference(Article.class, request.getArticleId());
         User user = entityManager.getReference(User.class, request.getUserId());
 
-        // 2. Comment Entity 생성
+        // 2. Comment 엔티티 생성
         Comment comment = Comment.builder()
                 .article(article)
                 .user(user)
                 .content(request.getContent())
                 .build();
 
-        // 3. DB 저장
+        // 3. DB에 저장
         Comment savedComment = commentRepository.save(comment);
         log.info("댓글 생성 완료: commentId={}", savedComment.getId());
 
-        // 4. Entity → DTO 변환
+        // 4. 엔티티를 DTO로 변환시킨다.
         return convertToDto(savedComment);
     }
 
@@ -62,14 +62,16 @@ public class CommentService {
                 .createdAt(comment.getCreatedAt())
                 .build();
     }
+
+    // 댓글 조회
     @Transactional(readOnly = true)
     public List<CommentDto> getComments(UUID articleId,String orderBy,String direction,
-            String cursor, Instant after, int limit) {
+                                        String cursor, Instant after, int limit) {
 
         log.info("댓글 조회 요청: articleId={}", articleId);
 
-        // 1단계: 일단 전체 조회 (나중에 정렬/페이징 추가 예정)
-        List<Comment> comments = commentRepository.findByArticle_Id(articleId);
+        // 1단계: 삭제되지 않은 댓글만 조회 (나중에 정렬/페이징 추가 예정)
+        List<Comment> comments = commentRepository.findByArticle_IdAndDeletedAtIsNull(articleId);
 
         log.info("조회된 댓글 수: {}", comments.size());
 
@@ -110,5 +112,54 @@ public class CommentService {
         // 5. DTO 변환 후 반환
         return convertToDto(comment);
     }
+
+
+    @Transactional
+    public void deleteComment(UUID commentId, UUID userId) {
+        log.info("댓글 논리 삭제 요청: commentId={}, userId={}", commentId, userId);
+
+        // 1. 댓글 조회
+        Comment comment = commentRepository.findById(commentId)
+                .orElseThrow(() -> new EntityNotFoundException("댓글을 찾을 수 없습니다: " + commentId));
+        // 2. 사용자 본인인지 확인
+        if (!comment.getUser().getId().equals(userId)) {
+            log.warn("권한 없음: 댓글 작성자({})와 요청자({})가 다름", comment.getUser().getId(), userId);
+            throw new IllegalArgumentException("본인이 작성한 댓글만 삭제할 수 있습니다.");
+        }
+
+        // 3. 이미 삭제된 댓글인지 체크
+        if (comment.isDeleted()) {
+            log.warn("이미 삭제된 댓글: commentId={}", commentId);
+            throw new IllegalStateException("이미 삭제된 댓글입니다.");
+        }
+
+        // 4. 논리 삭제 실행
+        comment.softDelete();
+
+        // JPA 더티 체킹으로 자동 UPDATE (deleted_at = now())
+        log.info("댓글 논리 삭제 완료: commentId={}", commentId);
+    }
+
+
+    @Transactional
+    public void hardDeleteComment(UUID commentId, UUID userId) {
+        log.info("댓글 물리 삭제 요청: commentId={}, userId={}", commentId, userId);
+
+        // 1. 댓글 조회 (존재 여부 확인)
+        Comment comment = commentRepository.findById(commentId)
+                .orElseThrow(() -> new EntityNotFoundException("댓글을 찾을 수 없습니다: " + commentId));
+
+        // 2. 사용자 본인인지 확인
+        if (!comment.getUser().getId().equals(userId)) {
+            log.warn("권한 없음: 댓글 작성자({})와 요청자({})가 다름", comment.getUser().getId(), userId);
+            throw new IllegalArgumentException("본인이 작성한 댓글만 삭제할 수 있습니다.");
+        }
+
+        // 3. 물리 삭제 실행 (DB에서 완전히 제거)
+        commentRepository.delete(comment);
+
+        log.info("댓글 물리 삭제 완료: commentId={}", commentId);
+    }
+
 
 }

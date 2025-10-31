@@ -16,6 +16,9 @@ public interface CommentRepository extends JpaRepository<Comment, UUID> {
 
 	List<Comment> findByArticle_Id(UUID articleId);
 
+	// 삭제되지 않은 댓글만 조회
+	List<Comment> findByArticle_IdAndDeletedAtIsNull(UUID articleId);
+
 	@Query("""
 		    SELECT c.article.id AS articleId, COUNT(c) AS commentCount
 		    FROM Comment c

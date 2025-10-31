@@ -1,5 +1,6 @@
 package com.monew.monew_server.exception;
 
+import jakarta.servlet.http.HttpServletRequest;
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
@@ -8,7 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingRequestHeaderException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @Slf4j
@@ -67,4 +70,18 @@ public class GlobalExceptionHandler {
 			.body(response);
 	}
 
+	@ExceptionHandler(MissingRequestHeaderException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public ErrorResponse handleInvalidJson(
+		MissingRequestHeaderException exception,
+		HttpServletRequest request
+	) {
+		log.warn(
+			"Required header '{}' is missing for request: {} {}",
+			exception.getHeaderName(),
+			request.getMethod(),
+			request.getRequestURI()
+		);
+		return new ErrorResponse(exception, HttpStatus.BAD_REQUEST.value());
+	}
 }

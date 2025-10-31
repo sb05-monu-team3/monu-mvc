@@ -1,6 +1,8 @@
 package com.monew.monew_server.domain.interest.service;
 
+import com.monew.monew_server.domain.interest.dto.CursorPageResponseInterestDto;
 import com.monew.monew_server.domain.interest.dto.InterestDto;
+import com.monew.monew_server.domain.interest.dto.InterestQuery;
 import com.monew.monew_server.domain.interest.dto.InterestRegisterRequest;
 import com.monew.monew_server.domain.interest.entity.Interest;
 import com.monew.monew_server.domain.interest.entity.InterestKeyword;
@@ -11,6 +13,7 @@ import com.monew.monew_server.exception.ErrorCode;
 import com.monew.monew_server.exception.InterestException;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +30,10 @@ public class InterestService {
     private final InterestKeywordRepository interestKeywordRepository;
 
     private final InterestMapper interestMapper;
+
+    public CursorPageResponseInterestDto findAll(InterestQuery query, UUID userId) {
+        return interestRepository.findAll(query, userId);
+    }
 
     @Transactional
     public InterestDto create(InterestRegisterRequest request) {
