@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -82,6 +83,12 @@ public class ArticleController {
 		log.info("POST /api/articles/{}/article-views - (사용자 ID: {})", articleId, userId);
 
 		articleService.addArticleView(articleId, userId);
+		return ResponseEntity.ok().build();
+	}
+
+	@DeleteMapping("/{articleId}")
+	public ResponseEntity<Void> softDeleteArticle(@PathVariable UUID articleId) {
+		articleService.softDeleteArticle(articleId);
 		return ResponseEntity.ok().build();
 	}
 }

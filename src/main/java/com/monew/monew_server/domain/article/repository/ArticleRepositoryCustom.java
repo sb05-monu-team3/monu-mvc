@@ -14,4 +14,6 @@ public interface ArticleRepositoryCustom {
 	long countArticlesWithFilter(ArticleRequest request);
 
 	Optional<Article> findArticleById(UUID articleId);
+
+	Optional<Article> findByIdAndDeletedAtIsNull(UUID articleId);
 }

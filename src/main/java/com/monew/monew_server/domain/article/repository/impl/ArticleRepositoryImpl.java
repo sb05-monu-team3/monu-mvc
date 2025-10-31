@@ -181,4 +181,14 @@ public class ArticleRepositoryImpl implements ArticleRepositoryCustom {
 		);
 	}
 
+	@Override
+	public Optional<Article> findByIdAndDeletedAtIsNull(UUID articleId) {
+		return Optional.ofNullable(
+			queryFactory.selectFrom(article)
+				.where(article.id.eq(articleId)
+					.and(article.deletedAt.isNull()))
+				.fetchOne()
+		);
+	}
+
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.monew.monew_server.domain.article.dto.ArticleRequest;
@@ -16,6 +17,7 @@ import com.monew.monew_server.domain.article.entity.ArticleSortType;
 import com.monew.monew_server.domain.article.entity.ArticleSource;
 import com.monew.monew_server.domain.article.entity.ArticleView;
 import com.monew.monew_server.domain.article.mapper.ArticleMapper;
+import com.monew.monew_server.domain.article.repository.ArticleRepository;
 import com.monew.monew_server.domain.article.repository.ArticleRepositoryCustom;
 import com.monew.monew_server.domain.article.repository.ArticleViewRepository;
 import com.monew.monew_server.domain.comment.repository.CommentRepository;
@@ -27,16 +29,30 @@ import com.monew.monew_server.exception.ErrorCode;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
-import lombok.RequiredArgsConstructor;
 
 @Service
-@RequiredArgsConstructor
 public class ArticleService {
 
-	private final ArticleRepositoryCustom articleRepository;
+	private final ArticleRepository articleRepository; // JpaRepository
+	private final ArticleRepositoryCustom articleRepositoryCustom; // @Qualifier 필요
 	private final ArticleMapper articleMapper;
 	private final ArticleViewRepository articleViewRepository;
 	private final CommentRepository commentRepository;
+
+	public ArticleService(
+		ArticleRepository articleRepository,
+		@Qualifier("articleRepositoryImpl") ArticleRepositoryCustom articleRepositoryCustom,
+		ArticleMapper articleMapper,
+		ArticleViewRepository articleViewRepository,
+		CommentRepository commentRepository
+	) {
+		this.articleRepository = articleRepository;
+		this.articleRepositoryCustom = articleRepositoryCustom;
+		this.articleMapper = articleMapper;
+		this.articleViewRepository = articleViewRepository;
+		this.commentRepository = commentRepository;
+	}
+
 	private static final int DEFAULT_PAGE_SIZE = 10;
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -49,8 +65,8 @@ public class ArticleService {
 
 		int requestedSize = request.size() != null ? request.size() : DEFAULT_PAGE_SIZE; // N
 		int fetchSize = requestedSize + 1;
-		List<Article> fetchedArticles = articleRepository.findArticlesWithFilterAndCursor(request, fetchSize);
-		long totalElements = articleRepository.countArticlesWithFilter(request);
+		List<Article> fetchedArticles = articleRepositoryCustom.findArticlesWithFilterAndCursor(request, fetchSize);
+		long totalElements = articleRepositoryCustom.countArticlesWithFilter(request);
 		boolean hasNext = fetchedArticles.size() > requestedSize;
 
 		List<ArticleResponse> allResponses = articleMapper.toResponseList(fetchedArticles);
@@ -128,7 +144,7 @@ public class ArticleService {
 
 	@Transactional
 	public ArticleResponse getArticleById(UUID articleId, UUID userId) {
-		Article article = articleRepository.findArticleById(articleId)
+		Article article = articleRepositoryCustom.findArticleById(articleId)
 			.orElseThrow(() -> new BusinessException(ErrorCode.ARTICLE_NOT_FOUND));
 
 		if (userId != null && !articleViewRepository.existsByArticleIdAndUserId(articleId, userId)) {
@@ -153,12 +169,21 @@ public class ArticleService {
 	public void addArticleView(UUID articleId, UUID userId) {
 		System.out.println("Received User ID in Service: " + userId);
 
-		Article article = articleRepository.findArticleById(articleId)
+		Article article = articleRepositoryCustom.findArticleById(articleId)
 			.orElseThrow(() -> new BusinessException(ErrorCode.ARTICLE_NOT_FOUND));
 
 		if (userId != null && !articleViewRepository.existsByArticleIdAndUserId(articleId, userId)) {
 			User userRef = entityManager.getReference(User.class, userId);
 			articleViewRepository.save(ArticleView.of(article, userRef));
 		}
+	}
+
+	@Transactional
+	public void softDeleteArticle(UUID articleId) {
+		Article article = articleRepositoryCustom.findByIdAndDeletedAtIsNull(articleId)
+			.orElseThrow(() -> new BusinessException(ErrorCode.ARTICLE_NOT_FOUND));
+		System.out.println(entityManager.contains(article));
+		article.softDelete();
+		articleRepository.save(article);
 	}
 }
