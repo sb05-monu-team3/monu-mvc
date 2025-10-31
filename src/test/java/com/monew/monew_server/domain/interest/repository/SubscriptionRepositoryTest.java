@@ -8,6 +8,7 @@ import com.monew.monew_server.domain.user.entity.User;
 import com.monew.monew_server.domain.user.repository.UserRepository;
 import jakarta.persistence.EntityManager;
 import java.util.Optional;
+import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -117,5 +118,47 @@ class SubscriptionRepositoryTest {
         long count = subscriptionRepository.countByInterestId(interest2.getId());
 
         assertThat(count).isZero();
+    }
+
+    @Test
+    @DisplayName("deleteByUserIdAndInterestId: 구독 정보가 존재할 때 해당 구독만 삭제")
+    void deleteByUserIdAndInterestId_shouldDeleteSubscription_whenExists() {
+        // given
+        long initialCount = subscriptionRepository.count(); // 2
+        UUID user1Id = user1.getId();
+        UUID interest1Id = interest1.getId();
+
+        // when: user1의 interest1 구독 취소
+        subscriptionRepository.deleteByUserIdAndInterestId(user1Id, interest1Id);
+        entityManager.flush(); // delete 쿼리 즉시 실행
+        entityManager.clear();
+
+        // then
+        // 1. 전체 카운트가 1로 감소
+        assertThat(subscriptionRepository.count()).isEqualTo(initialCount - 1);
+        // 2. 삭제된 구독은 조회되지 않음
+        assertThat(subscriptionRepository.findByUserIdAndInterestId(user1Id, interest1Id)).isEmpty();
+        // 3. 다른 구독(user2, interest1)은 남아있음
+        assertThat(subscriptionRepository.findByUserIdAndInterestId(user2.getId(), interest1Id)).isPresent();
+    }
+
+    @Test
+    @DisplayName("deleteByUserIdAndInterestId: 구독 정보가 없을 때 아무 작업도 하지 않음 (멱등성)")
+    void deleteByUserIdAndInterestId_shouldDoNothing_whenSubscriptionNotFound() {
+        // given
+        long initialCount = subscriptionRepository.count(); // 2
+        UUID user1Id = user1.getId();
+        UUID interest2Id = interest2.getId(); // 존재하지 않는 조합
+
+        // when: user1의 interest2 구독 취소 (대상이 없음)
+        subscriptionRepository.deleteByUserIdAndInterestId(user1Id, interest2Id);
+        entityManager.flush();
+        entityManager.clear();
+
+        // then
+        // 1. 전체 카운트가 변하지 않음
+        assertThat(subscriptionRepository.count()).isEqualTo(initialCount);
+        // 2. 기존 구독(user1, interest1)이 영향을 받지 않음
+        assertThat(subscriptionRepository.findByUserIdAndInterestId(user1Id, interest1.getId())).isPresent();
     }
 }

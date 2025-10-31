@@ -11,8 +11,6 @@ import com.monew.monew_server.domain.interest.dto.SubscriptionDto;
 import com.monew.monew_server.domain.interest.entity.Interest;
 import com.monew.monew_server.domain.interest.entity.InterestKeyword;
 import com.monew.monew_server.domain.interest.entity.Subscription;
-import com.monew.monew_server.domain.interest.mapper.InterestMapper;
-import com.monew.monew_server.domain.interest.mapper.SubscriptionMapper;
 import com.monew.monew_server.domain.interest.repository.InterestKeywordRepository;
 import com.monew.monew_server.domain.interest.repository.InterestRepository;
 import com.monew.monew_server.domain.interest.repository.SubscriptionRepository;
@@ -20,8 +18,8 @@ import com.monew.monew_server.domain.user.entity.User;
 import com.monew.monew_server.domain.user.repository.UserRepository;
 import com.monew.monew_server.exception.ErrorCode;
 import com.monew.monew_server.exception.InterestException;
+import com.monew.monew_server.exception.NotFoundException;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -60,15 +58,13 @@ class InterestServiceTest {
     @Autowired private InterestKeywordRepository interestKeywordRepository;
     @Autowired private SubscriptionRepository subscriptionRepository;
     @Autowired private UserRepository userRepository;
-    @Autowired private InterestMapper interestMapper;
-    @Autowired private SubscriptionMapper subscriptionMapper;
     @Autowired private EntityManager entityManager;
 
     private User user1;
     private Interest interest1;
 
     @BeforeEach
-    void setUp() throws InterruptedException {
+    void setUp() {
         user1 = userRepository.save(User.builder()
             .email("test@test.com")
             .nickname("test")
@@ -201,7 +197,7 @@ class InterestServiceTest {
         UUID fakeInterestId = UUID.randomUUID();
 
         // when & then
-        EntityNotFoundException exception = assertThrows(EntityNotFoundException.class,
+        NotFoundException exception = assertThrows(NotFoundException.class,
             () -> interestService.subscribe(fakeInterestId, user1.getId())
         );
 
@@ -250,5 +246,70 @@ class InterestServiceTest {
         assertThat(resultDto.name()).isEqualTo("Java");
         assertThat(resultDto.subscriberCount()).isEqualTo(2L);
         assertThat(resultDto.subscribedByMe()).isTrue(); // user1로 조회
+    }
+
+    @Test
+    @DisplayName("unsubscribe - 성공 (200 OK): 구독 정보를 성공적으로 삭제한다")
+    void unsubscribe_shouldDeleteSubscription_whenExists() {
+        // given:
+        // 1. user1이 interest1을 구독하는 데이터를 생성
+        Subscription subscription = subscriptionRepository.save(Subscription.builder()
+            .user(user1)
+            .interest(interest1)
+            .build());
+        entityManager.flush();
+        entityManager.clear();
+
+        // 2. 삭제 전 구독 상태 확인
+        long initialCount = subscriptionRepository.count();
+        assertThat(subscriptionRepository.findById(subscription.getId())).isPresent();
+
+        // when:
+        // 3. 구독 취소 서비스 호출
+        interestService.unsubscribe(interest1.getId(), user1.getId());
+        entityManager.flush(); // delete 쿼리 즉시 실행
+        entityManager.clear();
+
+        // then:
+        // 4. 구독이 삭제되었는지 검증
+        assertThat(subscriptionRepository.count()).isEqualTo(initialCount - 1);
+        assertThat(subscriptionRepository.findById(subscription.getId())).isEmpty();
+    }
+
+    @Test
+    @DisplayName("unsubscribe - 성공 (멱등성): 구독 정보가 없어도 예외 없이 성공한다")
+    void unsubscribe_shouldCompleteSuccessfully_whenSubscriptionDoesNotExist() {
+        // given:
+        // 1. user1이 interest1을 구독하지 않은 상태
+        long initialCount = subscriptionRepository.count();
+        assertThat(subscriptionRepository.findByUserIdAndInterestId(user1.getId(), interest1.getId())).isEmpty();
+
+        // when:
+        // 2. 존재하지 않는 구독에 대해 구독 취소 요청
+        // (getOrThrow(interestId)는 통과, deleteBy...는 0건 삭제)
+        interestService.unsubscribe(interest1.getId(), user1.getId());
+        entityManager.flush();
+        entityManager.clear();
+
+        // then:
+        // 3. 예외가 발생하지 않고, DB 카운트도 그대로인지 검증
+        assertThat(subscriptionRepository.count()).isEqualTo(initialCount);
+    }
+
+    @Test
+    @DisplayName("unsubscribe - 실패 (404 Not Found): 관심사(Interest)가 존재하지 않는다")
+    void unsubscribe_shouldThrowException_whenInterestDoesNotExist() {
+        // given:
+        // 1. 존재하지 않는 관심사 ID
+        UUID fakeInterestId = UUID.randomUUID();
+
+        // when & then:
+        // 2. getOrThrow(interestId)에서 예외가 발생하는지 검증
+        // (ErrorCode.INTEREST_NOT_FOUND는 이전 'getOrThrow' 테스트에서 가정한 값 사용)
+        NotFoundException exception = assertThrows(NotFoundException.class, () -> interestService.unsubscribe(fakeInterestId, user1.getId()));
+
+        // 3. 예외 상세 내용 검증
+        assertThat(exception.getErrorCode()).isEqualTo(ErrorCode.INTEREST_NOT_FOUND);
+        assertThat(exception.getMessage()).contains("Interest not found with id: " + fakeInterestId);
     }
 }

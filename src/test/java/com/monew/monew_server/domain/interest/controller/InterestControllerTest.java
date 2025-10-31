@@ -6,8 +6,7 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -19,7 +18,8 @@ import com.monew.monew_server.domain.interest.dto.InterestQuery;
 import com.monew.monew_server.domain.interest.dto.InterestRegisterRequest;
 import com.monew.monew_server.domain.interest.dto.SubscriptionDto;
 import com.monew.monew_server.domain.interest.service.InterestService;
-import jakarta.persistence.EntityNotFoundException;
+import com.monew.monew_server.exception.ErrorCode;
+import com.monew.monew_server.exception.NotFoundException;
 import java.time.Instant;
 import java.util.Collections;
 import java.util.List;
@@ -225,9 +225,9 @@ class InterestControllerTest {
         // given
         UUID interestId = UUID.randomUUID();
 
-        // Service가 EntityNotFoundException을 던지도록 Mocking
+        // Service가 NotFoundException 던지도록 Mocking
         when(interestService.subscribe(interestId, userId))
-            .thenThrow(new EntityNotFoundException("Interest not found"));
+            .thenThrow(new NotFoundException(ErrorCode.INTEREST_NOT_FOUND, "Interest not found"));
 
         // when & then
         mockMvc.perform(post("/api/interests/{interestId}/subscriptions", interestId)
@@ -238,5 +238,36 @@ class InterestControllerTest {
 
         // verify: Service는 호출되었으나 예외가 발생함
         verify(interestService).subscribe(interestId, userId);
+    }
+    @Test
+    @DisplayName("DELETE /api/interests/{id}/subscriptions - 성공 (200 OK): 관심사 구독 취소")
+    void unsubscribe_success() throws Exception {
+        // given
+        UUID interestId = UUID.randomUUID();
+        // (interestService.unsubscribe는 void를 반환하므로 when() Mocking이 필요 없음)
+
+        // when & then
+        mockMvc.perform(delete("/api/interests/{interestId}/subscriptions", interestId) // DELETE
+                .header(HEADER_USER_ID, userId.toString())) // 필수 헤더
+            .andExpect(status().isOk()) // @ResponseStatus(HttpStatus.OK) 검증
+            .andDo(print());
+
+        // verify: Service의 unsubscribe가 정확한 ID로 1회 호출되었는지 검증
+        verify(interestService).unsubscribe(interestId, userId);
+    }
+
+    @Test
+    @DisplayName("DELETE /api/interests/{id}/subscriptions - 실패 (400 Bad Request): 필수 헤더 누락")
+    void unsubscribe_fail_missingHeader() throws Exception {
+        // given
+        UUID interestId = UUID.randomUUID();
+
+        // when & then: 헤더 없이 DELETE 요청
+        mockMvc.perform(delete("/api/interests/{interestId}/subscriptions", interestId))
+            .andExpect(status().isBadRequest()) // MissingRequestHeaderException (400)
+            .andDo(print());
+
+        // verify: 헤더가 없어 컨트롤러 진입 전 실패하므로 서비스가 호출되지 않음
+        verify(interestService, never()).unsubscribe(any(), any());
     }
 }

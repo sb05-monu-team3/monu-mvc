@@ -17,7 +17,6 @@ import com.monew.monew_server.domain.user.entity.User;
 import com.monew.monew_server.domain.user.repository.UserRepository;
 import com.monew.monew_server.exception.ErrorCode;
 import com.monew.monew_server.exception.InterestException;
-import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -89,8 +88,7 @@ public class InterestService {
     @Transactional
     public SubscriptionDto subscribe(UUID interestId, UUID userId) {
 
-        Interest interest = interestRepository.findById(interestId)
-            .orElseThrow(() -> new EntityNotFoundException("Interest not found with id: " + interestId));
+        Interest interest = interestRepository.getOrThrow(interestId);
 
         Optional<Subscription> existingSubscription = subscriptionRepository
             .findByUserIdAndInterestId(userId, interestId);
@@ -112,5 +110,13 @@ public class InterestService {
         List<String> keywords = interestKeywordRepository.findKeywordsByInterestId(interest.getId());
         long subscriberCount = subscriptionRepository.countByInterestId(interest.getId());
         return subscriptionMapper.toDto(subscription, keywords, subscriberCount);
+    }
+
+
+    @Transactional
+    public void unsubscribe(UUID interestId, UUID userId) {
+
+        interestRepository.getOrThrow(interestId);
+        subscriptionRepository.deleteByUserIdAndInterestId(userId, interestId);
     }
 }
