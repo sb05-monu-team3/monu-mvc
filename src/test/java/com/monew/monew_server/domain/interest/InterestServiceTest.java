@@ -116,8 +116,8 @@ class InterestServiceTest {
     @DisplayName("Lombok 및 Record 커버리지를 위한 코드 실행")
     void testRecordAndEntityCoverage() {
 
-        InterestDto dto1 = new InterestDto(UUID.randomUUID(), "Name", List.of("k1"), 1, true);
-        InterestDto dto2 = new InterestDto(dto1.id(), "Name", List.of("k1"), 1, true);
+        InterestDto dto1 = new InterestDto(UUID.randomUUID(), "Name", List.of("k1"), 1L, true);
+        InterestDto dto2 = new InterestDto(dto1.id(), "Name", List.of("k1"), 1L, true);
 
         assertThat(dto1.id()).isNotNull();
         assertThat(dto1.name()).isEqualTo("Name");
