@@ -6,6 +6,7 @@ import com.monew.monew_server.domain.interest.entity.Interest;
 import com.monew.monew_server.domain.interest.entity.InterestKeyword;
 import jakarta.persistence.EntityManager;
 import java.util.List;
+import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -88,5 +89,52 @@ class InterestKeywordRepositoryTest {
         assertThat(keywords)
             .isNotNull()
             .isEmpty();
+    }
+
+    @Test
+    @DisplayName("deleteAllByInterestId: 특정 관심사의 키워드를 일괄 삭제")
+    void deleteAllByInterestId_shouldDeleteOnlySpecifiedKeywords() {
+        // given
+        // (@BeforeEach에서 interest1(Java)에 "JVM", "OOP" / interest2(Spring)에 "Boot"가 저장됨)
+        long initialTotalCount = interestKeywordRepository.count(); // 3
+        UUID interest1Id = interest1.getId();
+        UUID interest2Id = interest2.getId();
+
+        // when
+        // interest1(Java)의 키워드만 삭제
+        interestKeywordRepository.deleteAllByInterestId(interest1Id);
+        entityManager.flush(); // delete 쿼리 즉시 실행
+        entityManager.clear();
+
+        // then
+        // 1. 전체 카운트가 1로 감소해야 함
+        assertThat(interestKeywordRepository.count()).isEqualTo(initialTotalCount - 2);
+
+        // 2. interest1의 키워드는 조회되지 않아야 함
+        assertThat(interestKeywordRepository.findKeywordsByInterestId(interest1Id)).isEmpty();
+
+        // 3. interest2의 키워드는 남아있어야 함
+        assertThat(interestKeywordRepository.findKeywordsByInterestId(interest2Id))
+            .containsExactly("Boot");
+    }
+
+    @Test
+    @DisplayName("deleteAllByInterestId: 키워드가 없는 관심사에 대해 실행해도 오류 없음 (멱등성)")
+    void deleteAllByInterestId_shouldDoNothing_whenNoKeywordsExist() {
+        // given
+        // (@BeforeEach에서 interest3(Python)은 키워드가 없음)
+        long initialTotalCount = interestKeywordRepository.count(); // 3
+        UUID interest3Id = interest3.getId();
+
+        // when
+        // interest3(Python)의 키워드 삭제 (대상이 없음)
+        interestKeywordRepository.deleteAllByInterestId(interest3Id);
+        entityManager.flush();
+        entityManager.clear();
+
+        // then
+        // 1. 예외가 발생하지 않아야 함
+        // 2. 전체 카운트가 3으로 동일해야 함
+        assertThat(interestKeywordRepository.count()).isEqualTo(initialTotalCount);
     }
 }

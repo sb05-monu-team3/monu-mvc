@@ -4,6 +4,7 @@ import com.monew.monew_server.domain.interest.dto.CursorPageResponseInterestDto;
 import com.monew.monew_server.domain.interest.dto.InterestDto;
 import com.monew.monew_server.domain.interest.dto.InterestQuery;
 import com.monew.monew_server.domain.interest.dto.InterestRegisterRequest;
+import com.monew.monew_server.domain.interest.dto.InterestUpdateRequest;
 import com.monew.monew_server.domain.interest.dto.SubscriptionDto;
 import com.monew.monew_server.domain.interest.entity.Interest;
 import com.monew.monew_server.domain.interest.entity.InterestKeyword;
@@ -80,7 +81,33 @@ public class InterestService {
         return interestMapper.toDto(
             interest,
             savedKeywordNames,
-            0,
+            0L,
+            null
+        );
+    }
+
+    @Transactional
+    public InterestDto update(UUID interestId, InterestUpdateRequest request) {
+        Interest interest = interestRepository.getOrThrow(interestId);
+        interestKeywordRepository.deleteAllByInterestId(interestId);
+
+        List<String> newKeywordNames = request.keywords();
+
+        List<InterestKeyword> newKeywords = newKeywordNames.stream()
+            .map(keywordName -> InterestKeyword.builder()
+                .name(keywordName)
+                .interest(interest)
+                .build())
+            .collect(Collectors.toList());
+
+        interestKeywordRepository.saveAll(newKeywords);
+
+        long subscriberCount = subscriptionRepository.countByInterestId(interestId);
+
+        return interestMapper.toDto(
+            interest,
+            newKeywordNames,
+            subscriberCount,
             null
         );
     }

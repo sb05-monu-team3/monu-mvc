@@ -11,4 +11,6 @@ public interface InterestKeywordRepository extends JpaRepository<InterestKeyword
 
     @Query("SELECT ik.name FROM InterestKeyword ik WHERE ik.interest.id = :interestId")
     List<String> findKeywordsByInterestId(@Param("interestId") UUID interestId);
+
+    void deleteAllByInterestId(UUID interestId);
 }
