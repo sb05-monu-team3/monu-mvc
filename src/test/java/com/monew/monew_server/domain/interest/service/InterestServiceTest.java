@@ -312,4 +312,48 @@ class InterestServiceTest {
         assertThat(exception.getErrorCode()).isEqualTo(ErrorCode.INTEREST_NOT_FOUND);
         assertThat(exception.getMessage()).contains("Interest not found with id: " + fakeInterestId);
     }
+
+    @Test
+    @DisplayName("delete - 성공: ID가 존재할 때 관심사를 삭제한다")
+    void delete_shouldRemoveInterest_whenExists() {
+        // given
+        // 1. 삭제할 테스트 데이터 생성
+        Interest interestToDelete = interestRepository.save(
+            Interest.builder().name("Interest to be deleted").build()
+        );
+        UUID interestId = interestToDelete.getId();
+        entityManager.flush();
+        entityManager.clear();
+
+        // 2. DB에 저장을 확인
+        assertThat(interestRepository.findById(interestId)).isPresent();
+        long initialCount = interestRepository.count();
+
+        // when
+        // 3. 테스트 대상 메서드 호출
+        interestService.delete(interestId);
+        entityManager.flush(); // delete 쿼리 즉시 실행
+        entityManager.clear();
+
+        // then
+        // 4. DB에서 삭제되었는지 검증
+        assertThat(interestRepository.count()).isEqualTo(initialCount - 1);
+        assertThat(interestRepository.findById(interestId)).isEmpty();
+    }
+
+    @Test
+    @DisplayName("delete - 실패 (404 Not Found): ID가 존재하지 않을 때 NotFoundException 발생")
+    void delete_shouldThrowNotFound_whenInterestDoesNotExist() {
+        // given
+        // 1. 존재하지 않는 ID
+        UUID fakeInterestId = UUID.randomUUID();
+
+        // when & then
+        // 2. getOrThrow(interestId)에서 예외가 발생하는지 검증
+        NotFoundException exception = assertThrows(NotFoundException.class, () -> interestService.delete(fakeInterestId));
+
+        // 3. 예외 상세 내용 검증 (ErrorCode.INTEREST_NOT_FOUND는 getOrThrow에 정의됨)
+        assertThat(exception.getErrorCode()).isEqualTo(ErrorCode.INTEREST_NOT_FOUND);
+        assertThat(exception.getMessage()).contains("Interest not found with id: " + fakeInterestId);
+    }
 }

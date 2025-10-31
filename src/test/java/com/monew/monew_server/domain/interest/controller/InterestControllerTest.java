@@ -3,9 +3,7 @@ package com.monew.monew_server.domain.interest.controller;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -269,5 +267,43 @@ class InterestControllerTest {
 
         // verify: 헤더가 없어 컨트롤러 진입 전 실패하므로 서비스가 호출되지 않음
         verify(interestService, never()).unsubscribe(any(), any());
+    }
+
+    @Test
+    @DisplayName("DELETE /api/interests/{id} - 성공 (204 No Content): 관심사 삭제")
+    void delete_success_shouldReturnNoContent() throws Exception {
+        // given
+        UUID interestId = UUID.randomUUID();
+
+        // 1. service.delete(id)가 호출될 때 아무것도 하지 않도록 설정 (void 메서드)
+        doNothing().when(interestService).delete(interestId);
+
+        // when & then
+        mockMvc.perform(delete("/api/interests/{interestId}", interestId)) // DELETE
+            .andExpect(status().isNoContent()) // @ResponseStatus(HttpStatus.NO_CONTENT) 검증
+            .andDo(print());
+
+        // verify: Service의 delete가 1회 호출되었는지 검증
+        verify(interestService).delete(interestId);
+    }
+
+    @Test
+    @DisplayName("DELETE /api/interests/{id} - 실패 (404 Not Found): 관심사 없음")
+    void delete_fail_whenInterestNotFound() throws Exception {
+        // given
+        UUID fakeInterestId = UUID.randomUUID();
+
+        // 1. service.delete(id)가 호출될 때 NotFoundException을 던지도록 Mocking
+        doThrow(new NotFoundException(ErrorCode.INTEREST_NOT_FOUND, "Test Not Found"))
+            .when(interestService)
+            .delete(fakeInterestId);
+
+        // when & then
+        mockMvc.perform(delete("/api/interests/{interestId}", fakeInterestId))
+            .andExpect(status().isNotFound())
+            .andDo(print());
+
+        // verify: Service의 delete가 1회 호출되었는지 검증
+        verify(interestService).delete(fakeInterestId);
     }
 }

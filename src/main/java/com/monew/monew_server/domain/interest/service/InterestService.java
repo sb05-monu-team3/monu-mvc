@@ -86,6 +86,12 @@ public class InterestService {
     }
 
     @Transactional
+    public void delete(UUID interestId) {
+        interestRepository.getOrThrow(interestId);
+        interestRepository.deleteById(interestId);
+    }
+
+    @Transactional
     public SubscriptionDto subscribe(UUID interestId, UUID userId) {
 
         Interest interest = interestRepository.getOrThrow(interestId);
