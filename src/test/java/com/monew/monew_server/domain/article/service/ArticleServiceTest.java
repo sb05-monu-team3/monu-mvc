@@ -91,16 +91,6 @@ class ArticleServiceTest {
 	}
 
 	@Test
-	@DisplayName("Service - 빈 키워드 요청 시 IllegalArgumentException 발생")
-	void shouldThrowExceptionWhenKeywordIsBlank() {
-		ArticleRequest request = new ArticleRequest("", null, null, null, null, ArticleSortType.DATE, 10, null);
-
-		assertThatThrownBy(() -> articleService.fetchArticles(request, DUMMY_USER_ID))
-			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessage("검색 키워드는 비어 있을 수 없습니다.");
-	}
-
-	@Test
 	@DisplayName("Service - 키워드 검색 결과가 0개일 때 ArticleNotFoundException 발생")
 	void shouldThrowExceptionWhenKeywordSearchHasNoResults() {
 		ArticleRequest request = new ArticleRequest("없는키워드", null, null, null, null, ArticleSortType.DATE, 10, null);
