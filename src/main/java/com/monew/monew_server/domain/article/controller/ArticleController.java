@@ -89,6 +89,12 @@ public class ArticleController {
 	@DeleteMapping("/{articleId}")
 	public ResponseEntity<Void> softDeleteArticle(@PathVariable UUID articleId) {
 		articleService.softDeleteArticle(articleId);
-		return ResponseEntity.ok().build();
+		return ResponseEntity.noContent().build();
+	}
+
+	@DeleteMapping("/{articleId}/hard")
+	public ResponseEntity<Void> hardDeleteArticle(@PathVariable UUID articleId) {
+		articleService.hardDeleteArticle(articleId);
+		return ResponseEntity.noContent().build();
 	}
 }
