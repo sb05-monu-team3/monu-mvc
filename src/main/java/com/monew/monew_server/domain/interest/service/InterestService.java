@@ -4,15 +4,23 @@ import com.monew.monew_server.domain.interest.dto.CursorPageResponseInterestDto;
 import com.monew.monew_server.domain.interest.dto.InterestDto;
 import com.monew.monew_server.domain.interest.dto.InterestQuery;
 import com.monew.monew_server.domain.interest.dto.InterestRegisterRequest;
+import com.monew.monew_server.domain.interest.dto.SubscriptionDto;
 import com.monew.monew_server.domain.interest.entity.Interest;
 import com.monew.monew_server.domain.interest.entity.InterestKeyword;
+import com.monew.monew_server.domain.interest.entity.Subscription;
 import com.monew.monew_server.domain.interest.mapper.InterestMapper;
+import com.monew.monew_server.domain.interest.mapper.SubscriptionMapper;
 import com.monew.monew_server.domain.interest.repository.InterestKeywordRepository;
 import com.monew.monew_server.domain.interest.repository.InterestRepository;
+import com.monew.monew_server.domain.interest.repository.SubscriptionRepository;
+import com.monew.monew_server.domain.user.entity.User;
+import com.monew.monew_server.domain.user.repository.UserRepository;
 import com.monew.monew_server.exception.ErrorCode;
 import com.monew.monew_server.exception.InterestException;
+import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -28,8 +36,11 @@ public class InterestService {
 
     private final InterestRepository interestRepository;
     private final InterestKeywordRepository interestKeywordRepository;
+    private final SubscriptionRepository subscriptionRepository;
+    private final UserRepository userRepository;
 
     private final InterestMapper interestMapper;
+    private final SubscriptionMapper subscriptionMapper;
 
     public CursorPageResponseInterestDto findAll(InterestQuery query, UUID userId) {
         return interestRepository.findAll(query, userId);
@@ -73,5 +84,33 @@ public class InterestService {
             0,
             null
         );
+    }
+
+    @Transactional
+    public SubscriptionDto subscribe(UUID interestId, UUID userId) {
+
+        Interest interest = interestRepository.findById(interestId)
+            .orElseThrow(() -> new EntityNotFoundException("Interest not found with id: " + interestId));
+
+        Optional<Subscription> existingSubscription = subscriptionRepository
+            .findByUserIdAndInterestId(userId, interestId);
+
+        Subscription subscription;
+        if (existingSubscription.isPresent()) {
+            subscription = existingSubscription.get();
+        } else {
+            User userProxy = userRepository.getReferenceById(userId);
+
+            Subscription newSubscription = Subscription.builder()
+                .user(userProxy)
+                .interest(interest)
+                .build();
+
+            subscription = subscriptionRepository.save(newSubscription);
+        }
+
+        List<String> keywords = interestKeywordRepository.findKeywordsByInterestId(interest.getId());
+        long subscriberCount = subscriptionRepository.countByInterestId(interest.getId());
+        return subscriptionMapper.toDto(subscription, keywords, subscriberCount);
     }
 }
