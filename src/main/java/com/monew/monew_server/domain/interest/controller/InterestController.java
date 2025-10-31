@@ -42,8 +42,13 @@ public class InterestController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public InterestDto create(@RequestBody @Valid InterestRegisterRequest request) {
-        log.info("POST /api/comments - 관심사 생성 요청");
         return interestService.create(request);
+    }
+
+    @DeleteMapping("{interestId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable UUID interestId) {
+        interestService.delete(interestId);
     }
 
     @PostMapping("{interestId}/subscriptions")
