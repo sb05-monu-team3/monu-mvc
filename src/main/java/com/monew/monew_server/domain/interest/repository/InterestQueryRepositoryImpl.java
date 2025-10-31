@@ -4,8 +4,6 @@ import static com.monew.monew_server.domain.interest.entity.QInterest.*;
 import static com.monew.monew_server.domain.interest.entity.QInterestKeyword.*;
 import static com.monew.monew_server.domain.interest.entity.QSubscription.*;
 import static com.monew.monew_server.domain.interest.enums.InterestSortField.*;
-import static com.querydsl.core.group.GroupBy.groupBy;
-import static com.querydsl.core.group.GroupBy.list;
 import static org.springframework.util.StringUtils.*;
 
 import com.monew.monew_server.domain.interest.dto.CursorPageResponseInterestDto;
@@ -25,7 +23,9 @@ import java.time.Instant;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -35,7 +35,7 @@ public class InterestQueryRepositoryImpl implements InterestQueryRepository {
 
     private final JPAQueryFactory queryFactory;
 
-    private record InterestTempDto(
+    public record InterestTempDto(
         UUID id,
         String name,
         Long subscriberCount,
@@ -86,12 +86,31 @@ public class InterestQueryRepositoryImpl implements InterestQueryRepository {
             .map(InterestTempDto::id)
             .toList();
 
-        Map<UUID, List<String>> keywordsMap = interestIds.isEmpty()
-            ? Collections.emptyMap()
-            : queryFactory
-            .from(interestKeyword)
-            .where(interestKeyword.interest.id.in(interestIds))
-            .transform(groupBy(interestKeyword.interest.id).as(list(interestKeyword.name)));
+        Map<UUID, List<String>> keywordsMap;
+        if (interestIds.isEmpty()) {
+            keywordsMap = Collections.emptyMap();
+        } else {
+            List<Map.Entry<UUID, String>> pairs = queryFactory
+                .select(
+                    interestKeyword.interest.id,
+                    interestKeyword.name
+                )
+                .from(interestKeyword)
+                .where(interestKeyword.interest.id.in(interestIds))
+                .fetch()
+                .stream()
+                .map(tuple -> Map.entry(
+                    Objects.requireNonNull(tuple.get(interestKeyword.interest.id)),
+                    Objects.requireNonNull(tuple.get(interestKeyword.name)))
+                )
+                .toList();
+
+            keywordsMap = pairs.stream()
+                .collect(Collectors.groupingBy(
+                    Map.Entry::getKey,
+                    Collectors.mapping(Map.Entry::getValue, Collectors.toList())
+                ));
+        }
 
         // 최종 DTO 조합
         List<InterestDto> finalRows = paginatedRows.stream()
