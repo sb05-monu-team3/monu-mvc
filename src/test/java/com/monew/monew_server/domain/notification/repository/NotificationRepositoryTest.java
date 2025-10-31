@@ -14,12 +14,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.context.annotation.Import;
+import org.springframework.test.context.ActiveProfiles;
 
+import com.monew.monew_server.config.JpaConfig;
+import com.monew.monew_server.config.QuerydslConfig;
 import com.monew.monew_server.domain.notification.entity.Notification;
 import com.monew.monew_server.domain.notification.entity.NotificationResourceType;
 import com.monew.monew_server.domain.user.entity.User;
 
 @DataJpaTest
+@Import({QuerydslConfig.class, JpaConfig.class})
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @DisplayName("NotificationRepository 테스트")
 class NotificationRepositoryTest {
