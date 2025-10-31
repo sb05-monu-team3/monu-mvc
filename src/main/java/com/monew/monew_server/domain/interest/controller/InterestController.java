@@ -11,6 +11,7 @@ import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,5 +53,14 @@ public class InterestController {
         @RequestHeader("Monew-Request-User-Id") UUID userId
     ) {
         return interestService.subscribe(interestId, userId);
+    }
+
+    @DeleteMapping("{interestId}/subscriptions")
+    @ResponseStatus(HttpStatus.OK)
+    public void unsubscribe(
+        @PathVariable UUID interestId,
+        @RequestHeader("Monew-Request-User-Id") UUID userId
+    ) {
+        interestService.unsubscribe(interestId, userId);
     }
 }
