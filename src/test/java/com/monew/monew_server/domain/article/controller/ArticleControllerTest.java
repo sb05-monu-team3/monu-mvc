@@ -27,7 +27,7 @@ import com.monew.monew_server.domain.article.service.ArticleService;
 
 @WebMvcTest(
 	controllers = ArticleController.class,
-	excludeAutoConfiguration = {  // ← JPA 자동 설정 제외
+	excludeAutoConfiguration = {
 		JpaRepositoriesAutoConfiguration.class,
 		HibernateJpaAutoConfiguration.class,
 		SecurityAutoConfiguration.class
@@ -66,7 +66,14 @@ class ArticleControllerTest {
 		when(articleService.fetchArticles(any(ArticleRequest.class), any(UUID.class)))
 			.thenReturn(mockResponse);
 
-		mockMvc.perform(get("/api/articles"))
+		mockMvc.perform(get("/api/articles")
+				.param("keyword", "")
+				.param("size", "10")
+				.param("sortBy", "DATE")
+				.param("cursor", "")
+				.param("nextAfter", "")
+				.header("Monew-Request-User-ID", "00000000-0000-0000-0000-000000000001")
+			)
 			.andExpect(status().isOk())
 			.andExpect(jsonPath("$.content.length()").value(2))
 			.andExpect(jsonPath("$.content[0].title").value("기사 제목 1"))
@@ -91,7 +98,14 @@ class ArticleControllerTest {
 		when(articleService.fetchArticles(any(ArticleRequest.class), any(UUID.class)))
 			.thenReturn(mockResponse);
 
-		mockMvc.perform(get("/api/articles?keyword=삼성전자"))
+		mockMvc.perform(get("/api/articles")
+				.param("keyword", "삼성전자")
+				.param("size", "10")
+				.param("sortBy", "DATE")
+				.param("cursor", "")        // 빈 문자열 대신 null로 보내도 됨
+				.param("nextAfter", "")     // 빈 문자열 대신 null로 보내도 됨
+				.header("Monew-Request-User-ID", "00000000-0000-0000-0000-000000000001")
+			)
 			.andExpect(status().isOk())
 			.andExpect(jsonPath("$.content.length()").value(1))
 			.andExpect(jsonPath("$.content[0].title").value("삼성전자 실적 상승"));
@@ -122,7 +136,13 @@ class ArticleControllerTest {
 		when(articleService.fetchArticles(any(ArticleRequest.class), any(UUID.class)))
 			.thenReturn(mockResponse);
 
-		mockMvc.perform(get("/api/articles?sortBy=DATE"))
+		mockMvc.perform(get("/api/articles")
+				.param("sortBy", "DATE")
+				.param("size", "10")
+				.param("cursor", "")
+				.param("nextAfter", "")
+				.header("Monew-Request-User-ID", "00000000-0000-0000-0000-000000000001")
+			)
 			.andExpect(status().isOk())
 			.andExpect(jsonPath("$.content[0].title").value("최신 기사"));
 	}
@@ -152,7 +172,8 @@ class ArticleControllerTest {
 		when(articleService.fetchArticles(any(ArticleRequest.class), any(UUID.class)))
 			.thenReturn(mockResponse);
 
-		mockMvc.perform(get("/api/articles?sortBy=VIEW_COUNT"))
+		mockMvc.perform(get("/api/articles?sortBy=VIEW_COUNT")
+				.header("Monew-Request-User-ID", "00000000-0000-0000-0000-000000000001"))
 			.andExpect(status().isOk())
 			.andExpect(jsonPath("$.content[0].title").value("조회수 1위 기사"))
 			.andExpect(jsonPath("$.content[0].viewCount").value(100));
@@ -183,7 +204,8 @@ class ArticleControllerTest {
 		when(articleService.fetchArticles(any(ArticleRequest.class), any(UUID.class)))
 			.thenReturn(mockResponse);
 
-		mockMvc.perform(get("/api/articles?sortBy=COMMENT_COUNT"))
+		mockMvc.perform(get("/api/articles?sortBy=COMMENT_COUNT")
+				.header("Monew-Request-User-ID", "00000000-0000-0000-0000-000000000001"))
 			.andExpect(status().isOk())
 			.andExpect(jsonPath("$.content[0].title").value("댓글 많은 기사"))
 			.andExpect(jsonPath("$.content[0].commentCount").value(50));
